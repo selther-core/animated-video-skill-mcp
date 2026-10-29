@@ -1,6 +1,6 @@
 # Cross-niche examples: scripts, storyboards and voice cues
 
-These are original *small production examples* illustrating how the same reference-inspired visual grammar can serve different niches. They are not reference footage, approved claims, or finished video projects. **All narrator and character voices use an American accent**; select U.S. English (`en-US`) voices for these English scripts. See `../references/voice-direction.md` for niche-specific voice types, detailed delivery and more TTS-ready scripts. Estimated cue times are a planning scaffold: generate the speech, measure it, then move scene boundaries to match. Adapt titles, characters, assets, safety guidance and facts to the brief. Final publishing requires a complete, checked deliverable.
+These are original *small production examples* illustrating how the same reference-inspired visual grammar can serve different niches. They are not reference footage, approved claims, or finished video projects. **All narrator and character voices use an American accent**; select U.S. English (`en-US`) voices for these English scripts. All voices should be energetic, well-projected, clear and expressive—not boring—and prominent in the mix without shouting or clipping. See `../references/voice-direction.md` for niche-specific voice types, detailed delivery and more TTS-ready scripts. Estimated cue times are a planning scaffold: generate the speech, measure it, then move scene boundaries to match. Adapt titles, characters, assets, safety guidance and facts to the brief. Final publishing requires a complete, checked deliverable.
 
 ## 1. Fictional business case — the bakery queue
 
@@ -17,7 +17,7 @@ These are original *small production examples* illustrating how the same referen
 | 0:18–0:30 | Split the counter into two clearly labeled areas: “order” and “collect.” Show a card pass from one hand to another; the line begins moving. | “She separated ordering from pickup. Now one person could choose while another collected a finished bag. The queue didn't vanish, but it became easier to follow.” |
 | 0:30–0:40 | Wide shot returns; Mina smiles, customer exits. | “It's a fictional bakery, but the question is real: when work piles up, which small change would make the next step clearer?” |
 
-**Voice and sound:** American-accented adult narrator, medium-low pitch and warm, lightly textured tone; conversational, playful but restrained at about 140–150 wpm. Pause before the change and avoid an ad-read. A single low-volume door bell and paper shuffle are optional original sounds. Don't assert that this intervention would work for every actual shop. Deliver an original thumbnail, script, captions and evidence/rights notes.
+**Voice and sound:** American-accented adult narrator, medium-low pitch and warm, lightly textured tone; energetic, conversational and playful at about 140–150 wpm. Pause before the change and avoid an ad-read. A single low-volume door bell and paper shuffle are optional original sounds. Don't assert that this intervention would work for every actual shop. Deliver an original thumbnail, script, captions and evidence/rights notes.
 
 ## 2. Personal productivity — a desk reset
 
@@ -34,7 +34,7 @@ These are original *small production examples* illustrating how the same referen
 | 0:19–0:29 | Character circles one task and picks up a pencil; camera moves closer. | “Pick one action you can actually begin, and make its first step specific. Not ‘organize everything’—just ‘sort the notes on this desk.’” |
 | 0:29–0:37 | Wider quiet frame, one card separated from the pile. | “This won't solve every deadline. It can give you a clearer place to start. What would your first card say?” |
 
-**Voice and sound:** American-accented adult narrator, medium pitch and soft, clear tone; steady and compassionate at about 120–135 wpm, without whispering or promising results. Optional quiet paper sounds. Avoid claims that the method cures anxiety, guarantees productivity or replaces professional care.
+**Voice and sound:** American-accented adult narrator, medium pitch and bright, clear tone; energetic and compassionate at about 120–135 wpm, without whispering or promising results. Optional quiet paper sounds. Avoid claims that the method cures anxiety, guarantees productivity or replaces professional care.
 
 ## 3. Fictional animal story — the lost kite
 
@@ -51,7 +51,7 @@ These are original *small production examples* illustrating how the same referen
 | 0:18–0:30 | Bird lifts the loose string, fox holds the lower end; the kite comes free and floats down. | “The bird tugged at the loose end while the fox held the string below. Together they worked it free, gently enough to keep the kite in one piece.” |
 | 0:30–0:40 | A child-shaped silhouette arrives at the path; fox leaves the kite in view. Warm light closes the scene. | “Soon a child came looking. The fox left the kite beside the path, and the bird watched from the tree. Mystery solved.” |
 
-**Voice:** American-accented adult storyteller, medium-to-bright pitch, warm and gentle at about 125–145 wpm; let the problem feel curious, not frightening.
+**Voice:** American-accented adult storyteller, medium-to-bright pitch, warm and lively at about 125–145 wpm; let the problem feel curious, not frightening.
 
 **Animation and sound:** Create a quadruped rig with shoulder/hip/leg pivots and a tail; move the bird with simple wing poses. Keep feet and beak in contact with the string when pulling. Suggested original wind and foliage sounds; no required spoken dialogue. This is a fictional narrative, not evidence of animal behavior.
 
@@ -70,7 +70,7 @@ These are original *small production examples* illustrating how the same referen
 | 0:19–0:30 | Slow descent down ladder, boot contacts ground; another character remains near the lander. | “Armstrong became the first person to step onto the lunar surface. Aldrin followed, and the two astronauts explored the landing area.” |
 | 0:30–0:38 | Pull back to the small craft and distant Earth; caption “July 1969.” | “Their visit was brief, but it became one of the defining images of the space age.” |
 
-**Voice and sound:** American-accented adult narrator, medium or medium-low pitch, clear and quietly awed at about 125–140 wpm. Leave space around names and dates; do not imitate historical voices. Optional original abstract ambient bed. Do not invent quotations or reproduce copyrighted recordings. Verify dates, crew roles, description and all illustration rights.
+**Voice and sound:** American-accented adult narrator, medium or medium-low pitch, clear, engaged and expressively awed at about 125–140 wpm. Leave space around names and dates; do not imitate historical voices. Optional original abstract ambient bed. Do not invent quotations or reproduce copyrighted recordings. Verify dates, crew roles, description and all illustration rights.
 
 ## How to turn any example into a production
 

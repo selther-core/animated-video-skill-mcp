@@ -82,7 +82,7 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
 | [Niche adaptation](.agents/skills/cinematic-narrative-video/references/niche-adaptation.md) | Adapt story, characters, visuals, and evidence to different subjects. |
-| [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
+| [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; energetic, clear American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
 | [Examples](.agents/skills/cinematic-narrative-video/examples/) | Cross-niche scripts, a storyboard, a timeline, and a silent HTML animation demo. |
 | [Original visual assets](.agents/skills/cinematic-narrative-video/assets/README.md) | Editable SVG illustrations with PNG previews. |
 | [Reference frames](.agents/skills/cinematic-narrative-video/reference-frames/README.md) | Eight third-party stills for visual study, with source and rights information. |

@@ -76,6 +76,8 @@ class MCPTests(unittest.TestCase):
         self.assertIn("en-US", guide)
         self.assertIn("Voice types to use for each niche", guide)
         self.assertIn("Topic scripts and voice examples", guide)
+        self.assertIn("energetic, confidently projected, clear and engaging", guide)
+        self.assertIn("Loud does not mean shouting, clipping", guide)
         self.assertIn("The bakery queue", guide)
         self.assertEqual(responses[1]["result"]["contents"][0]["text"], guide)
         prompt = responses[2]["result"]["messages"][0]["content"]["text"]

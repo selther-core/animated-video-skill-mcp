@@ -10,6 +10,15 @@ If the requested language is not English, use an American-accented speaker in th
 
 The source audio was not auditioned, so its accent, gender, timbre, rate, emotional delivery, music, and exact sync are **unknown**. These are creative recommendations for new work, not a claim about the reference. Do not clone or imitate an identifiable narrator without appropriate authorization; choose original voices.
 
+## Required delivery: energetic, loud and clear
+
+Every spoken voice should be **energetic, confidently projected, clear and engaging**. Pick an expressive American-accented voice with presence, not a flat, sleepy, mumbled, monotone or boring read. Keep that standard for narration and character dialogue across every niche.
+
+- **Energy:** Start with an alert, present delivery. Vary pitch, inflection, emphasis and sentence rhythm around the meaning; bring extra lift to hooks, character choices and reveals. Use brief purposeful pauses, then return with momentum. Do not force the same high-intensity pitch or speed throughout.
+- **Loud and clear:** Choose a strong, forward, well-articulated voice that is prominent over music and effects. Record or synthesize clean speech, balance the narration consistently, and duck background tracks when it speaks. Check that quiet words and consonants remain understandable on phone speakers and in captions. Loud does not mean shouting, clipping or uncomfortable playback.
+- **Non-boring without inappropriate hype:** Use animation and conviction appropriate to the subject. For a sensitive health or serious history topic, sound attentive, expressive and empathetic rather than sleepy or sensational. For suspense, stay clearly projected even in a restrained moment; no whispering that reduces intelligibility.
+- **Actual quality check:** Audition a representative passage; listen for clear consonants, sufficient presence, meaningful pitch variation and natural rhythm. Adjust the real TTS voice, rate or supported delivery controls, and re-synthesize weak passages. If you cannot listen, cannot control the performance or cannot verify loudness, say which checks remain unverified.
+
 ## Build a voice profile
 
 Choose a real, available **American-accented** voice first, then describe its performance using these dimensions. Gender presentation is a creative choice, not a requirement for a niche. Any adult-sounding voice can work if it suits the story and audience.
@@ -18,9 +27,9 @@ Choose a real, available **American-accented** voice first, then describe its pe
 |---|---|---|
 | Accent and language | American accent on every speaker; `en-US` for English. | General American, U.S. English. |
 | Role and perceived age | Narrator, character, host, or dialogue; adult-sounding or youthful *sounding* if needed. | Adult-sounding narrator. |
-| Pitch and range | Low, medium, or high relative to the available voices; restrained or expressive variation. | Medium-low pitch, moderate range. |
-| Tone and texture | How the sound feels: warm, clear, smooth, lightly textured, bright, soft, or grounded. | Warm, smooth, close, clear. |
-| Energy and emotion | Relaxed, curious, reassuring, playful, urgent, thoughtful, etc. | Calm curiosity, never breathless. |
+| Pitch and range | Low, medium, or high relative to the available voices; purposeful, expressive variation. | Medium-low pitch, lively pitch movement. |
+| Tone and texture | How the sound feels: warm, clear, smooth, lightly textured, bright, or grounded. | Warm, forward, clean, clear. |
+| Energy and emotion | Engaged, curious, reassuring, playful, urgent, thoughtful, etc. | Energetic curiosity without sounding breathless. |
 | Rate and articulation | Approximate words per minute, natural clarity, and how technical words or numbers are handled. | About 140–155 wpm; articulate numbers distinctly. |
 | Rhythm and emphasis | Where to pause, which idea earns emphasis, and how to land a sentence. | Brief pause before the turn; emphasize the important noun, not every word. |
 | Boundaries | Styles that would undermine the topic. | No shouting, imitation, forced suspense, or commercial hype. |
@@ -33,20 +42,20 @@ All profiles below require the American accent rule above. The rates are **start
 
 | Niche / intent | Voice type and delivery | Starting pace | Avoid |
 |---|---|---:|---|
-| Science / educational explainers | Adult-sounding, medium-pitched, clear and warm; curious on the question, precise and grounded on the explanation. Pause before a surprising result. | 135–155 wpm | Lecturing, constant wonder, rushed terminology. |
-| Tutorials / how-to | Friendly, clean, medium pitch, steady energy; sound like a patient guide. Separate steps and clearly stress action words. | 125–150 wpm | Racing through steps, flat robotic lists. |
-| Business / case studies | Medium or medium-low, conversational and confident, with restrained energy. Give decisions and tradeoffs a little space. | 135–155 wpm | A pushy ad-read, false certainty, exaggerated success. |
-| Finance / economics | Clear, composed, grounded mid-range voice; slightly slower on amounts, conditions, uncertainty, and risks. | 125–145 wpm | Promising returns, hyping figures, burying caveats. |
-| History / biography | Mature-sounding, warm, measured, medium-low or medium pitch; thoughtful curiosity rather than a dramatic movie trailer. Leave room around names and dates. | 125–145 wpm | Invented quotations, impersonation, excessive gravitas. |
+| Science / educational explainers | Adult-sounding, medium-pitched, clear and warm; energized curiosity on the question, expressive precision on the explanation. Pause before a surprising result. | 135–155 wpm | Lecturing, constant wonder, rushed terminology. |
+| Tutorials / how-to | Friendly, clean, medium pitch, upbeat and confident; sound like an engaged guide. Separate steps and clearly stress action words. | 125–150 wpm | Racing through steps, flat robotic lists. |
+| Business / case studies | Medium or medium-low, conversational and confident, with lively, purposeful energy. Give decisions and tradeoffs a little space. | 135–155 wpm | A pushy ad-read, false certainty, exaggerated success. |
+| Finance / economics | Clear, engaged, confidently projected mid-range voice; lively but measured, slowing slightly on amounts, conditions, uncertainty, and risks. | 125–145 wpm | Promising returns, hyping figures, burying caveats. |
+| History / biography | Mature-sounding, warm, energized, medium-low or medium pitch; tell the story with expressive curiosity rather than a dramatic movie trailer. Leave room around names and dates. | 125–145 wpm | Invented quotations, impersonation, excessive gravitas. |
 | Fiction / adventure | Expressive adult-sounding storyteller with moderate pitch movement and clear character changes; vary intensity at choices and resolution. | 135–160 wpm | One exaggerated emotion throughout or a copied performer. |
-| Animals / family stories | Warm, bright, gentle American narrator, with a friendly smile in the voice; use natural wonder and give young listeners time to follow. | 120–145 wpm | Baby talk, shrillness, exaggerated animal stereotypes. |
+| Animals / family stories | Warm, bright, lively American narrator, with a friendly smile in the voice; use expressive wonder and give young listeners time to follow. | 120–145 wpm | Baby talk, shrillness, exaggerated animal stereotypes. |
 | Comedy / light commentary | Conversational, relaxed, slightly brighter or more animated tone; set up the line plainly, pause, then land the joke without forcing a laugh. | 140–165 wpm | Shouting, nonstop punchlines, pausing after every sentence. |
-| Mystery / suspense | Low-to-mid or mid-range, controlled and intimate without whispering; calm curiosity, a short pause before a reveal, clear consonants. | 120–145 wpm | Loud stingers, threats, fake urgency, inaudible whispers. |
-| Productivity / personal growth | Gentle, steady, mid-range and reassuring without being overly intimate; make suggestions sound optional and realistic. | 120–145 wpm | Shame, miracle promises, therapy-like roleplay. |
-| Health / wellbeing | Calm, empathetic, clear and grounded; leave room for safety caveats and uncertainty. Use non-alarmist delivery. | 115–140 wpm | Diagnosing, medical certainty, cheerful minimization of distress. |
-| Technology / product explainers | Bright but natural medium-pitched voice; articulate product names and technical terms, then relax into plain-language examples. | 135–155 wpm | Ad-style hype, rushing unfamiliar terminology. |
+| Mystery / suspense | Low-to-mid or mid-range, confidently projected and engaged without whispering; build active curiosity, a short pause before a reveal, and clear consonants. | 120–145 wpm | Loud stingers, threats, fake urgency, inaudible whispers. |
+| Productivity / personal growth | Upbeat, expressive, mid-range and reassuring without being overly intimate; make suggestions sound optional and realistic. | 120–145 wpm | Shame, miracle promises, therapy-like roleplay. |
+| Health / wellbeing | Present, expressive, empathetic, clear and grounded; leave room for safety caveats and uncertainty. Be energetic but non-alarmist. | 115–140 wpm | Diagnosing, medical certainty, cheerful minimization of distress. |
+| Technology / product explainers | Bright, energetic and natural medium-pitched voice; articulate product names and technical terms, then explain examples with lively clarity. | 135–155 wpm | Ad-style hype, rushing unfamiliar terminology. |
 | Sports / gaming | Energetic, clean, forward delivery; increase momentum for action and slow down for strategy or outcome. | 145–170 wpm | Constant shouting, overstated results or gambling-like hype. |
-| Documentary / serious commentary | Steady, neutral-to-warm, lower energy and precise phrasing; distinguish observed facts from interpretation. | 125–145 wpm | Sensationalism, one-sided certainty, inappropriate humor. |
+| Documentary / serious commentary | Engaged, neutral-to-warm, confidently projected with expressive and precise phrasing; distinguish observed facts from interpretation. | 125–145 wpm | Sensationalism, one-sided certainty, inappropriate humor. |
 
 For a niche not listed, identify its intent and emotional stakes, start with the nearest row, and adapt the profile—not a different accent. A single video can shift delivery between scenes without changing the narrator's voice identity.
 
@@ -75,31 +84,31 @@ The passages below are **TTS-ready spoken text**. Their voice descriptions are d
 
 ### History: The first Moon landing
 
-**Voice:** American-accented adult narrator; medium to medium-low pitch; clear, measured, quietly awed, and respectful; around 125–140 wpm. Give names and dates room; avoid imitating a historical recording.
+**Voice:** American-accented adult narrator; medium to medium-low pitch; clear, energized, thoughtfully awed, and respectful; around 125–140 wpm. Give names and dates room; avoid imitating a historical recording.
 
 > In July 1969, Apollo Eleven carried three astronauts to the Moon. Neil Armstrong and Buzz Aldrin descended to its surface while Michael Collins remained in lunar orbit. For a brief time, two people explored another world, before returning to the spacecraft that would take them home.
 
 ### Productivity: Starting with a small step
 
-**Voice:** American-accented adult narrator; medium pitch; soft, clear, supportive, and reassuring without whispering; around 120–135 wpm. Put a brief pause after the first question and deliver the suggestion without judgment or guarantees.
+**Voice:** American-accented adult narrator; medium pitch; bright, energetic, clear, supportive, and reassuring without whispering; around 120–135 wpm. Put a brief pause after the first question and deliver the suggestion without judgment or guarantees.
 
 > When a task feels too big, where do you begin? Try choosing one action small enough to finish in a few minutes. Open the document. Clear one corner of the desk. Write the first sentence. A small start won't solve everything, but it can make the next choice easier to see.
 
 ### Fiction / family: The fox and the kite
 
-**Voice:** American-accented adult storyteller; medium to slightly higher pitch; warm, bright, gentle, and lightly playful; around 125–145 wpm. Sound curious at the problem, soften on the fox's decision, and leave a beat before the ending. This is fiction.
+**Voice:** American-accented adult storyteller; medium to slightly higher pitch; warm, bright, energetic, and lightly playful; around 125–145 wpm. Sound actively curious at the problem, add warmth to the fox's decision, and leave a beat before the ending. This is fiction.
 
 > A little fox found a red kite tangled in the tallest tree. He jumped once, then twice, but the string stayed out of reach. A bird landed nearby and tugged at the loose end. The fox held it steady. Together, they brought the kite safely back to the ground.
 
 ### Mystery: The missing library book
 
-**Voice:** American-accented adult narrator; medium-low pitch; smooth, controlled, intimate but fully audible; around 125–140 wpm. Slow slightly before the reveal, keep suspense playful, and avoid horror-trailer intensity. This is fiction.
+**Voice:** American-accented adult narrator; medium-low pitch; smooth, controlled, engaged and clearly projected; around 125–140 wpm. Slow slightly before the reveal, keep suspense playful, and avoid horror-trailer intensity. This is fiction.
 
 > Every Friday, one book disappeared from the library's front shelf. By Monday, it was always back. The librarian checked the desk, the windows, and even the return box. Then she noticed a little note tucked inside the cover: Thank you for lending me a story while my bus was late.
 
 ### Technology: Explaining a password manager
 
-**Voice:** American-accented adult narrator; medium pitch; clear, modern, friendly, and matter-of-fact; around 135–150 wpm. Articulate technical terms once, use plain language, and avoid selling a particular product.
+**Voice:** American-accented adult narrator; medium pitch; clear, modern, energetic, friendly, and matter-of-fact; around 135–150 wpm. Articulate technical terms once, use plain language, and avoid selling a particular product.
 
 > Remembering a different password for every account can be difficult. A password manager keeps credentials together in an encrypted vault, protected by a main password or another sign-in method. It can also help generate unique passwords. Review the provider's security guidance and keep your recovery options up to date.
 
@@ -112,10 +121,10 @@ The passages below are **TTS-ready spoken text**. Their voice descriptions are d
 ## Tool workflow and TTS
 
 1. Write and fact-check the exact script with speaker labels. For English, request `en-US` and an explicitly American voice for every role; check the provider's available metadata. Use agent-native TTS when available. Audition candidate voices using the same 30–45 words when the tool supports it; register a separate voice for each speaker if required. Do not ask the user to find another service when the agent already has a suitable tool.
-2. Audition for accent, intelligibility, natural pacing, and fit. Some tools support rate or style controls and others do not; do not assume a particular setting exists. If audio cannot be auditioned or the accent cannot be verified, report the unchecked condition rather than asserting compliance. Do not replace the required accent with a different one.
+2. Audition for American accent, energy, strong projection, intelligibility, expressive pacing, and fit; re-synthesize if the voice sounds flat or boring. Some tools support rate or style controls and others do not; do not assume a particular setting exists. If audio cannot be auditioned or the accent cannot be verified, report the unchecked condition rather than asserting compliance. Do not replace the required accent with a different one.
 3. Synthesize at sentence or story-beat boundaries. Save cue IDs, speaker/voice IDs, output filenames, and measured durations. Align scenes to actual speech, not estimated word counts. Use available TTS timing metadata, a forced aligner, or manual cueing; review approximate timing.
 4. Add original or appropriately licensed music and effects on separate tracks. Soft paper movement, ambient room tone, and restrained reveal sounds are optional design ideas, not observed reference audio. Keep speech intelligible and avoid unnecessary effects.
-5. As optional production starting points—not platform requirements—aim near −16 LUFS integrated stereo and ≤−1 dBTP true peak. Measure levels, duck the bed under speech, and listen end to end if possible. If listening is unavailable, mark listening-based quality control incomplete.
+5. As optional production starting points—not platform requirements—aim near −16 LUFS integrated stereo and ≤−1 dBTP true peak. Measure levels, keep speech prominent and consistently audible, duck the bed under speech, and listen end to end if possible. If listening is unavailable, mark listening-based quality control incomplete.
 
 ## Example cue sheet
 

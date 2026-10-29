@@ -65,6 +65,22 @@ class MCPTests(unittest.TestCase):
         resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
         self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
 
+    def test_american_voice_guide_and_prompt(self):
+        responses = run_server([
+            call(1, "read_skill_guide", {"guide": "voice"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/voice"}),
+            req(3, "prompts/get", {"name": "create_niche_video", "arguments": {"topic": "bread", "niche": "business"}}),
+        ])
+        guide = tool_data(responses[0])["content"]
+        self.assertIn("All spoken voices in this skill must use an American accent", guide)
+        self.assertIn("en-US", guide)
+        self.assertIn("Voice types to use for each niche", guide)
+        self.assertIn("Topic scripts and voice examples", guide)
+        self.assertIn("The bakery queue", guide)
+        self.assertEqual(responses[1]["result"]["contents"][0]["text"], guide)
+        prompt = responses[2]["result"]["messages"][0]["content"]["text"]
+        self.assertIn("All spoken voices must use an American accent", prompt)
+
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")

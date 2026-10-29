@@ -16,7 +16,7 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.
 - `examples/cross-niche-scripts.md` — example briefs, original voice scripts and mini storyboards for several non-science niches.
 - `references/character-rig.md` — coordinate system, hierarchy, joint placement, facial states and a usable pose data example.
-- `references/voice-direction.md` — voice profiles, audition and TTS instructions, pacing, sound placement, and limitations. No voice files or reference-voice claims.
+- `references/voice-direction.md` — American-accent voice types for different niches, detailed delivery instructions, TTS-ready topic scripts, auditions, and audio workflow. No voice files or reference-voice claims.
 - `examples/example-script-and-board.md` — a complete short example narration, time-coded visual plan, TTS-ready lines and edit notes.
 - `examples/example-timeline.json` — valid example scene/visual/audio event plan; a planning file, not an executable program.
 - `examples/puppet-demo.html` — self-contained animated character/board demo. Open locally in a browser; it has no narration and is not a finished video.
@@ -98,7 +98,8 @@ Niche and target audience: ...
 Core promise, question, lesson or story conflict: ...
 Genre and intent: explanation / tutorial / story / case study / commentary / other
 Length or range: ...       Format: long-form 16:9 / vertical Short / other
-Language and voice: ...   Tone and boundaries: ...
+Language: U.S. English by default; all voices use an American accent.
+Voice preference, tone and boundaries: ...
 Specific facts/sources: ...  Brand/style or accessibility needs: ...
 Publishing destination: ...  Playlist context if known: ...
 Other requirements: ...
@@ -164,6 +165,7 @@ Animate in world coordinates with a deterministic timeline. At 30 fps, frame `n`
 
 ### D. Sound and timing (proposed, not observed)
 
+- **American accent for every spoken voice:** Select an explicitly American-accented voice for narration and for each character, using U.S. English (`en-US`) for English scripts. Do not substitute other accents. If a suitable accent is unavailable or cannot be verified, disclose that limitation rather than claiming compliance. For non-English speech, use an American-accented voice only if supported; otherwise provide the written script. See `references/voice-direction.md` for niche-specific voice profiles and TTS-ready examples. The reference voice and accent were not auditioned.
 - Generate the final narration first if possible; use agent-native TTS. Save exact transcript and time cues. After receiving audio, measure duration and align scene lengths to actual speech, not estimated word counts. Keep dialogue distinct and intelligible. If no TTS capability exists, produce exact TTS-ready text and a clearly marked temporary silent/picture-only preview only if useful; request audio input only as the remaining blocker, not generic outside assistance.
 - Design a small original palette: soft tonal ambient bed, room/street atmosphere where relevant, quiet UI pops or swishes for information reveals, gentle footsteps, and a restrained accent on genuine surprises. Generate procedural SFX with synthesis/noise envelopes or use properly licensed assets; do not assume any of these are present in the reference. No unnecessary stingers on every cut. Keep the opening clear and avoid a loud logo sting.
 - Lay narration, music and SFX on separate tracks. Sync pops to on-screen arrival; place breaths/pauses naturally; duck music and effects under speech. A practical initial target for online video is integrated loudness near −16 LUFS stereo, true peak at or below −1 dBTP, with narration clearly dominant; this is a production target, not a platform requirement. Measure with `ffmpeg -i final_video.mp4 -af loudnorm=I=-16:TP=-1:LRA=11:print_format=json -f null -`; inspect levels and listen after adjustment. Avoid clipping and overcompression. Loudness target is not a substitute for intelligibility or final listening.

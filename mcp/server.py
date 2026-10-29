@@ -21,7 +21,7 @@ DOCS = {
     "compatibility": ("references/agent-compatibility.md", "Using the skill with different kinds of agents"),
     "visual": ("references/visual-reference.md", "Analysis of extracted reference frames"),
     "rig": ("references/character-rig.md", "Character rig and pose library"),
-    "voice": ("references/voice-direction.md", "Written voice direction and TTS workflow"),
+    "voice": ("references/voice-direction.md", "American-accent voice direction by niche, sample scripts, and TTS workflow"),
     "examples": ("examples/cross-niche-scripts.md", "Cross-niche script and storyboard examples"),
 }
 
@@ -224,7 +224,7 @@ def dispatch(method, params):
         if not isinstance(args, dict): raise ToolError("Prompt arguments must be an object")
         topic, niche = require_string(args, "topic"), require_string(args, "niche")
         audience, extra = str(args.get("audience", "general audience")), str(args.get("requirements", "Use sensible defaults."))
-        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill and niche guide, plan the production, use your available TTS, image and rendering capabilities, and deliver the actual video, thumbnail, captions, publishing guidance and honest quality report. Do not present drafts as finished media."
+        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill, niche and voice guides. All spoken voices must use an American accent; use U.S. English for English speech and disclose if the accent is unavailable or unverified. Plan the production, use your available TTS, image and rendering capabilities, and deliver the actual video, thumbnail, captions, publishing guidance and honest quality report. Do not present drafts as finished media."
         return {"description": "Cross-niche video production prompt", "messages": [{"role": "user", "content": {"type": "text", "text": text}}]}
     raise LookupError(f"Method not found: {method}")
 

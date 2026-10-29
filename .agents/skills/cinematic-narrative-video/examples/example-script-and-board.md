@@ -12,7 +12,7 @@
 | 0:18–0:31 | V04 | Board remains visible: remove the moon icon, hold the sun icon and simplify the ocean waves; show the label “solar tides remain.” No numerical strength is claimed. | Right. Solar tides would still exist. Their patterns and strength would differ from the combined tides we know today, and local geography would still matter. | soft moving-water texture under voice, if licensed or original |
 | 0:31–0:42 | V05 | Return to waterfront. Wider camera, two figures; small question card comes in near top. | That's only one piece of the puzzle. How would a moonless world change the nights, the oceans, and the life that depends on them? | let the music settle |
 
-These are nominal timings. At a natural speaking rate they may be shorter or longer. Generate individual TTS files, measure each, then adjust each scene end and the total duration; do not time-stretch speech to force these numbers. The line labeled V03 should use a second voice if available; if not, choose one narrator and restate it as a narrator's rhetorical question rather than pretending there are two voices.
+All spoken roles use an American accent; select U.S. English (`en-US`) voices. For specific voice types and delivery by niche, see `../references/voice-direction.md`. These are nominal timings. At a natural speaking rate they may be shorter or longer. Generate individual TTS files, measure each, then adjust each scene end and the total duration; do not time-stretch speech to force these numbers. The line labeled V03 should use a second voice if available; if not, choose one narrator and restate it as a narrator's rhetorical question rather than pretending there are two voices.
 
 ## TTS-ready plain text
 

@@ -19,7 +19,7 @@
 
 Cinematic Narrative Video gives an AI agent a reusable production workflow: understand your topic and audience, develop an original script, design characters and environments, plan motion and sound, and review the result. Use it for science, business, history, education, fiction, productivity, or another niche—not just the subject of the visual reference.
 
-The skill is an instruction package. Your agent supplies the actual creative, image, speech, animation, rendering, and review capabilities. The optional MCP server helps read guides, scaffold projects, and check basic timing; it **does not** create a finished video, images, or speech by itself.
+The skill is an instruction package. Your agent supplies the creative, code-drawing, speech, animation, rendering, and review capabilities. The optional MCP server helps read guides, scaffold projects, and check basic timing; it **does not** create a finished video, images, or speech by itself.
 
 <div align="center">
 
@@ -70,7 +70,7 @@ A text-only agent can help with scripts and plans, but cannot honestly claim to 
 
 1. **Brief:** define the subject, audience, tone, length, format, and constraints.
 2. **Story:** develop an original hook, narration, dialogue, and story beats suited to the niche.
-3. **Visuals and sound:** plan characters, environments, poses, storyboards, motion, TTS-ready text, and sound cues. Use agent-native image or TTS tools when available.
+3. **Visuals and sound:** plan characters, environments, poses, storyboards, motion, TTS-ready text, and sound cues. Draw visuals with HTML/CSS, SVG or Canvas; use agent-native TTS when available. Do not use image-generation models.
 4. **Production:** create original assets and animate, render, and encode them using tools the agent actually has.
 5. **Review and delivery:** check factual claims, media, captions, rights, and platform requirements; provide a thumbnail and publishing notes where requested. Report any checks that could not be completed.
 
@@ -81,6 +81,7 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 | Component | Purpose |
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
+| [Code animation and reference breakdown](.agents/skills/cinematic-narrative-video/references/code-animation.md) | How to build reference-inspired visuals from code, plus a comparison of a prior output. |
 | [Niche adaptation](.agents/skills/cinematic-narrative-video/references/niche-adaptation.md) | Adapt story, characters, visuals, and evidence to different subjects. |
 | [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; energetic, clear American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
 | [Examples](.agents/skills/cinematic-narrative-video/examples/) | Cross-niche scripts, a storyboard, a timeline, and a silent HTML animation demo. |
@@ -98,14 +99,14 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 | `make_srt` | Converts supplied timed cues to subtitles. | Does not transcribe or align audio. |
 | `inspect_video` | Returns technical metadata through an installed `ffprobe`. | Does not watch, listen to, or judge the video. |
 
-The server also exposes seven guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
+The server also exposes eight guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
 
 ## Examples
 
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.
 - [Character rig illustration](.agents/skills/cinematic-narrative-video/assets/character-rig.png) and [editable SVG](.agents/skills/cinematic-narrative-video/assets/character-rig.svg) — a sample joint map.
-- [Silent puppet demo](.agents/skills/cinematic-narrative-video/examples/puppet-demo.html) — a small local visual demonstration, not a finished video.
+- [Silent vector animation demo](.agents/skills/cinematic-narrative-video/examples/backyard-vector-demo.html) — original coded scene, rig and diagram; not a finished video.
 
 These are starting points. Adapt them to the brief and create original final artwork, scripts, and audio.
 
@@ -151,6 +152,7 @@ The MCP server runs locally and does not itself explicitly upload files or inclu
 - [Skill instructions](.agents/skills/cinematic-narrative-video/SKILL.md) — full workflow and reference-analysis limits.
 - [MCP setup and tools](mcp/README.md) — client configuration, tool behavior, privacy, and troubleshooting.
 - [Agent compatibility](.agents/skills/cinematic-narrative-video/references/agent-compatibility.md) — skill-aware, MCP-capable, and text-only workflows.
+- [Code animation guide](.agents/skills/cinematic-narrative-video/references/code-animation.md) — observed differences, code-based construction, rendering and style-test requirements.
 - [Visual reference analysis](.agents/skills/cinematic-narrative-video/references/visual-reference.md) — observations and their limitations.
 - [Security policy](SECURITY.md) — private reporting and the local server's security boundary.
 - [License](LICENSE) — permission to use and modify project-authored material, subject to its terms.

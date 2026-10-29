@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backyard question — silent vector animation study</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #0d1324; }
+  svg { display: block; width: 100vw; height: 100vh; }
+  text { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .title { fill: #fff9e8; font-size: 47px; font-weight: 800; letter-spacing: .5px; }
+  .tag { fill: #f8cd80; font-size: 18px; font-weight: 750; letter-spacing: 2px; }
+  .small { fill: #f0eee4; font-size: 20px; font-weight: 650; letter-spacing: .5px; }
+  .line { fill: none; stroke: #1d2029; stroke-linecap: round; stroke-linejoin: round; }
+  .limb { fill: none; stroke: #121521; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ttl desc">
+<title id="ttl">Backyard question: original silent vector animation study</title>
+<desc id="desc">A simplified original animated character walks into a backyard, reacts to a fictional dark fountain, and presents a diagram. This is a silent illustration test, not a finished or safety-instruction video.</desc>
+<defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#273b66"/><stop offset=".58" stop-color="#a77f86"/><stop offset="1" stop-color="#ffd19a"/></linearGradient>
+  <linearGradient id="soil" x2="0" y2="1"><stop stop-color="#5c463c"/><stop offset="1" stop-color="#262a38"/></linearGradient>
+  <linearGradient id="board" x2="0" y2="1"><stop stop-color="#142947"/><stop offset="1" stop-color="#0a172e"/></linearGradient>
+  <linearGradient id="coat" x2="1" y2=".4"><stop stop-color="#ffe4a5"/><stop offset="1" stop-color="#e9a64d"/></linearGradient>
+  <radialGradient id="bloom"><stop stop-color="#ffdb8c" stop-opacity=".65"/><stop offset="1" stop-color="#ffdb8c" stop-opacity="0"/></radialGradient>
+  <radialGradient id="vignette"><stop offset=".52" stop-color="#081022" stop-opacity="0"/><stop offset="1" stop-color="#081022" stop-opacity=".43"/></radialGradient>
+  <filter id="shadow" x="-60%" y="-100%" width="220%" height="300%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="8"/></filter>
+  <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#a4c6e7" stroke-opacity=".08"/></pattern>
+  <g id="person">
+    <!-- Named parts have shared pivots, so a scene can pose the same reusable rig. -->
+    <ellipse cx="0" cy="5" rx="31" ry="6" fill="#091220" opacity=".38" filter="url(#shadow)"/>
+    <g id="leg-back"><path class="limb" d="M-8 -105 L-16 -50 L-23 -6"/><path d="M-24 -7 l-10 4 h18" class="limb" stroke-width="7"/></g>
+    <g id="leg-front"><path class="limb" d="M8 -105 L15 -50 L21 -6"/><path d="M20 -7 l-3 4 h17" class="limb" stroke-width="7"/></g>
+    <g transform="translate(0 -25)">
+    <g id="body"><rect x="-25" y="-155" width="50" height="84" rx="18" fill="url(#coat)"/><path d="M-10 -150 Q-7 -118 -10 -80" stroke="#fff2cf" stroke-opacity=".5" stroke-width="3" fill="none"/></g>
+    <g id="arm-back"><path class="limb" d="M-23 -143 L-42 -114 L-37 -92"/><circle cx="-37" cy="-92" r="6" fill="#121521"/></g>
+    <g id="arm-front"><path class="limb" d="M23 -143 L39 -118 L30 -96"/><circle cx="30" cy="-96" r="6" fill="#121521"/></g>
+    <g id="head"><circle cx="0" cy="-177" r="29" fill="#11131d" stroke="#bd835c" stroke-width="1.5"/><path d="M-24 -185 Q-10 -202 11 -201" fill="none" stroke="#eab78c" stroke-opacity=".45" stroke-width="2"/>
+      <g id="eyes"><ellipse cx="-9" cy="-180" rx="5" ry="7.2" fill="#fff8eb"/><ellipse cx="9" cy="-180" rx="5" ry="7.2" fill="#fff8eb"/></g><path d="M-14 -193 l9 -1 M5 -194 l9 1" stroke="#fff6e7" stroke-width="2.5" stroke-linecap="round"/><path id="mouth" d="M-5 -164 Q0 -160 5 -164" fill="none" stroke="#fff6e7" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    </g>
+  </g>
+</defs>
+
+<!-- Original backyard: separable sky, house, fence, lawn, foreground, rig and effect layers. -->
+<g id="yard-scene">
+  <rect width="1280" height="720" fill="url(#sky)"/>
+  <circle cx="1030" cy="385" r="330" fill="url(#bloom)"/>
+  <path d="M0 430 Q160 350 280 416 Q420 345 555 410 Q720 340 870 415 Q1045 320 1280 398 V570 H0Z" fill="#253d48"/>
+  <path d="M0 465 Q170 420 340 448 Q530 395 700 449 Q900 395 1280 440 V585 H0Z" fill="#385756"/>
+  <g fill="#e3c69d" opacity=".92"><rect x="0" y="444" width="1280" height="12"/><rect x="0" y="492" width="1280" height="12"/>
+    <path d="M35 433h13v94H35zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13zm65 0h13v94h-13z"/>
+  </g>
+  <g transform="translate(45 215)"><path d="M0 135 L180 30 L355 135 Z" fill="#25344a"/><path d="M15 145 L180 50 L340 145 V295 H15Z" fill="#a7674e"/><path d="M2 141 L180 39 L352 141" fill="none" stroke="#d4a174" stroke-width="8"/><rect x="65" y="167" width="82" height="75" rx="2" fill="#ffda89"/><path d="M106 167v75 M65 204h82" stroke="#654d48" stroke-width="7"/><rect x="228" y="155" width="58" height="140" fill="#344253"/><rect x="240" y="174" width="34" height="42" fill="#fbd08a"/><circle cx="277" cy="230" r="3" fill="#f9d08c"/><path d="M20 150H335 M20 177H57 M155 177H220 M294 177H335 M20 210H57 M155 210H220 M294 210H335 M20 243H220 M294 243H335 M20 276H220 M294 276H335" stroke="#6e504a" stroke-opacity=".27" stroke-width="2"/><path d="M217 150h80v7h-80z M217 290h80v5h-80z" fill="#e2b78e"/><circle cx="195" cy="180" r="28" fill="url(#bloom)"/><rect x="191" y="167" width="8" height="16" rx="3" fill="#ffe1a1"/><path d="M187 165h16l-3 -5h-10z" fill="#32414a"/></g>
+  <g fill="#294d45"><circle cx="492" cy="432" r="45"/><circle cx="530" cy="437" r="36"/><circle cx="1170" cy="418" r="50"/><circle cx="1225" cy="427" r="48"/></g><g fill="#5e8372"><circle cx="480" cy="414" r="17"/><circle cx="518" cy="417" r="15"/><circle cx="1160" cy="397" r="20"/><circle cx="1215" cy="406" r="16"/></g>
+  <path d="M0 525 Q345 493 630 526 Q950 485 1280 522 V720 H0Z" fill="#55715f"/><path d="M0 580 Q360 535 680 578 Q1005 525 1280 562 V720 H0Z" fill="#374f48"/>
+  <path d="M0 650 Q200 618 420 650 T850 652 T1280 630 V720 H0Z" fill="#243e3b"/>
+  <g fill="#89a57d" opacity=".6"><circle cx="120" cy="557" r="4"/><circle cx="660" cy="571" r="3"/><circle cx="1005" cy="540" r="3"/><circle cx="1115" cy="604" r="4"/><circle cx="340" cy="570" r="3"/></g>
+  <g id="oil" opacity="0" transform="translate(855 567)"><ellipse cy="0" rx="94" ry="14" fill="#171d21"/><path id="fountain" d="M-20 0 Q-28 -54 -12 -102 Q0 -135 9 -176 Q20 -123 30 -87 Q42 -37 20 0Z" fill="#20252a"/><path d="M-5 -9 Q-12 -74 2 -112" fill="none" stroke="#eab079" stroke-opacity=".45" stroke-width="3"/><circle cx="-29" cy="-100" r="5" fill="#20252a"/><circle cx="28" cy="-145" r="4" fill="#20252a"/><circle cx="14" cy="-195" r="4" fill="#20252a"/></g>
+  <g transform="translate(570 535)"><ellipse cx="0" cy="3" rx="48" ry="8" fill="#1c3934" opacity=".4"/><rect x="-29" y="-34" width="58" height="34" rx="4" fill="#a96f52"/><path d="M0 -34 Q-28 -78 -48 -67 Q-28 -37 0 -34 M0 -34 Q20 -84 42 -73 Q29 -43 0 -34" fill="#789c7b"/><path d="M0 -34 Q0 -82 5 -90" stroke="#a4bb8f" stroke-width="3" fill="none"/></g>
+  <g id="hero-yard" transform="translate(305 570)"><use href="#person"/></g>
+  <g id="yard-copy"><text x="70" y="78" class="tag">A BACKYARD QUESTION</text><text x="70" y="134" class="title">WHAT IF OIL</text><text x="70" y="187" class="title">CAME UP HERE?</text><rect x="70" y="209" width="163" height="4" rx="2" fill="#f8c77a"/></g>
+  <rect width="1280" height="720" fill="url(#vignette)" pointer-events="none"/>
+</g>
+
+<!-- Original diagram stage: data and labels are live, separate vector objects. -->
+<g id="diagram-scene" visibility="hidden">
+  <rect width="1280" height="720" fill="url(#board)"/><rect width="1280" height="720" fill="url(#grid)"/>
+  <circle cx="720" cy="160" r="260" fill="url(#bloom)" opacity=".18"/>
+  <text x="72" y="79" class="tag">BELOW THE SURFACE</text><text x="72" y="130" class="title" font-size="42">ROCK, FLUID &amp; PRESSURE</text>
+  <g transform="translate(375 180)">
+    <rect x="0" y="0" width="785" height="405" rx="18" fill="#172c3d" stroke="#759a9e" stroke-opacity=".4" stroke-width="2"/>
+    <path d="M0 53 Q145 22 295 50 T600 45 T785 47 V120 H0Z" fill="#7d9b7b"/>
+    <path d="M0 101 Q200 130 380 101 T785 115 V205 H0Z" fill="#a68467"/><path d="M0 168 Q220 138 415 175 T785 164 V260 H0Z" fill="#6a6a6a"/>
+    <path d="M0 234 Q170 205 390 244 T785 220 V331 H0Z" fill="#ca9f6d"/><path d="M0 310 Q230 286 430 322 T785 300 V405 H0Z" fill="#59616a"/>
+    <path d="M0 97 Q200 126 380 97 T785 111 M0 165 Q220 135 415 172 T785 161 M0 232 Q170 203 390 242 T785 218 M0 308 Q230 284 430 320 T785 298" fill="none" stroke="#f0d4a0" stroke-opacity=".45" stroke-width="3"/>
+    <g id="reservoir" opacity="0" fill="#384449"><circle cx="85" cy="244" r="4"/><circle cx="140" cy="246" r="6"/><circle cx="195" cy="248" r="5"/><circle cx="250" cy="244" r="7"/><circle cx="305" cy="246" r="4"/><circle cx="360" cy="248" r="6"/><circle cx="415" cy="244" r="5"/><circle cx="470" cy="246" r="7"/><circle cx="525" cy="248" r="4"/><circle cx="580" cy="244" r="6"/><circle cx="635" cy="246" r="5"/><circle cx="103" cy="261" r="7"/><circle cx="158" cy="263" r="4"/><circle cx="213" cy="265" r="6"/><circle cx="268" cy="261" r="5"/><circle cx="323" cy="263" r="7"/><circle cx="378" cy="265" r="4"/><circle cx="433" cy="261" r="6"/><circle cx="488" cy="263" r="5"/><circle cx="543" cy="265" r="7"/><circle cx="598" cy="261" r="4"/><circle cx="653" cy="263" r="6"/><circle cx="85" cy="278" r="5"/><circle cx="140" cy="280" r="7"/><circle cx="195" cy="282" r="4"/><circle cx="250" cy="278" r="6"/><circle cx="305" cy="280" r="5"/><circle cx="360" cy="282" r="7"/><circle cx="415" cy="278" r="4"/><circle cx="470" cy="280" r="6"/><circle cx="525" cy="282" r="5"/><circle cx="580" cy="278" r="7"/><circle cx="635" cy="280" r="4"/><circle cx="103" cy="295" r="6"/><circle cx="158" cy="297" r="5"/><circle cx="213" cy="299" r="7"/><circle cx="268" cy="295" r="4"/><circle cx="323" cy="297" r="6"/><circle cx="378" cy="299" r="5"/><circle cx="433" cy="295" r="7"/><circle cx="488" cy="297" r="4"/><circle cx="543" cy="299" r="6"/><circle cx="598" cy="295" r="5"/><circle cx="653" cy="297" r="7"/></g>
+    <path id="pathway" d="M518 260 C538 202 509 157 528 76" fill="none" stroke="#fae2a3" stroke-width="6" stroke-dasharray="17 12" stroke-linecap="round" opacity="0"/>
+    <g id="diagram-label-a" opacity="0"><rect x="50" y="325" width="300" height="43" rx="21" fill="#101d30"/><text x="70" y="353" class="small">FLUID IN ROCK PORES</text></g>
+    <g id="diagram-label-b" opacity="0"><rect x="486" y="27" width="245" height="43" rx="21" fill="#101d30"/><text x="507" y="55" class="small">POSSIBLE PATH</text></g>
+  </g>
+  <ellipse cx="225" cy="523" rx="135" ry="190" fill="#dfbf87" opacity=".14" filter="url(#glow)"/>
+  <g id="hero-board" transform="translate(225 590)"><use href="#person"/></g>
+  <text x="375" y="650" class="small" fill-opacity=".8">ILLUSTRATIVE DIAGRAM · NOT TO SCALE</text>
+  <rect width="1280" height="720" fill="url(#vignette)" pointer-events="none"/>
+</g>
+
+<!-- Final card intentionally states no operational instructions. -->
+<g id="end-scene" visibility="hidden">
+  <rect width="1280" height="720" fill="#172940"/><circle cx="640" cy="300" r="330" fill="url(#bloom)" opacity=".45"/>
+  <path d="M0 550 Q300 505 610 552 T1280 535 V720 H0Z" fill="#263c3c"/>
+  <g id="hero-end" transform="translate(305 565)"><use href="#person"/></g>
+  <g id="end-card"><rect x="510" y="200" width="590" height="275" rx="24" fill="#f4dfbb"/><text x="548" y="263" fill="#8e5a39" font-size="18" font-weight="800" letter-spacing="2">THE FIRST PRIORITY</text><text x="548" y="326" fill="#1e2d38" font-size="45" font-weight="800">STEP BACK.</text><text x="548" y="381" fill="#1e2d38" font-size="36" font-weight="750">GET EXPERT HELP.</text><text x="548" y="430" fill="#564d46" font-size="20">A visual example, not an emergency guide.</text></g>
+  <rect width="1280" height="720" fill="url(#vignette)" pointer-events="none"/>
+</g>
+</svg>
+<script>
+/* Deterministic, side-effect-free timeline: browser preview and offline renderer call the same seek(t). */
+(() => {
+  const DURATION = 18, svg = document.querySelector('svg');
+  const byId = id => document.getElementById(id);
+  const clamp = (x,a,b) => Math.min(b,Math.max(a,x));
+  const ease = x => { x=clamp(x,0,1); return x*x*(3-2*x); };
+  const fade = (t,start,end) => ease((t-start)/(end-start));
+  function pose(t, walking, gesture) {
+    const cycle = Math.sin(t * 7.1), swing = walking * cycle * 18;
+    byId('leg-front').setAttribute('transform', `rotate(${swing} 8 -105)`);
+    byId('leg-back').setAttribute('transform', `rotate(${-swing} -8 -105)`);
+    byId('arm-front').setAttribute('transform', `rotate(${-46*gesture - swing*.7*(1-gesture)} 23 -143)`);
+    byId('arm-back').setAttribute('transform', `rotate(${swing*.6} -23 -143)`);
+    byId('head').setAttribute('transform', `rotate(${-5*gesture} 0 -177)`);
+    const blink=Math.abs(t-4.2)<.08 ? .14 : 1;
+    byId('eyes').setAttribute('transform', `translate(0 -180) scale(1 ${blink}) translate(0 180)`);
+    byId('mouth').setAttribute('d',gesture > .5 ? 'M-5 -163 Q0 -168 5 -163' : 'M-5 -164 Q0 -160 5 -164');
+  }
+  function seek(seconds) {
+    const t=clamp(Number(seconds)||0,0,DURATION), yard=t<6.4, board=t>=6.4 && t<12.8;
+    byId('yard-scene').setAttribute('visibility',yard?'visible':'hidden');
+    byId('diagram-scene').setAttribute('visibility',board?'visible':'hidden');
+    byId('end-scene').setAttribute('visibility',!yard&&!board?'visible':'hidden');
+    if (yard) {
+      const walking=t<2.0, x=100 + 210*ease(t/2.0), bounce=walking ? Math.abs(Math.sin(t*7.1))*3 : 0;
+      byId('hero-yard').setAttribute('transform',`translate(${x} ${570-bounce})`);
+      pose(t,walking?1:0,fade(t,3.5,4.2));
+      const rise=fade(t,2.2,3.4);byId('oil').setAttribute('opacity',rise);
+      byId('fountain').setAttribute('transform',`translate(0 ${170*(1-rise)}) scale(1 ${Math.max(.02,rise)})`);
+      byId('yard-copy').setAttribute('opacity',1-fade(t,4.8,6.1));
+    } else if (board) {
+      const u=t-6.4; pose(u,0,fade(u,1.0,1.6)*(1-fade(u,5.0,5.5)));
+      byId('reservoir').setAttribute('opacity',fade(u,.5,1.3));
+      byId('diagram-label-a').setAttribute('opacity',fade(u,1.3,1.8));
+      const path=byId('pathway');path.setAttribute('opacity',fade(u,2.6,3));path.setAttribute('stroke-dashoffset',String(-u*18));
+      byId('diagram-label-b').setAttribute('opacity',fade(u,3.5,4));
+    } else {
+      const u=t-12.8;pose(u,0,fade(u,.6,1.2));byId('end-card').setAttribute('opacity',fade(u,.2,.9));
+    }
+    svg.dataset.time=t.toFixed(3); return t;
+  }
+  window.seek=seek;window.DURATION=DURATION;
+  const query=new URLSearchParams(location.search);
+  if(query.has('t')) { seek(Number(query.get('t'))); return; }
+  const start=performance.now();
+  function tick(now){seek(((now-start)/1000)%DURATION);requestAnimationFrame(tick);}requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

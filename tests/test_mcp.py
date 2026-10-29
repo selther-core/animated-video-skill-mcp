@@ -83,6 +83,26 @@ class MCPTests(unittest.TestCase):
         prompt = responses[2]["result"]["messages"][0]["content"]["text"]
         self.assertIn("All spoken voices must use an American accent", prompt)
 
+    def test_code_animation_guide_and_demo(self):
+        out = run_server([
+            call(1, "read_skill_guide", {"guide": "animation"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/animation"}),
+            req(3, "prompts/get", {"name": "create_niche_video", "arguments": {"topic": "oil", "niche": "education"}}),
+        ])
+        guide = tool_data(out[0])["content"]
+        self.assertIn("do not call an image-generation model", guide.lower())
+        self.assertIn("What was inspected—and what cannot be known", guide)
+        self.assertEqual(out[1]["result"]["contents"][0]["text"], guide)
+        prompt = out[2]["result"]["messages"][0]["content"]["text"]
+        self.assertIn("do not use image generation", prompt)
+        self.assertIn("style test", prompt)
+        demo = (SKILL_ROOT / "examples" / "backyard-vector-demo.html").read_text()
+        self.assertIn("window.seek=seek", demo)
+        self.assertIn('id="person"', demo)
+        self.assertIn('id="diagram-scene"', demo)
+        self.assertNotIn("<img", demo.lower())
+        self.assertTrue((SKILL_ROOT / "examples" / "render_vector_demo.py").is_file())
+
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")
@@ -92,6 +112,8 @@ class MCPTests(unittest.TestCase):
             self.assertTrue(second["result"]["isError"])
             self.assertEqual(json.loads((Path(folder)/"brief.json").read_text())["niche"], "Fiction")
             self.assertTrue((Path(folder)/"timeline.json").is_file())
+            self.assertIn("Do not use AI image generation", (Path(folder)/"storyboard.md").read_text())
+            self.assertIn("voiced, code-drawn style test", (Path(folder)/"quality_report.md").read_text())
 
     def test_timeline_and_srt(self):
         good = {"duration_seconds": 10, "shots": [{"start": 0, "end": 4}, {"start": 4, "end": 10}]}

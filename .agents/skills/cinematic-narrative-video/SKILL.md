@@ -5,12 +5,19 @@ description: Use for animated storytelling, explainers, tutorials, commentary, a
 
 # Cinematic narrative video — cross-niche agent skill
 
+## Mandatory visual direction
+
+**Do not use AI image generation for this skill.** Draw original characters, props, backgrounds, diagrams, lighting and thumbnails with authored HTML/CSS, SVG, Canvas or similar code. Build a consistent articulated character rig and animate its limbs, expressions and interactions; do not substitute static illustrations, a slow zoom, captions or crossfades for the action. Reference video frames are study material, never production assets.
+
+Read `references/code-animation.md` before creating visuals. It compares the sampled reference with a prior test output, explains the code-based reconstruction and includes a runnable vector demo. The source video's actual tools are **unknown**; CSS/SVG is a proposed approach, not a claim about how the original was made. Construct and inspect a 15–30 second voiced style test before scaling up. If actual video/audio review is unavailable, disclose it; do not claim a reference match or finished quality.
+
 ## Package map: read the examples as needed
 
 Paths below are relative to this skill directory, except for the explicitly repository-root MCP and test paths. `assets/` and `examples/` contain original demonstrations. `reference-frames/` contains labeled stills extracted from the user-supplied reference excerpt; they are not original assets and may require permission or another lawful basis to redistribute. No reference audio is included.
 
 - Repository-root `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions (they are not part of a standalone skill-only installation). MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
 - Repository-root `tests/test_mcp.py` — stdio protocol and tool smoke tests.
+- `references/code-animation.md` — reference-versus-output breakdown, original code-drawn style, deterministic rendering and mandatory style gate.
 - `references/agent-compatibility.md` — choose a workflow based on the host's real capabilities, whether or not it has skills or MCP.
 - `references/visual-reference.md` and `reference-frames/README.md` — selected reference stills with timestamps, observational analysis, reconstruction notes and rights caveats. Only eight stills are included; the full video was not reviewed frame by frame.
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.
@@ -19,7 +26,8 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - `references/voice-direction.md` — American-accent voice types for different niches, detailed delivery instructions, TTS-ready topic scripts, auditions, and audio workflow. No voice files or reference-voice claims.
 - `examples/example-script-and-board.md` — a complete short example narration, time-coded visual plan, TTS-ready lines and edit notes.
 - `examples/example-timeline.json` — valid example scene/visual/audio event plan; a planning file, not an executable program.
-- `examples/puppet-demo.html` — self-contained animated character/board demo. Open locally in a browser; it has no narration and is not a finished video.
+- `examples/backyard-vector-demo.html` — 18-second silent, code-drawn stage/rig/diagram proof of concept; `examples/render_vector_demo.py` can render it using optional tools. It is not a finished video.
+- `examples/puppet-demo.html` — older, simpler silent board demo; not the primary visual benchmark.
 - `assets/character-rig.svg` — annotated editable rig illustration and joint map.
 - `assets/classroom-example.svg` — sample wide educational scene.
 - `assets/thumbnail-example.svg` — sample original thumbnail composition.
@@ -87,7 +95,7 @@ Times below are approximately the sampled frame's time, not guaranteed cut bound
 - **Skill-aware agent:** place this file at `cinematic-narrative-video/SKILL.md` in the platform's documented skill directory, reload/discover skills if required, and invoke it by name or ask the agent to use it. Discovery paths and frontmatter requirements vary; consult the host's actual documentation rather than assuming installation succeeded.
 - **Agent without skills:** attach or paste this entire file into the session as an instruction document, then supply the brief below. Agents with project-instruction files can instead add an explicit instruction to read the location of this file; do not overwrite unrelated project instructions.
 - **Optional MCP server:** Configure the local stdio server using the repository-root `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline validation, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
-- **Agent execution:** Audit the host's actual capabilities and choose the appropriate path in `references/agent-compatibility.md`. Use your own file, code, image, speech, rendering and media-inspection capabilities. Use an existing connected TTS/image tool directly when appropriate. Do not tell a user to obtain external assistance when the agent can perform the task itself. If an essential capability is genuinely unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
+- **Agent execution:** Audit capabilities in `references/agent-compatibility.md`. Draw visuals in code; do not use image-generation tools. Use available native TTS directly, plus real rendering and media-inspection tools. Do not ask users to do work the agent can perform. If an essential capability is unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
 
 ### Input brief
 
@@ -114,7 +122,7 @@ If topic or target audience is missing and materially affects the result, ask a 
 3. `caption_and_publish.md`: title, description/caption, sources, appropriate hashtags, audience setting considerations, playlist recommendation with rationale, and tailored publishing steps. Do not assert upload or publication happened unless it did.
 4. `narration_script.md`: exact spoken text and speaker labels; include TTS text if TTS is unavailable.
 5. `quality_report.md`: checks performed, measurements, defects fixed, unresolved constraints, evidence of source licenses, and actual duration.
-6. When possible keep editable source: `timeline.json`, scene files, generated art/audio and renderer. If the user requires cleanup, delete only temporary resources they specified, not unrelated files; do not delete deliverables.
+6. When possible keep editable source: `timeline.json`, scene files, code-drawn art, generated voice/audio and renderer. If the user requires cleanup, delete only temporary resources they specified, not unrelated files; do not delete deliverables.
 
 ## 2. Upgrade to an evidence-based reference analysis if the media is available
 
@@ -150,7 +158,7 @@ Create a palette and model sheet before rendering. These are practical design ch
 - Animals and props: original simplified silhouettes and identifiable features; anatomical articulation appropriate to each species (bird body, head, wing and leg pivots, for instance). Create reusable prop layers—cards, diagrams, icons, counters or charts—designed to carry the actual explanation. Do not depict people as biologically representative without appropriate context.
 - Text: for initial thumbnail treatment choose a licensed heavy rounded sans-serif (e.g. a locally available rounded bold typeface) or draw original lettering. Exact reference font is unknown. Use large bold high-contrast text, usually 2–5 words for thumbnail, and emphasize one important word or number in amber. Keep video labels short; avoid covering faces or information. Verify font license and glyph support. Readability outranks stylistic fidelity.
 
-**Image generation if available:** Generate individual scene backgrounds or character components, not baked-in tiny lettering. Use transparent layers or remove backgrounds locally. Write prompts describing original figures, camera, shapes, palette and lighting; include consistent model-sheet identifiers. Anchor consistency with the same generated references if supported. Check that the resulting parts are separately controllable; for essential body animation, use editable vector rigs rather than expecting a still image to animate itself. If image generation is unavailable, draw vector shapes procedurally with SVG/Canvas or use local graphics software.
+**Code-drawn production:** Author scene layers, characters, text, diagrams, props and thumbnails as editable SVG/CSS/Canvas or equivalent code. Use reusable parts with named local pivots, parameterized color/light and a deterministic timeline. Rasterize the authored scene only for preview/export. Do not use image-generation models, generated backgrounds, still-image sequences or text overlays as a substitute for character/prop animation. See `references/code-animation.md` and `examples/backyard-vector-demo.html`.
 
 ### C. Precise motion system (proposed defaults)
 

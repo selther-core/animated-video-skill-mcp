@@ -6,13 +6,13 @@ A real, minimal stdio [Model Context Protocol](https://modelcontextprotocol.io/)
 
 | MCP tool | Actual behavior |
 |---|---|
-| `read_skill_guide` | Read one of the bundled skill, niche, cross-agent compatibility, visual reference, rig, voice or example documents. |
+| `read_skill_guide` | Read one of the bundled skill, niche, cross-agent compatibility, visual reference, code-animation, rig, voice or example documents. |
 | `create_video_project` | Create a **new**, empty project directory with the supplied brief and draft script, storyboard, timeline, QA and publishing templates. Refuses existing directories. Parent directory must already exist. |
 | `validate_timeline` | Check numeric durations, shot coverage, gaps, overlaps, and some cue bounds. Does not assess whether media exists, creative quality, accuracy, rights, actual sync, accessibility or policy. |
 | `make_srt` | Turn manually supplied timed text cues into SRT. Does not transcribe or align audio; the agent must review cue timing. |
 | `inspect_video` | Use `ffprobe` if already installed and on `PATH` to report a local file's stream/duration metadata. It does not play, hear or judge the video. |
 
-The server also exposes seven text resources (`cinematic://guide/skill`, `niche`, `compatibility`, `visual`, `rig`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, creates or generates original assets, uses any connected TTS, animates and renders, listens and reviews, and creates the final video/thumbnail/publishing package. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
+The server also exposes eight text resources (`cinematic://guide/skill`, `niche`, `compatibility`, `visual`, `animation`, `rig`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, creates or generates original assets, uses any connected TTS, animates and renders, listens and reviews, and creates the final video/thumbnail/publishing package. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
 
 ## Setup
 
@@ -55,7 +55,7 @@ In your client's MCP server manager, add a **local stdio** server named `cinemat
 
 ## Example agent request
 
-> Use the cinematic-video MCP tools and the cinematic-narrative-video skill. Make a 60-second fictional story about a nervous fox learning to share, for a family audience, in 16:9. Create a new project in my workspace, then make the finished video, an original thumbnail, captions, and publishing notes. Use your connected TTS and image tools if needed; check the output and report any unfinished checks.
+> Use the cinematic-video MCP tools and the cinematic-narrative-video skill. Make a 60-second fictional story about a nervous fox learning to share, for a family audience, in 16:9. Create a new project in my workspace, then make the finished video, an original thumbnail, captions, and publishing notes. Use code-drawn visuals and connected TTS if needed; do not use image generation; check the output and report any unfinished checks.
 
 The MCP can scaffold and check parts of the plan; the agent must do the creative work and rendering. Before calling `create_video_project`, the agent should choose a **nonexistent** directory in an allowed workspace. Never claim the scaffold itself is the finished video.
 

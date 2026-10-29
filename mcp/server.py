@@ -20,6 +20,7 @@ DOCS = {
     "niche": ("references/niche-adaptation.md", "Adapting the style to any niche"),
     "compatibility": ("references/agent-compatibility.md", "Using the skill with different kinds of agents"),
     "visual": ("references/visual-reference.md", "Analysis of extracted reference frames"),
+    "animation": ("references/code-animation.md", "Reference comparison and code-drawn animation workflow"),
     "rig": ("references/character-rig.md", "Character rig and pose library"),
     "voice": ("references/voice-direction.md", "American-accent voice direction by niche, sample scripts, and TTS workflow"),
     "examples": ("examples/cross-niche-scripts.md", "Cross-niche script and storyboard examples"),
@@ -33,7 +34,7 @@ def field(description):
 
 TOOLS = [
     {"name": "read_skill_guide", "description": "Read an included skill guide. These are general instructions, not evidence of the reference's unreviewed audio or ending.",
-     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, compatibility, visual, rig, voice, or examples."}}, ["guide"])},
+     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, compatibility, visual, animation, rig, voice, or examples."}}, ["guide"])},
     {"name": "create_video_project", "description": "Create a NEW local project folder with a user brief and clearly marked draft production templates. Does not create a video, voice, art, or thumbnail. Refuses to overwrite an existing folder.",
      "inputSchema": schema({"directory": field("Path to a new directory to create; use an absolute path for predictable results."), "topic": field("Video subject."), "niche": field("Content niche."), "audience": field("Intended audience."), "length": field("Requested length or range, for example 4-6 minutes."), "format": field("Format, for example 16:9 YouTube or 9:16 Short."), "requirements": {"type": "string", "description": "Other requirements; can be empty."}}, ["directory", "topic", "niche", "audience", "length", "format"])},
     {"name": "validate_timeline", "description": "Validate basic timing consistency of a proposed timeline JSON object; does not assess factual accuracy, creative quality, audio sync, or a finished video.",
@@ -83,13 +84,13 @@ def tool_create(args):
              "status": "draft", "note": "No media, TTS, fact-check, playback review or platform compliance check has been completed."}
     (directory / "brief.json").write_text(json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (directory / "narration_script.md").write_text("# Narration and dialogue — DRAFT\n\nWrite original, topic-appropriate speech here. This is not generated audio.\n", encoding="utf-8")
-    (directory / "storyboard.md").write_text("# Storyboard — DRAFT\n\n| Cue | Story purpose | Visual / character / prop | Audio | Source if factual |\n|---|---|---|---|---|\n| 1 | TODO | TODO | TODO | TODO |\n", encoding="utf-8")
+    (directory / "storyboard.md").write_text("# Storyboard — DRAFT\n\nBuild original SVG/CSS/Canvas scenes and articulated character action. Do not use AI image generation. Create and inspect a short voiced style test first.\n\n| Cue | Story purpose | Visual / character / prop | Audio | Source if factual |\n|---|---|---|---|---|\n| 1 | TODO | TODO | TODO | TODO |\n", encoding="utf-8")
     (directory / "timeline.json").write_text(json.dumps({"status": "draft", "duration_seconds": None, "shots": [], "voice_cues": [], "audio_events": []}, indent=2) + "\n", encoding="utf-8")
-    (directory / "quality_report.md").write_text("# Quality report — NOT REVIEWED\n\n- [ ] Script and factual claims reviewed\n- [ ] Video rendered and decoded\n- [ ] Full visual review completed\n- [ ] Audio listened to and synchronized\n- [ ] Caption timing checked\n- [ ] Rights and current platform requirements checked\n- [ ] Thumbnail, title, description and playlist recommendation checked\n\nDo not mark these as complete without evidence.\n", encoding="utf-8")
+    (directory / "quality_report.md").write_text("# Quality report — NOT REVIEWED\n\n- [ ] Script and factual claims reviewed\n- [ ] 15–30 second voiced, code-drawn style test reviewed and corrected\n- [ ] Character/prop action and diagram reveals inspected within shots\n- [ ] No AI-generated images used\n- [ ] Video rendered and decoded\n- [ ] Full visual review completed\n- [ ] Audio listened to and synchronized\n- [ ] Caption timing checked\n- [ ] Rights and current platform requirements checked\n- [ ] Thumbnail, title, description and playlist recommendation checked\n\nDo not mark these as complete without evidence.\n", encoding="utf-8")
     (directory / "caption_and_publish.md").write_text("# Publishing package — DRAFT\n\nTitle: TODO\n\nDescription: TODO\n\nSources: TODO if factual\n\nPlaylist: recommend only when relevant; if channel is unknown, make conditional.\n\nPublishing instructions: TODO after current platform checks.\n", encoding="utf-8")
     for name in ("assets", "audio", "renders"):
         (directory / name).mkdir()
-    return {"directory": str(directory), "status": "draft_scaffold_created", "files": ["brief.json", "narration_script.md", "storyboard.md", "timeline.json", "quality_report.md", "caption_and_publish.md"], "directories": ["assets", "audio", "renders"], "next": "Use agent capabilities to research, write, create assets, synthesize or obtain TTS, animate, render and review. No finished media exists yet."}
+    return {"directory": str(directory), "status": "draft_scaffold_created", "files": ["brief.json", "narration_script.md", "storyboard.md", "timeline.json", "quality_report.md", "caption_and_publish.md"], "directories": ["assets", "audio", "renders"], "next": "Research and write; draw and animate original SVG/CSS/Canvas assets without image generation; create and inspect a short voiced style test; then render and review the full video. No finished media exists yet."}
 
 def num(x):
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
@@ -224,7 +225,7 @@ def dispatch(method, params):
         if not isinstance(args, dict): raise ToolError("Prompt arguments must be an object")
         topic, niche = require_string(args, "topic"), require_string(args, "niche")
         audience, extra = str(args.get("audience", "general audience")), str(args.get("requirements", "Use sensible defaults."))
-        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill, niche and voice guides. All spoken voices must use an American accent; use U.S. English for English speech and disclose if the accent is unavailable or unverified. Make voices energetic, confidently projected, clear and expressive, not boring; keep them appropriate to the topic without shouting or clipping. Plan the production, use your available TTS, image and rendering capabilities, and deliver the actual video, thumbnail, captions, publishing guidance and honest quality report. Do not present drafts as finished media."
+        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill, animation, niche and voice guides. Draw original visuals with SVG/CSS/Canvas or similar code; do not use image generation. Create and inspect a short voiced style test before a full video. All spoken voices must use an American accent; use U.S. English for English speech and disclose if the accent is unavailable or unverified. Make voices energetic, confidently projected, clear and expressive, not boring; keep them appropriate to the topic without shouting or clipping. Plan the production, use your available TTS, coding and rendering capabilities, and deliver the actual video, thumbnail, captions, publishing guidance and honest quality report. Do not present drafts as finished media."
         return {"description": "Cross-niche video production prompt", "messages": [{"role": "user", "content": {"type": "text", "text": text}}]}
     raise LookupError(f"Method not found: {method}")
 

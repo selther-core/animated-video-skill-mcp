@@ -18,7 +18,7 @@ Each illustration is supplied as a 1600 × 900 SVG and PNG preview.
 
 1. Inspect the example at full size and at mobile thumbnail size. Read the [character guide](../references/character-rig.md) and [sample script and board](../examples/example-script-and-board.md) as needed.
 2. Create new characters, environments, text, and layouts for the actual brief. The SVGs have editable groups, gradients, and text; they are not layered PSDs or fully rigged puppets. Check that production fonts and other added assets are appropriately licensed.
-3. Open the [silent puppet demo](../examples/puppet-demo.html) locally for a small procedural animation and reveal example. It is not a complete video and does not establish exact reference style or sound.
+3. Open the [silent vector demo](../examples/backyard-vector-demo.html) locally for a code-drawn scene, articulated character and diagram example. Read the [code animation guide](../references/code-animation.md) before production. The demo is not a complete video and does not establish exact reference style or sound.
 4. Export and review a topic-specific thumbnail. Check current platform requirements, retain editable sources, and document asset rights.
 
 ## License

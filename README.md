@@ -33,7 +33,7 @@ The skill is an instruction package. Your agent supplies the actual creative, im
 
 ### Installation
 
-Paste this prompt into your agent, such as Claude Code, Codex, OpenCode, or Arena:
+Paste this prompt into your agent, such as Claude Code, Codex, or OpenCode:
 
 ```text
 Install the cinematic-narrative-video skill from https://github.com/selther-core/animated-video-skill-mcp. Set up its MCP server if supported and permitted, then verify the installation.

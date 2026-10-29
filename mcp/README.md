@@ -16,10 +16,10 @@ The server also exposes seven text resources (`cinematic://guide/skill`, `niche`
 
 ## Setup
 
-1. Unzip the whole package to a stable directory on the same machine where the agent runs. Keep `mcp/server.py` and all skill files together. In a terminal, change to the directory **containing** the unzipped `cinematic-narrative-video-mcp` folder, then:
+1. Clone or unzip the whole repository to a stable directory on the same machine where the agent runs. Keep `mcp/server.py` and `.agents/skills/cinematic-narrative-video/` in their original relative locations. In a terminal, **change into the repository root** (the folder containing `mcp/`), then:
 
    ```sh
-   SKILL_DIR="$(pwd)/cinematic-narrative-video-mcp"
+   SKILL_DIR="$(pwd)"
    python3 --version
    python3 "$SKILL_DIR/tests/test_mcp.py"
    ```
@@ -89,7 +89,7 @@ The MCP can scaffold and check parts of the plan; the agent must do the creative
 
 ## Privacy and safety
 
-The server runs locally under your user account and can read the specified media path and create the specified new directory wherever that account has permission. It will not overwrite an existing project directory or run arbitrary commands; `inspect_video` invokes only the `ffprobe` executable it finds on `PATH`, with a fixed argument list, no shell and a 30-second timeout. There is no network connection, telemetry, authentication or deletion function. Treat all user-supplied paths and generated content as untrusted, review permissions, and do not expose this stdio process as a public server without a proper security design.
+The server runs locally under your user account and can inspect a supplied media path and create a new directory wherever that account has permission. It refuses an existing project directory, although a failed creation can leave partial files. `inspect_video` runs the `ffprobe` found on `PATH`, with fixed arguments, no shell and a 30-second timeout; use a trusted executable and avoid untrusted media. The server does not itself explicitly upload files or include telemetry, authentication or a deletion function. It does not sandbox `ffprobe` or block network access by subprocesses, the MCP client or other tools. Treat paths and content as untrusted, review permissions, and do not expose stdio publicly without a separate security design. See [SECURITY.md](../SECURITY.md).
 
 ## Troubleshooting and tests
 

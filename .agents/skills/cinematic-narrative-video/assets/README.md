@@ -1,16 +1,26 @@
-# Original example visual assets
+# Original visual examples
 
-Each illustration is supplied as editable SVG and a PNG preview, both 1600×900. They were drawn for this package; they are **not frames extracted from the reference**, and they are not evidence that the original video used the same objects, rigs or software. The sample artwork is intentionally simpler than a finished production and should be adapted rather than submitted unchanged as a new project's thumbnail or scene.
+Editable illustrations for learning the skill's visual workflow. These images were created for this project; they are **not** extracted reference frames, proof of the original production technique, or finished video assets.
 
-| Image | Purpose | Editable source | Preview |
+[Skill instructions](../SKILL.md) · [Character guide](../references/character-rig.md) · [Reference-frame notice](../reference-frames/README.md) · [Project README](../../../../README.md)
+
+## Assets
+
+Each illustration is supplied as a 1600 × 900 SVG and PNG preview.
+
+| Example | What it demonstrates | Editable source | Preview |
 |---|---|---|---|
-| Character rig | Joint placement and hierarchy | [character-rig.svg](character-rig.svg) | [character-rig.png](character-rig.png) |
-| Classroom scene | Wide teaching scene, contrast and layered information | [classroom-example.svg](classroom-example.svg) | [classroom-example.png](classroom-example.png) |
-| Thumbnail | A short hook, contrast and distinct focal point | [thumbnail-example.svg](thumbnail-example.svg) | [thumbnail-example.png](thumbnail-example.png) |
+| Character rig | Joint placement and hierarchy | [SVG](character-rig.svg) | [PNG](character-rig.png) |
+| Classroom scene | A wide teaching stage, contrast, and layered information | [SVG](classroom-example.svg) | [PNG](classroom-example.png) |
+| Thumbnail | A short hook, contrast, and a distinct focal point | [SVG](thumbnail-example.svg) | [PNG](thumbnail-example.png) |
 
-## How to use
+## How to use them
 
-1. Inspect the image at normal size and at mobile thumbnail size. Read the associated explanations in `../SKILL.md`, `../references/character-rig.md` and `../examples/example-script-and-board.md`.
-2. For a new project, draw new characters, environments and layouts. The SVGs are self-contained vector examples with grouped elements, gradients and editable text; they are not layered PSDs or fully rigged animated puppets. Replace the sample text and check that typeface fallbacks are properly licensed in the production environment.
-3. The `../examples/puppet-demo.html` file demonstrates a small procedurally animated character and sequential reveal. It is intentionally silent and does not prove exact style or sound fidelity.
-4. For delivery, create a full-quality thumbnail appropriate to the user's specific topic. Export PNG or JPEG and check current platform requirements; retain editable sources and document rights.
+1. Inspect the example at full size and at mobile thumbnail size. Read the [character guide](../references/character-rig.md) and [sample script and board](../examples/example-script-and-board.md) as needed.
+2. Create new characters, environments, text, and layouts for the actual brief. The SVGs have editable groups, gradients, and text; they are not layered PSDs or fully rigged puppets. Check that production fonts and other added assets are appropriately licensed.
+3. Open the [silent puppet demo](../examples/puppet-demo.html) locally for a small procedural animation and reveal example. It is not a complete video and does not establish exact reference style or sound.
+4. Export and review a topic-specific thumbnail. Check current platform requirements, retain editable sources, and document asset rights.
+
+## License
+
+These original project-authored examples are covered by the repository's [MIT License](../../../../LICENSE), subject to its terms. The separate [third-party reference frames](../reference-frames/README.md) are **not** covered by that grant.

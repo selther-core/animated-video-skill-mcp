@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Original puppet and board demo</title>
+<style>body{margin:0;background:#101526;color:#eee8db;font:15px system-ui,sans-serif}main{max-width:1150px;margin:auto;padding:20px}h1{font-size:24px;margin:0 0 8px}p{color:#bdc7cd;line-height:1.5}canvas{display:block;width:100%;height:auto;border:1px solid #596273;border-radius:8px;background:#26313b}.controls{display:flex;align-items:center;gap:14px;margin:12px 0}button{background:#e8bc6c;color:#152032;border:0;border-radius:6px;padding:9px 18px;font-weight:700;cursor:pointer}input{flex:1}code{color:#f5cc85}</style></head>
+<body><main><h1>Original puppet + board demo</h1><p>A silent, looping 12-second illustration of a staged diagram and a simple articulated presenter. It is not source footage, a full video renderer, or the reference's recovered rig.</p><canvas id="scene" width="1600" height="900" aria-label="Animated original classroom scene with simple presenter and diagram"></canvas><div class="controls"><button id="toggle">Pause</button><label for="seek">Time</label><input id="seek" type="range" min="0" max="12" value="0" step="0.01"><output id="clock">0.0 / 12s</output></div><p>Try changing the drawing functions or key timings in this file. Generate narration separately, align events to actual speech, and use an appropriate rendering pipeline to create a finished video.</p></main>
+<script>
+'use strict';
+const canvas=document.querySelector('#scene'),c=canvas.getContext('2d'),toggle=document.querySelector('#toggle'),seek=document.querySelector('#seek'),clock=document.querySelector('#clock');
+const D=12; let playing=true, time=0,last=performance.now();
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+function smooth(t,a,b){let u=clamp((t-a)/(b-a),0,1);return u*u*(3-2*u)}
+function rr(x,y,w,h,r,fill){c.fillStyle=fill;c.beginPath();c.roundRect(x,y,w,h,r);c.fill()}
+function line(points,width,color){c.strokeStyle=color;c.lineWidth=width;c.lineCap='round';c.lineJoin='round';c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke()}
+function circle(x,y,r,color){c.fillStyle=color;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill()}
+function label(text,x,y,sz,color,align='left'){c.fillStyle=color;c.font=`${sz}px system-ui,sans-serif`;c.textAlign=align;c.fillText(text,x,y)}
+function presenter(x,y,scale,t){
+  c.save();c.translate(x,y);c.scale(scale,scale);
+  // Root is floor. Far arm, legs and body use stable pivots; one arm gestures.
+  const gesture=smooth(t,2.0,3.0)*(1-smooth(t,8.4,9.2));
+  line([[-15,-190],[-22,-101],[-29,-11]],13,'#10141e');line([[15,-190],[22,-101],[29,-11]],13,'#10141e');
+  c.fillStyle='#11141b';c.beginPath();c.ellipse(-35,-7,22,9,0,0,Math.PI*2);c.ellipse(35,-7,22,9,0,0,Math.PI*2);c.fill();
+  line([[-29,-300],[-57,-236],[-58,-185]],13,'#11141b');
+  rr(-32,-324,64,134,18,'#ebba66');line([[0,-318],[0,-197]],3,'#ffe3a8');
+  // Elbow and wrist interpolate to a pointing pose while the shoulder stays attached.
+  let ex=57+12*gesture,ey=-236-30*gesture,wx=58+68*gesture,wy=-185-87*gesture;
+  line([[29,-300],[ex,ey],[wx,wy]],13,'#11141b');circle(wx,wy,10,'#11141b');
+  circle(0,-369,42,'#111722');c.strokeStyle='#efc67d';c.lineWidth=2;c.stroke();
+  // Blink is brief, not continuous. Facial features remain relative to the head.
+  let blink=(t>5.4&&t<5.55)?0.15:1;
+  c.fillStyle='#fff7e6';c.beginPath();c.ellipse(-13,-372,7,9*blink,0,0,Math.PI*2);c.ellipse(13,-372,7,9*blink,0,0,Math.PI*2);c.fill();
+  line([[-20,-388],[-8,-391]],3,'#fff2de');line([[8,-391],[20,-388]],3,'#fff2de');line([[-6,-352],[0,-350],[6,-352]],3,'#fff2de');
+  c.restore();
+}
+function render(t){
+  let wall=c.createLinearGradient(0,0,0,900);wall.addColorStop(0,'#6d6072');wall.addColorStop(1,'#453344');c.fillStyle=wall;c.fillRect(0,0,1600,900);
+  let floor=c.createLinearGradient(0,630,0,900);floor.addColorStop(0,'#936747');floor.addColorStop(1,'#4b302a');c.fillStyle=floor;c.fillRect(0,650,1600,250);
+  c.strokeStyle='#3d2b2b';c.globalAlpha=.25;c.lineWidth=2;for(let x=0;x<1600;x+=140){c.beginPath();c.moveTo(x,650);c.lineTo(x,900);c.stroke()}c.globalAlpha=1;
+  rr(220,72,1160,570,9,'#b58557');rr(238,90,1124,534,3,'#173c39');
+  let light=c.createRadialGradient(800,110,20,800,140,600);light.addColorStop(0,'rgba(255,216,148,.25)');light.addColorStop(1,'rgba(255,216,148,0)');c.fillStyle=light;c.fillRect(238,90,1124,534);
+  label('A question with more than one answer',290,161,31,'#f3eedc');
+  // Scene events; opacity is driven by a smooth reveal, then held.
+  c.globalAlpha=smooth(t,1.2,2.1);circle(610,280,66,'#d6dede');label('MOON',610,385,25,'#f4eee0','center');c.globalAlpha=1;
+  c.globalAlpha=smooth(t,3.3,4.2);circle(995,280,66,'#f3bb64');label('SUN',995,385,25,'#f4eee0','center');c.globalAlpha=1;
+  c.globalAlpha=smooth(t,5.0,6.1);for(let row=0;row<2;row++){c.beginPath();c.moveTo(420,470+row*42);for(let x=420;x<=1180;x+=5)c.lineTo(x,470+row*42+22*Math.sin((x-420)/80));c.lineWidth=row?7:11;c.strokeStyle=row?'#6ba9a6':'#a0dcd5';c.stroke()}c.globalAlpha=1;
+  c.globalAlpha=smooth(t,7.1,8.0);rr(560,555,500,45,22,'#1a293c');label('REVEAL ONE IDEA AT A TIME',810,585,20,'#f6f0e4','center');c.globalAlpha=1;
+  presenter(125,780,.75,t);presenter(1460,780,.75,t);
+}
+function tick(now){if(playing){time=(time+(now-last)/1000)%D}last=now;render(time);seek.value=time;clock.textContent=`${time.toFixed(1)} / ${D}s`;requestAnimationFrame(tick)}
+toggle.addEventListener('click',()=>{playing=!playing;toggle.textContent=playing?'Pause':'Play';last=performance.now()});seek.addEventListener('input',()=>{time=Number(seek.value);render(time);clock.textContent=`${time.toFixed(1)} / ${D}s`});requestAnimationFrame(tick);
+</script></body></html>

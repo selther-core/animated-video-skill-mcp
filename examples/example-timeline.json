@@ -1,0 +1,28 @@
+{
+  "description": "Illustrative nominal timing only; conform to real synthesized speech durations before render.",
+  "project": "Moonless sky example",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "sample_rate": 48000,
+  "duration_seconds": 42.0,
+  "shots": [
+    {"id": "S01", "start": 0.0, "end": 6.0, "scene": "waterfront", "purpose": "Premise and stakes", "visual": "character looks up into the empty night sky", "camera": "slow push"},
+    {"id": "S02", "start": 6.0, "end": 14.0, "scene": "teaching_room", "purpose": "Set up tides", "visual": "ocean board diagram and two labeled influences", "camera": "wide hold"},
+    {"id": "S03", "start": 14.0, "end": 18.0, "scene": "teaching_room_close", "purpose": "Character question", "visual": "raised eyebrows, small gesture", "camera": "closer crop"},
+    {"id": "S04", "start": 18.0, "end": 31.0, "scene": "teaching_room", "purpose": "Answer", "visual": "remove moon icon; leave labeled sun icon and ocean", "camera": "wide hold, staged diagram reveal"},
+    {"id": "S05", "start": 31.0, "end": 42.0, "scene": "waterfront", "purpose": "Open question", "visual": "two characters and a short topic-appropriate question", "camera": "wide"}
+  ],
+  "voice_cues": [
+    {"id": "V01", "speaker": "narrator", "nominal_start": 0.0, "nominal_end": 6.0, "text": "Imagine looking up tonight and finding the Moon gone. The sky would be darker, but the real surprise would be down here."},
+    {"id": "V02", "speaker": "narrator", "nominal_start": 6.0, "nominal_end": 14.0, "text": "The Moon's gravity helps shape Earth's tides. But it isn't the only influence. The Sun pulls on our oceans, too."},
+    {"id": "V03", "speaker": "character", "nominal_start": 14.0, "nominal_end": 18.0, "text": "Wait. So the tides wouldn't just stop?"},
+    {"id": "V04", "speaker": "narrator", "nominal_start": 18.0, "nominal_end": 31.0, "text": "Right. Solar tides would still exist. Their patterns and strength would differ from the combined tides we know today, and local geography would still matter."},
+    {"id": "V05", "speaker": "narrator", "nominal_start": 31.0, "nominal_end": 42.0, "text": "That's only one piece of the puzzle. How would a moonless world change the nights, the oceans, and the life that depends on them?"}
+  ],
+  "audio_events": [
+    {"id": "A01", "start": 0.0, "end": 42.0, "role": "optional original or licensed ambient music bed", "asset": null},
+    {"id": "A02", "start": 8.0, "role": "optional soft diagram reveal", "asset": null}
+  ],
+  "notes": ["Recalculate cues from final audio durations.", "Images and voice are illustrative; the file is a plan, not an executable renderer.", "Verify all science and licenses before publishing."]
+}

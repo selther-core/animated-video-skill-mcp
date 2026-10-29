@@ -17,6 +17,17 @@ This package includes an optional **local MCP server**. See [MCP setup and capab
 - `examples/puppet-demo.html` — silent self-contained animated visual demonstration.
 - `assets/` — three original SVG illustrations and PNG previews, with a usage README.
 
+## Quick start from GitHub
+
+Clone the repository using the directory name expected by the setup examples:
+
+```sh
+git clone https://github.com/selther-core/animated-video-skill-mcp.git cinematic-narrative-video-mcp
+python3 cinematic-narrative-video-mcp/tests/test_mcp.py
+```
+
+Then follow [the MCP setup guide](mcp/README.md) to register the server in your client. Alternatively, read `SKILL.md` directly without MCP. You can clone into a different directory, but substitute that actual directory path in every setup command. The reference frames are third-party source material; see their [rights notice](reference-frames/README.md) before redistributing them.
+
 ## Use with a skill-capable agent
 
 Unzip the complete `cinematic-narrative-video-mcp` directory into a skill location supported by your agent (rename the folder to `cinematic-narrative-video` if your host requires the folder name to match the skill name). Keep `SKILL.md`, `mcp`, `references`, `examples` and `assets` together. Ask the agent to load the `cinematic-narrative-video` skill and give it your topic, niche, audience, intended length, language and any other requirements. Check the agent's current documentation for its exact path and whether a restart or enabling action is required; skill support differs by tool. Merely copying the file does not guarantee activation.

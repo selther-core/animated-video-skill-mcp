@@ -7,15 +7,14 @@ Install the cinematic-narrative-video skill from:
 https://github.com/selther-core/animated-video-skill-mcp
 
 Identify what this agent supports. Clone or download the repository into the
-workspace if permitted. Read .agents/skills/cinematic-narrative-video/SKILL.md,
-docs/installation.md and mcp/README.md. Keep the entire skill directory and its
-supporting files together; do not overwrite existing files or settings.
+workspace if permitted. Read .agents/skills/cinematic-narrative-video/SKILL.md
+and mcp/README.md. Keep the entire skill directory and its supporting files
+together; do not overwrite existing files or settings.
 
-If this agent supports native skills, install the skill in the host's documented
-skill location and verify discovery. The optional scripts/install_skill.py previews
-its changes by default and copies only when run with --apply; choose the skills
-folder supported by this host. If native skills are not supported, make the skill
-file and its supporting files available as ordinary project instructions instead.
+If this agent supports native skills, copy the entire skill directory to the
+host's documented skill location and verify discovery. If native skills are not
+supported, make the skill file and its supporting files available as ordinary
+project instructions instead.
 
 If the host supports local stdio MCP and configuration is permitted, register the
 repository's MCP server using mcp/README.md. Run the tests and verify the connection.

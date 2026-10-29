@@ -62,23 +62,6 @@ class MCPTests(unittest.TestCase):
         resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
         self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
 
-    def test_skill_install_plan_apply_and_no_overwrite(self):
-        installer = ROOT / "scripts" / "install_skill.py"
-        with tempfile.TemporaryDirectory() as skills:
-            dest = Path(skills) / "cinematic-narrative-video"
-            plan = subprocess.run([sys.executable, str(installer), "--skills-dir", skills], capture_output=True, text=True)
-            self.assertEqual(plan.returncode, 0, plan.stderr)
-            self.assertFalse(dest.exists())
-            self.assertIn("PLAN ONLY", plan.stdout)
-            applied = subprocess.run([sys.executable, str(installer), "--skills-dir", skills, "--apply"], capture_output=True, text=True)
-            self.assertEqual(applied.returncode, 0, applied.stderr)
-            self.assertTrue((dest / "SKILL.md").is_file())
-            self.assertTrue((dest / "references" / "voice-direction.md").is_file())
-            self.assertTrue((dest / "reference-frames" / "README.md").is_file())
-            repeated = subprocess.run([sys.executable, str(installer), "--skills-dir", skills, "--apply"], capture_output=True, text=True)
-            self.assertNotEqual(repeated.returncode, 0)
-            self.assertIn("refusing to overwrite", repeated.stderr)
-
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")

@@ -103,6 +103,27 @@ class MCPTests(unittest.TestCase):
         self.assertNotIn("<img", demo.lower())
         self.assertTrue((SKILL_ROOT / "examples" / "render_vector_demo.py").is_file())
 
+    def test_staging_and_current_rig(self):
+        replies = run_server([
+            call(1, "read_skill_guide", {"guide": "staging"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/staging"}),
+            call(3, "read_skill_guide", {"guide": "rig"}),
+        ])
+        guide = tool_data(replies[0])["content"]
+        self.assertIn("lighting", guide.lower())
+        self.assertIn("cutaway", guide.lower())
+        self.assertEqual(guide, replies[1]["result"]["contents"][0]["text"])
+        self.assertIn("back arm → torso → near leg → front arm", tool_data(replies[2])["content"])
+        demo = (SKILL_ROOT / "examples" / "staging-rig-demo.html").read_text()
+        self.assertIn("window.seek=seek", demo)
+        self.assertIn('class="backArm"', demo)
+        self.assertIn('class="torso"', demo)
+        self.assertIn('class="frontArm"', demo)
+        self.assertLess(demo.index('class="backArm"'), demo.index('class="torso"'))
+        self.assertLess(demo.index('class="torso"'), demo.index('class="frontArm"'))
+        self.assertNotIn("<img", demo.lower())
+        self.assertNotIn("<audio", demo.lower())
+
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")

@@ -1,70 +1,35 @@
-# Character construction and rig reference
+# Character structure and working rig
 
-This is an **original proposed rig**, not recovered source artwork or a claim about the reference's actual joints. See `../assets/character-rig.svg` for a visual model and `../examples/puppet-demo.html` for an animated implementation.
+For the long, slim character requested in the current brief, use the original, editable implementation in `../examples/staging-rig-demo.html`. It is a code-authored interpretation of the user's structural direction, not a claim of an exact match or a copy of third-party artwork. Clothing and facial expressions can change while the silhouette and layering remain consistent. The older `../examples/puppet-demo.html` and `../assets/character-rig.svg` illustrate a different, stockier generic rig; **do not use their proportions for this particular character**.
 
-## Coordinate system and proportions
+## Geometry and hierarchy
 
-Use 1920×1080 scene pixels or an equivalent scalable coordinate system. Position the rig's root at the midpoint between the ankles on the ground; local +x points right and +y points down. This starter character's total height is roughly 412 local units. Scale uniformly into a scene; e.g. `scale=0.55` makes a ~227 px figure. Sizes below are starting points, not measured proportions of the source.
+In the working example the root is at ground level, local +x is right, and local +y is down. The head is a near-black circle centered at `(0,-332)`, radius `32`; the capsule torso extends approximately from `y=-298` to `-154` and is 60 units wide; long slender legs extend from around `y=-176` to the feet at ground level. Total height with head is about 364 local units, or about 388 with a helmet. Scale proportionally into your own composition. These are design starting coordinates, not measured claims about the source. Preserve the requested long rounded torso, circular dark head, long slim legs and restrained hands/feet before adding new details.
 
-| Component | Local geometry or pivot | Parent / attachment |
-|---|---|---|
-| Root / feet baseline | `(0, 0)` | Scene transform |
-| Pelvis | `(0, -190)` | Root |
-| Torso | rounded rectangle `(-32,-324,64,134)` | Pelvis, optional slight rotation |
-| Neck | `(0,-327)` | Torso |
-| Head | center `(0,-369)`, radius `42` | Neck |
-| Left shoulder / elbow / wrist | `(-29,-300) / (-57,-236) / (-58,-185)` | Torso → upper arm → forearm |
-| Right shoulder / elbow / wrist | `(29,-300) / (57,-236) / (58,-185)` | Torso → upper arm → forearm |
-| Left hip / knee / ankle | `(-15,-190) / (-22,-101) / (-29,-11)` | Pelvis → thigh → calf |
-| Right hip / knee / ankle | `(15,-190) / (22,-101) / (29,-11)` | Pelvis → thigh → calf |
-| Eyes, brows and mouth | in head-local coordinates | Head; remain attached to head rotation |
+Draw order in the demo is **far leg → back arm → torso → near leg → front arm → head**. The back arm must be occluded by the torso where it passes behind it; the front arm and hand sit visibly above the torso. When a figure turns, deliberately update depth order rather than letting both arms become printed stripes or both appear in front. Eyes, brows and mouth are children of the head. Attach a letter, bag or other prop inside the correct hand's local group so that it follows the hand.
 
-Draw the figure with a softly rim-lit near-black circle for the head, a distinct colored, gently shaded garment, slim limbs, simple shoes and small hands. The silhouette should still read when the figure's entire height is under ~200 pixels. Make two original characters distinguishable by clothing color, shape, hair or accessories; do not copy the reference's distinctive designs.
-
-## Rigging and layer order
-
-A 2D skeletal rig is the suggested implementation; it is not known how the original was made. An animator or agent can implement rigid pieces, vector paths, an HTML Canvas hierarchy, Blender 2D/3D or another local renderer. Build a model sheet with front, side, 3/4 and close-up; test each limb bend before animating. Name assets descriptively:
-
-```
-scene/root
-  farLeg: hip > thigh > knee > calf > ankle > foot
-  farArm: shoulder > upperArm > elbow > forearm > wrist > hand
-  pelvis > torso > neck > head > [eyes, brows, mouth, hair/accessory]
-  nearLeg: hip > thigh > knee > calf > ankle > foot
-  nearArm: shoulder > upperArm > elbow > forearm > wrist > hand
+```text
+root at feet
+  shadow
+  farLeg: hip → knee → foot
+  upper (subtle body bob/rotation)
+    backArm: shoulder → elbow → wrist/hand
+    capsule torso + subtle shade
+    nearLeg: hip → knee → foot
+    frontArm: shoulder → elbow → wrist/hand → prop
+    head: dark circle → eyes / brows / mouth / optional headwear
 ```
 
-Depth order changes on turns: put the far side behind the body and near side in front. Place circles or sleeve cuffs over joints to conceal seams. Keep limb segment lengths constant. Every child transform is relative to the parent; local rotation around a pivot `p` is `T(p) R(angle) T(-p)`. For line-segment drawing, compute the elbow from shoulder plus the first vector rotated by shoulder angle, then compute the hand from elbow plus the second vector rotated by shoulder + elbow angle. Avoid moving the hand independently while leaving the arm behind.
+This is an SVG path-based procedural approximation, not a physical skeleton solver. `actor()` creates the groups; `put()` updates the pose; `limb()` computes a planted/swinging foot path. In the example coordinates, limb positions are recomputed from the current time. This makes direct seeking possible, but segment lengths are not mathematically constrained and foot contact is only approximated: inspect the actual motion and improve the solver for demanding shots. Keep the original user brief's structural design separate from other projects that need their own proportions.
 
-### Minimum pose library
+## Acting and movement
 
-- **Neutral:** relaxed shoulders, legs shoulder-width, mouth small, eyes level.
-- **Curious:** head tilted 5–10°, brows raised, one forearm rotated upward, feet grounded.
-- **Concerned:** inner brows raised, mouth downturned, shoulders slightly forward.
-- **Explain/point:** one upper arm lifted, forearm directed toward an object, body facing the audience. Anchor finger/hand to the visual target during a hold.
-- **Walk:** alternating legs; one planted foot under body while the other swings; hip advances at a pace consistent with stride. Arms counter-swing unless one hand holds a prop.
-- **Blink:** eyes scale vertically down then up over a few frames. Do not blink constantly. **Speech:** swap mouth shapes or use actual phoneme alignment where available; crude amplitude-driven mouth motion is approximate.
+- **Idle:** tiny head/breath movement, grounded feet and intermittent blink; no constant swaying.
+- **Walk:** choose stance versus swing; calculate planted foot position in world space and match body travel to stride. Lift the swing foot and add only a small foot rotation; counter-swing the arms minimally. The demo provides a simple starting pattern, not a guarantee against sliding.
+- **Reach or hold:** set a shoulder, elbow and hand path together, ease into a hold, then settle. Move the prop with the hand and check grips at start, contact and release.
+- **Expressions:** change brows and mouth for concern, smile or a brief startled reaction. Keep facial features attached to the head and large enough for the intended frame size. Do not rely on exaggerated arm flailing for emotion.
+- **Clothing:** change colors, cuffs, collar or headwear without changing the body proportions. For the current user direction, arms and legs move only a little and naturally.
 
-Illustrative pose key data (angles in degrees, relative to parent, not a ready-to-run renderer):
+## Visual tests
 
-```json
-{
-  "id": "curious",
-  "root": {"x": 384, "y": 922, "scale": 0.55},
-  "channels": {"head.rotation": -7, "torso.rotation": 2,
-    "nearArm.shoulder": -28, "nearArm.elbow": -48,
-    "farArm.shoulder": 5, "leftLeg.hip": 2, "rightLeg.hip": -3},
-  "face": {"eyes": "open", "brows": "raised", "mouth": "small-o"}
-}
-```
-
-Agent implementation must define sign conventions for angles, rests, transform order and the actual local coordinates; do not assume this JSON alone animates anything. Tween only the affected channels with easing, keep feet grounded during still holds, and inspect frame sequences for elbow snapping, floating props, facial drift or accidental foot sliding.
-
-## Rig QA
-
-1. In a neutral front pose check both feet touch the same ground plane.
-2. Rotate head, each shoulder, elbow, hip and knee independently. No disconnection or inverted hierarchy.
-3. Test reaching and walking with prop contact; inspect frames at 30 fps. Contact points do not slide or pop.
-4. Render neutral and curious poses at intended mobile size; eyes and gestures are readable without huge outlines.
-5. Check that all three principal facial expressions convey intended emotion without relying on color.
-6. Keep the editable source rig and its original asset/license notes in the production project.
+Inspect neutral silhouette and near/far layering at full frame and mobile size. Verify both feet touch the same ground plane, hands stay connected, held props don't drift, and facial features don't slide during head rotation. Test one complete slow walk frame-by-frame and in real time for foot sliding, knee pops and unnatural leg spacing. Test the back arm, front arm and depth overlap independently. Create additional turning poses if the shot requires them; never pretend a single front-facing rig provides a complete 3D turn. Keep an editable source file and record known limitations.

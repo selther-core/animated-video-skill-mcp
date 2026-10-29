@@ -82,9 +82,10 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
 | [Code animation and reference breakdown](.agents/skills/cinematic-narrative-video/references/code-animation.md) | How to build reference-inspired visuals from code, plus a comparison of a prior output. |
+| [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) | Layered backgrounds, lighting, cutaways, movement and shot review. |
 | [Niche adaptation](.agents/skills/cinematic-narrative-video/references/niche-adaptation.md) | Adapt story, characters, visuals, and evidence to different subjects. |
 | [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; energetic, clear American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
-| [Examples](.agents/skills/cinematic-narrative-video/examples/) | Cross-niche scripts, a storyboard, a timeline, and a silent HTML animation demo. |
+| [Examples](.agents/skills/cinematic-narrative-video/examples/) | Cross-niche scripts, a storyboard, a timeline, and silent HTML animation demos. |
 | [Original visual assets](.agents/skills/cinematic-narrative-video/assets/README.md) | Editable SVG illustrations with PNG previews. |
 | [Reference frames](.agents/skills/cinematic-narrative-video/reference-frames/README.md) | Eight third-party stills for visual study, with source and rights information. |
 | [Optional MCP server](mcp/README.md) | Local stdio tools, guide resources, and a prompt for compatible agents. |
@@ -105,8 +106,9 @@ The server also exposes eight guide resources and a `create_niche_video` prompt.
 
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.
-- [Character rig illustration](.agents/skills/cinematic-narrative-video/assets/character-rig.png) and [editable SVG](.agents/skills/cinematic-narrative-video/assets/character-rig.svg) — a sample joint map.
-- [Silent vector animation demo](.agents/skills/cinematic-narrative-video/examples/backyard-vector-demo.html) — original coded scene, rig and diagram; not a finished video.
+- [Character rig illustration](.agents/skills/cinematic-narrative-video/assets/character-rig.png) and [editable SVG](.agents/skills/cinematic-narrative-video/assets/character-rig.svg) — an older generic joint map, not the long-body rig.
+- [Long-body rig and staging demo](.agents/skills/cinematic-narrative-video/examples/staging-rig-demo.html) — runnable silent example of layered scenery, lighting, character anatomy and a cutaway.
+- [Older silent vector animation demo](.agents/skills/cinematic-narrative-video/examples/backyard-vector-demo.html) — original coded scene, rig and diagram; not a finished video.
 
 These are starting points. Adapt them to the brief and create original final artwork, scripts, and audio.
 
@@ -153,6 +155,7 @@ The MCP server runs locally and does not itself explicitly upload files or inclu
 - [MCP setup and tools](mcp/README.md) — client configuration, tool behavior, privacy, and troubleshooting.
 - [Agent compatibility](.agents/skills/cinematic-narrative-video/references/agent-compatibility.md) — skill-aware, MCP-capable, and text-only workflows.
 - [Code animation guide](.agents/skills/cinematic-narrative-video/references/code-animation.md) — observed differences, code-based construction, rendering and style-test requirements.
+- [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) — backgrounds, lighting, cutaways, animation and QA.
 - [Visual reference analysis](.agents/skills/cinematic-narrative-video/references/visual-reference.md) — observations and their limitations.
 - [Security policy](SECURITY.md) — private reporting and the local server's security boundary.
 - [License](LICENSE) — permission to use and modify project-authored material, subject to its terms.

@@ -9,7 +9,7 @@ description: Use for animated storytelling, explainers, tutorials, commentary, a
 
 **Do not use AI image generation for this skill.** Draw original characters, props, backgrounds, diagrams, lighting and thumbnails with authored HTML/CSS, SVG, Canvas or similar code. Build a consistent articulated character rig and animate its limbs, expressions and interactions; do not substitute static illustrations, a slow zoom, captions or crossfades for the action. Reference video frames are study material, never production assets.
 
-Read `references/code-animation.md` before creating visuals. It compares the sampled reference with a prior test output, explains the code-based reconstruction and includes a runnable vector demo. The source video's actual tools are **unknown**; CSS/SVG is a proposed approach, not a claim about how the original was made. Construct and inspect a 15–30 second voiced style test before scaling up. If actual video/audio review is unavailable, disclose it; do not claim a reference match or finished quality.
+Read `references/code-animation.md`, `references/character-rig.md`, and `references/cinematic-staging.md` before creating visuals. It compares the sampled reference with a prior test output, explains the code-based reconstruction and includes a runnable vector demo. The source video's actual tools are **unknown**; CSS/SVG is a proposed approach, not a claim about how the original was made. Construct and inspect a 15–30 second voiced style test before scaling up. If actual video/audio review is unavailable, disclose it; do not claim a reference match or finished quality.
 
 ## Package map: read the examples as needed
 
@@ -18,18 +18,20 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - Repository-root `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions (they are not part of a standalone skill-only installation). MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
 - Repository-root `tests/test_mcp.py` — stdio protocol and tool smoke tests.
 - `references/code-animation.md` — reference-versus-output breakdown, original code-drawn style, deterministic rendering and mandatory style gate.
+- `references/cinematic-staging.md` — actionable layered backgrounds, scene-specific lighting, parallax, cutaways, cuts, and QA.
 - `references/production-learning-notes.md` — living record of user feedback, motion and sound lessons, evidence limits and recommendations. Update it when new feedback or verified production lessons change the guidance.
 - `references/agent-compatibility.md` — choose a workflow based on the host's real capabilities, whether or not it has skills or MCP.
 - `references/visual-reference.md` and `reference-frames/README.md` — selected reference stills with timestamps, observational analysis, reconstruction notes and rights caveats. Only eight stills are included; the full video was not reviewed frame by frame.
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.
 - `examples/cross-niche-scripts.md` — example briefs, original voice scripts and mini storyboards for several non-science niches.
-- `references/character-rig.md` — coordinate system, hierarchy, joint placement, facial states and a usable pose data example.
+- `references/character-rig.md` — working long-bodied character geometry, correct back/front arm depth, attachments, acting, and rig QA.
 - `references/voice-direction.md` — American-accent voice types for different niches, detailed delivery instructions, TTS-ready topic scripts, auditions, and audio workflow. No voice files or reference-voice claims.
 - `examples/example-script-and-board.md` — a complete short example narration, time-coded visual plan, TTS-ready lines and edit notes.
 - `examples/example-timeline.json` — valid example scene/visual/audio event plan; a planning file, not an executable program.
+- `examples/staging-rig-demo.html` — self-contained silent, seekable original long-body rig, layered landscape, lighting, and journal cutaway; primary working staging example.
 - `examples/backyard-vector-demo.html` — 18-second silent, code-drawn stage/rig/diagram proof of concept; `examples/render_vector_demo.py` can render it using optional tools. It is not a finished video.
 - `examples/puppet-demo.html` — older, simpler silent board demo; not the primary visual benchmark.
-- `assets/character-rig.svg` — annotated editable rig illustration and joint map.
+- `assets/character-rig.svg` — older generic joint map; not the current long-capsule character proportions.
 - `assets/classroom-example.svg` — sample wide educational scene.
 - `assets/thumbnail-example.svg` — sample original thumbnail composition.
 - `assets/README.md` — what each image demonstrates and how to use or adapt it.
@@ -152,7 +154,7 @@ Work in four passes: **story → boards and sound plan → asset and motion buil
 Create a palette and model sheet before rendering. These are practical design choices informed by the inspected thumbnail and excerpt; numerical values are proposed defaults, not measurements:
 
 - World: desaturated midnight-indigo/violet environment with amber practical lights. Suggested palette: near-black `#101017`, cool shadow `#323652`, violet pavement `#655C79`, warm light `#FFBD61`, cream text `#F8F1DD`; adjust for contrast. Shapes simple and softly modeled; environmental details selective, not photo-busy. Establish one coherent world, then vary location and framing according to the story.
-- Characters: simple round dark head, two light eyes and small editable brows/mouth; thin dark limbs, mitt-like hands, clean clothed torso and distinct silhouette. Make **new** people, clothes, hair, skin/head treatments and proportions; do not reuse the reference character designs as exact copies. Build a front/three-quarter/side model sheet, with neutral, puzzled, worried, surprised, relieved and speaking variants. Design accessible contrast and facial expression at thumbnail and mobile scale.
+- Characters: simple round dark head, two light eyes and small editable brows/mouth; thin dark limbs, mitt-like hands, clean clothed torso and distinct silhouette. Create original artwork and treatments; follow the user-specified character proportions and depth order when requested, without claiming an exact copy or using reference assets. Build a front/three-quarter/side model sheet, with neutral, puzzled, worried, surprised, relieved and speaking variants. Design accessible contrast and facial expression at thumbnail and mobile scale.
 - Character construction: separate head, neck, torso/pelvis, upper/lower limbs, hands and feet as local-coordinate shapes with pivot points at neck, shoulders, elbows, hips, knees and ankles. Overlap joints to hide gaps; layer far arm/leg behind torso, near arm/leg in front. Keep torso attached to pelvis, head attached to neck; place all pivots from one rest-pose skeleton. Ensure no intersections or limb length changes except deliberate squash. Make mouth, eyes and brows independent layers parented to head. Use masks/occlusion for sleeves, pockets and hair.
 - Background: foreground vignette, midground subject and readable background landmarks. Create streets, rooms, homes, labs, maps or landscapes using simple shape layers, muted cool fills and a few warm windows/practical lamps; draw depth from scale, overlap, perspective, soft shadow and atmospheric contrast. Keep key action against a quiet region. An individual scene need not repeat the reference street.
 - Lighting: choose a consistent motivated light source. Use warm pooled radial gradients, restrained bloom, rim highlights on the light-facing side, and soft cool shadows with consistent direction. Fake 3D with gradients, layered silhouettes and blurred shadow ellipses, or use a 3D renderer if available. Avoid claiming physically accurate illumination if the scene uses 2D approximations.

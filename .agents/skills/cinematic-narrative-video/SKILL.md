@@ -18,6 +18,7 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - Repository-root `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions (they are not part of a standalone skill-only installation). MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
 - Repository-root `tests/test_mcp.py` — stdio protocol and tool smoke tests.
 - `references/code-animation.md` — reference-versus-output breakdown, original code-drawn style, deterministic rendering and mandatory style gate.
+- `references/production-learning-notes.md` — living record of user feedback, motion and sound lessons, evidence limits and recommendations. Update it when new feedback or verified production lessons change the guidance.
 - `references/agent-compatibility.md` — choose a workflow based on the host's real capabilities, whether or not it has skills or MCP.
 - `references/visual-reference.md` and `reference-frames/README.md` — selected reference stills with timestamps, observational analysis, reconstruction notes and rights caveats. Only eight stills are included; the full video was not reviewed frame by frame.
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.

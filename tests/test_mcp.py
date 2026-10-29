@@ -49,6 +49,17 @@ class MCPTests(unittest.TestCase):
         self.assertEqual(len(list((ROOT / "reference-frames").glob("*.jpg"))), 8)
         self.assertIn("rights", (ROOT / "reference-frames" / "README.md").read_text().lower())
 
+    def test_agent_compatibility_and_quickstart(self):
+        reply = run_server([call(1, "read_skill_guide", {"guide": "compatibility"})])[0]
+        guide = tool_data(reply)
+        self.assertIn("Text-only agent", guide["content"])
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("Quick start — copy and paste into your agent", readme)
+        self.assertIn("Arena", readme)
+        self.assertIn("MCP is optional", readme)
+        resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
+        self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
+
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")

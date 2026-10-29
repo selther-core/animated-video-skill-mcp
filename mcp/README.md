@@ -6,13 +6,13 @@ A real, minimal stdio [Model Context Protocol](https://modelcontextprotocol.io/)
 
 | MCP tool | Actual behavior |
 |---|---|
-| `read_skill_guide` | Read one of the bundled skill, niche, visual reference, rig, voice or example documents. |
+| `read_skill_guide` | Read one of the bundled skill, niche, cross-agent compatibility, visual reference, rig, voice or example documents. |
 | `create_video_project` | Create a **new**, empty project directory with the supplied brief and draft script, storyboard, timeline, QA and publishing templates. Refuses existing directories. Parent directory must already exist. |
 | `validate_timeline` | Check numeric durations, shot coverage, gaps, overlaps, and some cue bounds. Does not assess whether media exists, creative quality, accuracy, rights, actual sync, accessibility or policy. |
 | `make_srt` | Turn manually supplied timed text cues into SRT. Does not transcribe or align audio; the agent must review cue timing. |
 | `inspect_video` | Use `ffprobe` if already installed and on `PATH` to report a local file's stream/duration metadata. It does not play, hear or judge the video. |
 
-The server also exposes six text resources (`cinematic://guide/skill`, `niche`, `visual`, `rig`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, creates or generates original assets, uses any connected TTS, animates and renders, listens and reviews, and creates the final video/thumbnail/publishing package. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
+The server also exposes seven text resources (`cinematic://guide/skill`, `niche`, `compatibility`, `visual`, `rig`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, creates or generates original assets, uses any connected TTS, animates and renders, listens and reviews, and creates the final video/thumbnail/publishing package. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
 
 ## Setup
 

@@ -17,6 +17,7 @@ VERSION = "2025-06-18"
 DOCS = {
     "skill": ("SKILL.md", "Complete skill and production workflow"),
     "niche": ("references/niche-adaptation.md", "Adapting the style to any niche"),
+    "compatibility": ("references/agent-compatibility.md", "Using the skill with different kinds of agents"),
     "visual": ("references/visual-reference.md", "Analysis of extracted reference frames"),
     "rig": ("references/character-rig.md", "Character rig and pose library"),
     "voice": ("references/voice-direction.md", "Written voice direction and TTS workflow"),
@@ -31,7 +32,7 @@ def field(description):
 
 TOOLS = [
     {"name": "read_skill_guide", "description": "Read an included skill guide. These are general instructions, not evidence of the reference's unreviewed audio or ending.",
-     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, visual, rig, voice, or examples."}}, ["guide"])},
+     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, compatibility, visual, rig, voice, or examples."}}, ["guide"])},
     {"name": "create_video_project", "description": "Create a NEW local project folder with a user brief and clearly marked draft production templates. Does not create a video, voice, art, or thumbnail. Refuses to overwrite an existing folder.",
      "inputSchema": schema({"directory": field("Path to a new directory to create; use an absolute path for predictable results."), "topic": field("Video subject."), "niche": field("Content niche."), "audience": field("Intended audience."), "length": field("Requested length or range, for example 4-6 minutes."), "format": field("Format, for example 16:9 YouTube or 9:16 Short."), "requirements": {"type": "string", "description": "Other requirements; can be empty."}}, ["directory", "topic", "niche", "audience", "length", "format"])},
     {"name": "validate_timeline", "description": "Validate basic timing consistency of a proposed timeline JSON object; does not assess factual accuracy, creative quality, audio sync, or a finished video.",

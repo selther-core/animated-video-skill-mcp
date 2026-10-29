@@ -12,6 +12,7 @@ All paths are relative to this file. `assets/` and `examples/` contain original 
 
 - `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions. MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
 - `tests/test_mcp.py` — stdio protocol and tool smoke tests.
+- `references/agent-compatibility.md` — choose a workflow based on the host's real capabilities, whether or not it has skills or MCP.
 - `references/visual-reference.md` and `reference-frames/README.md` — selected reference stills with timestamps, observational analysis, reconstruction notes and rights caveats. Only eight stills are included; the full video was not reviewed frame by frame.
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.
 - `examples/cross-niche-scripts.md` — example briefs, original voice scripts and mini storyboards for several non-science niches.
@@ -87,7 +88,7 @@ Times below are approximately the sampled frame's time, not guaranteed cut bound
 - **Skill-aware agent:** place this file at `cinematic-narrative-video/SKILL.md` in the platform's documented skill directory, reload/discover skills if required, and invoke it by name or ask the agent to use it. Discovery paths and frontmatter requirements vary; consult the host's actual documentation rather than assuming installation succeeded.
 - **Agent without skills:** attach or paste this entire file into the session as an instruction document, then supply the brief below. Agents with project-instruction files can instead add an explicit instruction to read the location of this file; do not overwrite unrelated project instructions.
 - **Optional MCP server:** Configure the local stdio server in `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline validation, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
-- **Agent execution:** Use your own file, code, image, speech, rendering and media-inspection capabilities. Use an existing connected TTS/image tool directly when appropriate. Do not tell a user to obtain external assistance when the agent can perform the task itself. If an essential capability is genuinely unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
+- **Agent execution:** Audit the host's actual capabilities and choose the appropriate path in `references/agent-compatibility.md`. Use your own file, code, image, speech, rendering and media-inspection capabilities. Use an existing connected TTS/image tool directly when appropriate. Do not tell a user to obtain external assistance when the agent can perform the task itself. If an essential capability is genuinely unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
 
 ### Input brief
 

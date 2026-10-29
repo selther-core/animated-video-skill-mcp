@@ -2,6 +2,17 @@
 
 **Purpose:** Working notes for improving the cinematic narrative video skill. Update this file when new user feedback or a verified production lesson changes the recommendations. Date updates; distinguish direct user feedback and observed evidence from hypotheses. Promote tested general principles into `SKILL.md`, the rig, animation, voice or niche guides when appropriate. Do not present these notes as proof of reference-equivalent quality.
 
+## 2026-10-30 — locations, typography, atmosphere and expression
+
+- User feedback identified text boxes, location selection, background animation, lighting, rain, mud, landscapes and expressions as needing work. These are production priorities, not evidence that a particular fix has been approved.
+- Pick environments that directly support the narration and make the implied geography clear. In the fictional WWII example, use an outdoor U.S. training camp for marching, the classroom/board for explanation, an Atlantic crossing, and a clearly labeled illustrative Western European field. Do not misrepresent fictional composites, routes or props as a named historical account.
+- Measure label text to size its backing, keep it in a consistent safe area, give it enough contrast and viewing time, and avoid duplicate title boxes and text that overlaps characters. Lay out progressive board content in separate rows with clear spacing; review the final encoded frames at viewing size.
+- Use multiple layers to make a setting feel specific: distant village and hedgerows, a midground road/fence, uneven muddy ground, puddles and foreground vegetation. Prefer scene-specific detail over repeating a generic background; avoid cluttering the subject or implying an exact documented location.
+- Animate weather and backgrounds independently from people: offset near/far rain, slow haze, puddle ripples, ship wake, flags, drifting clouds or smoke. Couple rain effects to the scene and keep the rate and contrast comfortable; leave faces and labels legible.
+- Design illumination with a motivated source and falloff, including warm windows or lamps against cooler environments, atmospheric light and shadows. Reserve brighter flashes and camera shake for the event that motivates them.
+- Use a few readable, intentional facial states appropriate to the narration—such as calm, worried and briefly startled—rather than one identical expression for every person. Stage a medium or close shot when an expression is important, while retaining the approved near-arm/front and far-arm/back hierarchy.
+- The latest candidate uses these approaches; sampled frames and browser errors were checked, but user approval and direct audio listening remain outstanding. Do not call it a verified reference match.
+
 ## 2026-10-30 — specific character-structure correction
 
 The user supplied three close-up character screenshots and clarified the intended silhouette. For this user's requested character style, treat the images as the structural reference:

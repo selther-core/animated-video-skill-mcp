@@ -60,3 +60,7 @@ The earlier backyard demo is a limited, rejected style test, not a benchmark for
 ## Reference-informed progression
 
 See `story-structure.md` and `case-study-reference-vs-ww2.md` for the sampled comparison. `../examples/progressive-scene-demo.html` runs a fictional sequence with the same stage changing across a queue, intervention, route and held qualification. Inspect with `?t=0`, `?t=6` and `?t=12`, or call `window.seek(t)`; it is silent and not an automatic quality guarantee. Its beat plan is `../examples/story-beat-template.json`. Map visual state changes to real narration and contacts in the new project.
+
+### Inserting an opening without breaking seek
+
+Preserve a reference to the old timeline function before replacing a global API: `const originalSeek = window.seek; window.seek = t => t < introEnd ? drawIntro(t) : originalSeek(t - shift);`. Beware that global function declarations may resolve through the `window` property: simply assigning a new `window.seek` and calling `seek(...)` inside it can recurse into the wrapper and repeat the opening. Test exact timestamps in the intro, the transition, several later scenes and out-of-order. Shift captions, narration, foley and total duration by the same timeline delta, while separately timing any new opening cues.

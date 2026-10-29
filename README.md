@@ -82,6 +82,8 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
 | [Code animation and reference breakdown](.agents/skills/cinematic-narrative-video/references/code-animation.md) | How to build reference-inspired visuals from code, plus a comparison of a prior output. |
+| [Story structure and review](.agents/skills/cinematic-narrative-video/references/story-structure.md) | Genre-aware beat planning, within-shot progression, and evidence-tagged criteria. |
+| [Reference vs. WWII audit](.agents/skills/cinematic-narrative-video/references/case-study-reference-vs-ww2.md) | Timestamped visual comparison and explicit limitations. |
 | [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) | Layered backgrounds, lighting, cutaways, movement and shot review. |
 | [Niche adaptation](.agents/skills/cinematic-narrative-video/references/niche-adaptation.md) | Adapt story, characters, visuals, and evidence to different subjects. |
 | [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; energetic, clear American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
@@ -96,17 +98,19 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 |---|---|---|
 | `read_skill_guide` | Reads a bundled guide. | Instructions are not media-generation tools. |
 | `create_video_project` | Creates a new project with draft files and folders. | Refuses existing destinations; it does not generate media. |
+| `check_story_plan` | Checks manually supplied beat fields and event bounds. | Does not inspect media or judge quality, facts or sync. |
 | `validate_timeline` | Checks basic shot coverage and cue timing. | Does not verify actual media, sync, quality, rights, or accuracy. |
 | `make_srt` | Converts supplied timed cues to subtitles. | Does not transcribe or align audio. |
 | `inspect_video` | Returns technical metadata through an installed `ffprobe`. | Does not watch, listen to, or judge the video. |
 
-The server also exposes eight guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
+The server also exposes eleven guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
 
 ## Examples
 
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.
 - [Character rig illustration](.agents/skills/cinematic-narrative-video/assets/character-rig.png) and [editable SVG](.agents/skills/cinematic-narrative-video/assets/character-rig.svg) — an older generic joint map, not the long-body rig.
+- [Progressive scene demo](.agents/skills/cinematic-narrative-video/examples/progressive-scene-demo.html) and [beat template](.agents/skills/cinematic-narrative-video/examples/story-beat-template.json) — a silent, fictional example of visual states changing within one location.
 - [Long-body rig and staging demo](.agents/skills/cinematic-narrative-video/examples/staging-rig-demo.html) — runnable silent example of layered scenery, lighting, character anatomy and a cutaway.
 - [Older silent vector animation demo](.agents/skills/cinematic-narrative-video/examples/backyard-vector-demo.html) — original coded scene, rig and diagram; not a finished video.
 
@@ -155,6 +159,7 @@ The MCP server runs locally and does not itself explicitly upload files or inclu
 - [MCP setup and tools](mcp/README.md) — client configuration, tool behavior, privacy, and troubleshooting.
 - [Agent compatibility](.agents/skills/cinematic-narrative-video/references/agent-compatibility.md) — skill-aware, MCP-capable, and text-only workflows.
 - [Code animation guide](.agents/skills/cinematic-narrative-video/references/code-animation.md) — observed differences, code-based construction, rendering and style-test requirements.
+- [Story structure](.agents/skills/cinematic-narrative-video/references/story-structure.md) — genre-appropriate narrative beats and evidence-tagged review.
 - [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) — backgrounds, lighting, cutaways, animation and QA.
 - [Visual reference analysis](.agents/skills/cinematic-narrative-video/references/visual-reference.md) — observations and their limitations.
 - [Security policy](SECURITY.md) — private reporting and the local server's security boundary.

@@ -1,0 +1,58 @@
+{
+  "status": "illustrative draft; not a rendered video or verified research",
+  "topic": "A fictional bakery queue",
+  "genre": "explanation",
+  "audience_change": "Understand one possible way to separate ordering from pickup; no outcome is guaranteed.",
+  "duration_seconds": 16,
+  "beats": [
+    {
+      "id": "B01",
+      "start": 0,
+      "end": 4,
+      "purpose": "Show the question and initial situation",
+      "before": "One pickup point and no waiting markers",
+      "action": "Waiting markers appear one by one",
+      "after": "A small queue is visible",
+      "hold": "Hold the completed queue so the audience can read it",
+      "speech_cue": "Imagine a bakery where ordering and pickup share the same space.",
+      "source_or_fiction": "Fictional illustration; not measured data",
+      "events": [
+        {"time": 0.5, "change": "Reveal the premise and a counter", "meaning": "Establish the starting system"},
+        {"time": 1.4, "change": "Reveal the first waiting marker", "meaning": "Show the queue beginning"},
+        {"time": 2.1, "change": "Reveal additional waiting markers", "meaning": "Show the queue growing"}
+      ]
+    },
+    {
+      "id": "B02",
+      "start": 4,
+      "end": 9,
+      "purpose": "Propose a small change",
+      "before": "Waiting markers share one pickup point",
+      "action": "A second pickup zone appears; a presenter carries an object beside the diagram",
+      "after": "Order and pickup are visibly separate",
+      "hold": "Hold both labeled zones together",
+      "speech_cue": "What if the shop set aside a different place to collect a finished order?",
+      "source_or_fiction": "Fictional proposal, not a proven operational result",
+      "events": [
+        {"time": 4.2, "change": "Show a new pickup zone", "meaning": "Make the proposed change concrete"},
+        {"time": 5.4, "change": "Carry an item beside the diagram", "meaning": "Reinforce the parcel pickup theme"}
+      ]
+    },
+    {
+      "id": "B03",
+      "start": 9,
+      "end": 16,
+      "purpose": "Clarify the implication and its limit",
+      "before": "Two differently labeled zones are present",
+      "action": "A path and short sequence appear",
+      "after": "The viewer can trace order then pickup",
+      "hold": "Leave the completed relationship visible until the end",
+      "speech_cue": "This example does not prove the line gets faster. It shows one way the steps could be clearer.",
+      "source_or_fiction": "Illustration only; no measured results or implied guarantee",
+      "events": [
+        {"time": 9.4, "change": "Draw the route between order and pickup", "meaning": "Explain the relationship between the zones"},
+        {"time": 11, "change": "Hold the persistent hypothetical qualifier", "meaning": "Keep the fictional status visible"}
+      ]
+    }
+  ]
+}

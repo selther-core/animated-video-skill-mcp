@@ -9,7 +9,7 @@ description: Use for animated storytelling, explainers, tutorials, commentary, a
 
 **Do not use AI image generation for this skill.** Draw original characters, props, backgrounds, diagrams, lighting and thumbnails with authored HTML/CSS, SVG, Canvas or similar code. Build a consistent articulated character rig and animate its limbs, expressions and interactions; do not substitute static illustrations, a slow zoom, captions or crossfades for the action. Reference video frames are study material, never production assets.
 
-Read `references/code-animation.md`, `references/character-rig.md`, and `references/cinematic-staging.md` before creating visuals. It compares the sampled reference with a prior test output, explains the code-based reconstruction and includes a runnable vector demo. The source video's actual tools are **unknown**; CSS/SVG is a proposed approach, not a claim about how the original was made. Construct and inspect a 15–30 second voiced style test before scaling up. If actual video/audio review is unavailable, disclose it; do not claim a reference match or finished quality.
+Read `references/story-structure.md`, `references/code-animation.md`, `references/character-rig.md`, and `references/cinematic-staging.md` before creating visuals. It compares the sampled reference with a prior test output, explains the code-based reconstruction and includes a runnable vector demo. The source video's actual tools are **unknown**; CSS/SVG is a proposed approach, not a claim about how the original was made. Construct and inspect a 15–30 second voiced style test before scaling up. If actual video/audio review is unavailable, disclose it; do not claim a reference match or finished quality.
 
 ## Package map: read the examples as needed
 
@@ -17,6 +17,8 @@ Paths below are relative to this skill directory, except for the explicitly repo
 
 - Repository-root `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions (they are not part of a standalone skill-only installation). MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
 - Repository-root `tests/test_mcp.py` — stdio protocol and tool smoke tests.
+- `references/story-structure.md` — genre-aware story spines, before/action/after/hold planning, and evidence-tagged quality criteria.
+- `references/case-study-reference-vs-ww2.md` — timestamped sampled comparison and limits, not a certification of the WWII cut.
 - `references/code-animation.md` — reference-versus-output breakdown, original code-drawn style, deterministic rendering and mandatory style gate.
 - `references/cinematic-staging.md` — actionable layered backgrounds, scene-specific lighting, parallax, cutaways, cuts, and QA.
 - `references/production-learning-notes.md` — living record of user feedback, motion and sound lessons, evidence limits and recommendations. Update it when new feedback or verified production lessons change the guidance.
@@ -28,6 +30,7 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - `references/voice-direction.md` — American-accent voice types for different niches, detailed delivery instructions, TTS-ready topic scripts, auditions, and audio workflow. No voice files or reference-voice claims.
 - `examples/example-script-and-board.md` — a complete short example narration, time-coded visual plan, TTS-ready lines and edit notes.
 - `examples/example-timeline.json` — valid example scene/visual/audio event plan; a planning file, not an executable program.
+- `examples/progressive-scene-demo.html` and `examples/story-beat-template.json` — original seekable progressive explainer scene and its timed beat plan; silent prototype, not a final video.
 - `examples/staging-rig-demo.html` — self-contained silent, seekable original long-body rig, layered landscape, lighting, and journal cutaway; primary working staging example.
 - `examples/backyard-vector-demo.html` — 18-second silent, code-drawn stage/rig/diagram proof of concept; `examples/render_vector_demo.py` can render it using optional tools. It is not a finished video.
 - `examples/puppet-demo.html` — older, simpler silent board demo; not the primary visual benchmark.
@@ -36,7 +39,7 @@ Paths below are relative to this skill directory, except for the explicitly repo
 - `assets/thumbnail-example.svg` — sample original thumbnail composition.
 - `assets/README.md` — what each image demonstrates and how to use or adapt it.
 
-For production, first use this file to collect requirements. Read `references/niche-adaptation.md`, then select the most relevant script, rig, and voice references before generating assets; use examples as scaffolding, never as facts about the reference or as final assets without adaptation. The package's demonstrations are illustrative, not a finished rendering engine.
+For production, first use this file to collect requirements. Read `references/story-structure.md` and `references/niche-adaptation.md`, then select the most relevant script, rig, and voice references before generating assets; use examples as scaffolding, never as facts about the reference or as final assets without adaptation. The package's demonstrations are illustrative, not a finished rendering engine.
 
 ## 0. Evidence, limits and honesty
 
@@ -97,7 +100,7 @@ Times below are approximately the sampled frame's time, not guaranteed cut bound
 
 - **Skill-aware agent:** place this file at `cinematic-narrative-video/SKILL.md` in the platform's documented skill directory, reload/discover skills if required, and invoke it by name or ask the agent to use it. Discovery paths and frontmatter requirements vary; consult the host's actual documentation rather than assuming installation succeeded.
 - **Agent without skills:** attach or paste this entire file into the session as an instruction document, then supply the brief below. Agents with project-instruction files can instead add an explicit instruction to read the location of this file; do not overwrite unrelated project instructions.
-- **Optional MCP server:** Configure the local stdio server using the repository-root `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline validation, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
+- **Optional MCP server:** Configure the local stdio server using the repository-root `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline and story-plan field checks, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
 - **Agent execution:** Audit capabilities in `references/agent-compatibility.md`. Draw visuals in code; do not use image-generation tools. Use available native TTS directly, plus real rendering and media-inspection tools. Do not ask users to do work the agent can perform. If an essential capability is unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
 
 ### Input brief
@@ -139,6 +142,13 @@ Obtain the source only through permitted means. Do not bypass authentication or 
 
 ## 3. Production architecture
 
+### Reference-informed structural gate
+
+Before making scenes, use `references/story-structure.md` and `examples/story-beat-template.json` to connect the user's promise to a genre-appropriate sequence. For each major beat write the viewer change, before/action/after/hold, meaningful timed visual events, character/prop intent, speech cue and supporting source or fiction label. Where an idea or action develops, show the change within a coherent held location; maintain prior states long enough to understand the next. Include a purposeful wide/insert/return when useful, not obligatory rapid cuts or fake motion. Quiet holds and story-led narratives are valid; do not force classrooms, charts or a formula on unrelated topics. The included silent progressive example demonstrates editable timing and states; it is not a finished video.
+
+The previous WWII cut meets some existing criteria (cast, varied sets, map, atmosphere) but its sampled scenes often establish places rather than develop a visual argument or action, with limited interaction. See the detailed case study. The user's new work should not be labeled reference-matched based on similar silhouettes or a completed encode. Record pass/partial/fail/unknown with timestamps and evidence; visual samples cannot prove full-speed motion, sound or sync. Resolve material failures before delivery and report unknowns.
+
+
 Work in four passes: **story → boards and sound plan → asset and motion build → render and review**. Complete each with evidence, not generic checkboxes. This method is for **any niche**, not just science: preserve the reference-inspired visual grammar while replacing narrative structure, setting, people, animals, props, diagrams, voice direction, facts and pacing to fit the brief. The science example is illustrative only. See `references/niche-adaptation.md` and `examples/cross-niche-scripts.md` before planning.
 
 ### A. Research and script
@@ -161,7 +171,7 @@ Create a palette and model sheet before rendering. These are practical design ch
 - Animals and props: original simplified silhouettes and identifiable features; anatomical articulation appropriate to each species (bird body, head, wing and leg pivots, for instance). Create reusable prop layers—cards, diagrams, icons, counters or charts—designed to carry the actual explanation. Do not depict people as biologically representative without appropriate context.
 - Text: for initial thumbnail treatment choose a licensed heavy rounded sans-serif (e.g. a locally available rounded bold typeface) or draw original lettering. Exact reference font is unknown. Use large bold high-contrast text, usually 2–5 words for thumbnail, and emphasize one important word or number in amber. Keep video labels short; avoid covering faces or information. Verify font license and glyph support. Readability outranks stylistic fidelity.
 
-**Code-drawn production:** Author scene layers, characters, text, diagrams, props and thumbnails as editable SVG/CSS/Canvas or equivalent code. Use reusable parts with named local pivots, parameterized color/light and a deterministic timeline. Rasterize the authored scene only for preview/export. Do not use image-generation models, generated backgrounds, still-image sequences or text overlays as a substitute for character/prop animation. See `references/code-animation.md` and `examples/backyard-vector-demo.html`.
+**Code-drawn production:** Author scene layers, characters, text, diagrams, props and thumbnails as editable SVG/CSS/Canvas or equivalent code. Use reusable parts with named local pivots, parameterized color/light and a deterministic timeline. Rasterize the authored scene only for preview/export. Do not use image-generation models, generated backgrounds, still-image sequences or text overlays as a substitute for character/prop animation. See `references/code-animation.md`, `examples/staging-rig-demo.html`, and `examples/progressive-scene-demo.html`; the older backyard prototype is not the quality benchmark.
 
 ### C. Precise motion system (proposed defaults)
 
@@ -228,6 +238,8 @@ Choose a supported codec if x264 is unavailable. Avoid using `-shortest` to hide
 Start from the actual story, promise, conflict or question, not a generic template. Design a new 16:9 still with one unmistakable conflict, one or two original figures or symbols, a simple environment and an area reserved for very large, short wording. Reference-informed starting ingredients: cool moody atmosphere, warm focal light, readable rounded bold type, facial expression and a contrasting key numeral/word. Change the scene, poses, wording, character identities and graphical layout to suit the topic; avoid simply recreating the reference. Export a high-quality 1280×720 or larger JPEG/PNG, and use a conservative `<2 MB` for portable long-form upload; check current YouTube requirements because they vary by interface and can change. Test at ~200 px wide, including in grayscale: hierarchy, face, contrast, and message must survive. Do not imply an outcome or fact the video does not support. Maintain source artwork with text as editable layers.
 
 ## 6. Quality gate: inspect, fix, then report
+
+Apply the evidence-tagged structure rubric in `references/story-structure.md`. Check that the actual encoded sequence delivers the promise and planned before/action/after/hold, not just that the storyboard contains those words. Mark unreviewed sound or motion **unknown**, never pass. A plan-field checker does not review media or guarantee creative quality.
 
 Review a full final playback with audio if tools allow; examine opening, each transition, captions, final card and a contact sheet. Do not claim a subjective listening/viewing check that was not performed. Record specific timestamps for defects, fix, rerender and recheck. Requirements are goals, not a guarantee of viewer retention.
 

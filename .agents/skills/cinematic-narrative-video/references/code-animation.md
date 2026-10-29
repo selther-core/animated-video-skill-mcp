@@ -56,3 +56,7 @@ Use an environment you are authorized to modify if installation is necessary. Th
 ## Updated working staging and character implementation
 
 The earlier backyard demo is a limited, rejected style test, not a benchmark for cinematic quality or the current character proportions. For an actionable starting point use `../examples/staging-rig-demo.html` and read `character-rig.md` and `cinematic-staging.md`: they implement the long capsule body, dark round head, slim legs, correct back-arm → torso → front-arm depth, layered environment, motivated lighting, animation and a prop cutaway. The example is silent and deliberately short; adapt it to the story, add narration and sound, and review the resulting motion and final video.
+
+## Reference-informed progression
+
+See `story-structure.md` and `case-study-reference-vs-ww2.md` for the sampled comparison. `../examples/progressive-scene-demo.html` runs a fictional sequence with the same stage changing across a queue, intervention, route and held qualification. Inspect with `?t=0`, `?t=6` and `?t=12`, or call `window.seek(t)`; it is silent and not an automatic quality guarantee. Its beat plan is `../examples/story-beat-template.json`. Map visual state changes to real narration and contacts in the new project.

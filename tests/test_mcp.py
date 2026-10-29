@@ -37,7 +37,7 @@ class MCPTests(unittest.TestCase):
         out = run_server(msgs)
         self.assertEqual(len(out), 6)
         self.assertEqual(out[0]["result"]["protocolVersion"], "2025-06-18")
-        self.assertEqual(len(out[1]["result"]["tools"]), 5)
+        self.assertEqual(len(out[1]["result"]["tools"]), 6)
         self.assertTrue(out[2]["result"]["resources"])
         self.assertIn("any niche", out[3]["result"]["contents"][0]["text"].lower())
         self.assertEqual(out[4]["result"]["prompts"][0]["name"], "create_niche_video")
@@ -124,6 +124,43 @@ class MCPTests(unittest.TestCase):
         self.assertNotIn("<img", demo.lower())
         self.assertNotIn("<audio", demo.lower())
 
+    def test_story_structure_guides_and_example_plan(self):
+        plan = json.loads((SKILL_ROOT / "examples" / "story-beat-template.json").read_text())
+        out = run_server([
+            call(1, "read_skill_guide", {"guide": "structure"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/structure"}),
+            call(3, "read_skill_guide", {"guide": "audit"}),
+            call(4, "check_story_plan", {"plan": plan}),
+        ])
+        guide = tool_data(out[0])["content"]
+        self.assertIn("BEFORE", guide)
+        self.assertIn("unknown", guide.lower())
+        self.assertEqual(guide, out[1]["result"]["contents"][0]["text"])
+        self.assertIn("WWII cut", tool_data(out[2])["content"])
+        result = tool_data(out[3])
+        self.assertTrue(result["fields_valid"], result)
+        self.assertIn("does not inspect media", " ".join(result["warnings"]))
+        demo = (SKILL_ROOT / "examples" / "progressive-scene-demo.html").read_text()
+        self.assertIn("window.seek=seek", demo)
+        self.assertIn('id="queue"', demo)
+        self.assertIn('id="pickup-zone"', demo)
+        self.assertIn('id="route"', demo)
+        self.assertNotIn("<audio", demo.lower())
+        self.assertNotIn("<img", demo.lower())
+
+    def test_story_plan_invalid_and_intentional_hold(self):
+        beat = {"id":"one", "start":0, "end":3, "purpose":"quiet moment", "before":"arrival", "action":"hold", "after":"attention", "hold":"two seconds", "source_or_fiction":"fiction", "events":[], "intentional_hold":True}
+        p = {"duration_seconds": 3, "beats": [beat]}
+        invalid = {"duration_seconds": 3, "beats": [{**beat, "events": [{"time": 4, "change":"", "meaning":""}]}]}
+        out = run_server([call(1, "check_story_plan", {"plan": p}), call(2, "check_story_plan", {"plan": invalid})])
+        good, bad = tool_data(out[0]), tool_data(out[1])
+        self.assertTrue(good["fields_valid"])
+        self.assertFalse(any("no planned visual events" in w for w in good["warnings"]))
+        self.assertFalse(bad["fields_valid"])
+        self.assertTrue(any(".time" in e for e in bad["issues"]))
+        self.assertTrue(any(".change" in e for e in bad["issues"]))
+        self.assertTrue(any(".meaning" in e for e in bad["issues"]))
+
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")
@@ -133,6 +170,7 @@ class MCPTests(unittest.TestCase):
             self.assertTrue(second["result"]["isError"])
             self.assertEqual(json.loads((Path(folder)/"brief.json").read_text())["niche"], "Fiction")
             self.assertTrue((Path(folder)/"timeline.json").is_file())
+            self.assertTrue((Path(folder)/"story-beats.json").is_file())
             self.assertIn("Do not use AI image generation", (Path(folder)/"storyboard.md").read_text())
             self.assertIn("voiced, code-drawn style test", (Path(folder)/"quality_report.md").read_text())
 

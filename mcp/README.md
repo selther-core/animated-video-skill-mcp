@@ -19,19 +19,18 @@ The server also exposes seven text resources (`cinematic://guide/skill`, `niche`
 1. Clone or unzip the whole repository to a stable directory on the same machine where the agent runs. Keep `mcp/server.py` and `.agents/skills/cinematic-narrative-video/` in their original relative locations. In a terminal, **change into the repository root** (the folder containing `mcp/`), then:
 
    ```sh
-   SKILL_DIR="$(pwd)"
    python3 --version
-   python3 "$SKILL_DIR/tests/test_mcp.py"
+   python3 tests/test_mcp.py
    ```
 
    The server requires Python 3.9+. For `inspect_video`, install or use an existing `ffprobe` separately if needed; this is optional for the other features. Tests do not require `ffprobe`. Do not manually start the server in an interactive terminal; the MCP client launches it and communicates through stdio.
-2. Register **one** configuration below in your agent. Preserve your existing settings. `$SKILL_DIR` in the shell examples expands to an absolute path **at registration time**; do not paste that literal variable into JSON/TOML. Paths with spaces are safe when kept in one argument. On Windows use a Python executable and an absolute Windows path supported by your client.
+2. Register **one** configuration below in your agent. Run the shell commands from the repository root and preserve existing settings. The commands use `$(pwd)` to record the actual absolute path at registration time. On Windows use a Python executable and an absolute Windows path supported by your client.
 3. Restart or reload the agent if necessary, confirm the server appears connected, then ask the agent to list the cinematic video tools. A saved config alone is not proof of a successful connection. Permissions may require explicit approval for file creation.
 
 ### Claude Code
 
 ```sh
-claude mcp add --transport stdio cinematic-video -- python3 "$SKILL_DIR/mcp/server.py"
+claude mcp add --transport stdio cinematic-video -- python3 "$(pwd)/mcp/server.py"
 claude mcp list
 ```
 
@@ -40,7 +39,7 @@ Use `/mcp` inside Claude Code to inspect connection status. To use the skill as 
 ### Codex CLI
 
 ```sh
-codex mcp add cinematic-video -- python3 "$SKILL_DIR/mcp/server.py"
+codex mcp add cinematic-video -- python3 "$(pwd)/mcp/server.py"
 codex mcp list
 ```
 
@@ -48,38 +47,11 @@ Or configure a stdio server under `[mcp_servers.cinematic-video]` in Codex's app
 
 ### OpenCode
 
-Merge the following into the relevant `opencode.json`, replacing the example path with the **actual absolute path** to `server.py`:
-
-```json
-{
-  "mcp": {
-    "cinematic-video": {
-      "type": "local",
-      "command": ["python3", "/absolute/path/to/cinematic-narrative-video-mcp/mcp/server.py"],
-      "enabled": true
-    }
-  }
-}
-```
-
-The path is an example and must be replaced. See [OpenCode's MCP documentation](https://opencode.ai/docs/mcp-servers/) for configuration precedence and connection management.
+In the relevant `opencode.json`, add a `cinematic-video` entry under `mcp`. Set its `type` to `local`, its `command` array to `python3` followed by the actual absolute path to `mcp/server.py`, and `enabled` to `true`. Merge it with existing entries rather than replacing them. See [OpenCode's MCP documentation](https://opencode.ai/docs/mcp-servers/) for the configuration format and connection management.
 
 ### Antigravity and other MCP clients
 
-In your version's MCP server manager, add a **local stdio** server with command `python3` and one argument: the actual absolute path to `mcp/server.py`. If it uses an `mcpServers` JSON object, the generic entry is:
-
-```json
-{
-  "mcpServers": {
-    "cinematic-video": {
-      "command": "python3",
-      "args": ["/absolute/path/to/cinematic-narrative-video-mcp/mcp/server.py"]
-    }
-  }
-}
-```
-
-Replace the example path; use the app's own settings UI to locate its active configuration because names and paths change between versions. Do not overwrite other servers. Client versions can differ in support for MCP resources and prompts; the tools interface is the primary path. If a client does not support local stdio MCP, use the skill files directly instead.
+In your client's MCP server manager, add a **local stdio** server named `cinematic-video`, using `python3` as the command and the actual absolute path to `mcp/server.py` as its single argument. Use the app's documentation to locate its active configuration; names and paths change between versions. Do not overwrite other servers. Client support for resources and prompts varies; tools are the primary interface. If the client does not support local stdio MCP, use the skill files directly instead.
 
 ## Example agent request
 
@@ -96,5 +68,5 @@ The server runs locally under your user account and can inspect a supplied media
 - **No connection:** check the absolute script path, Python executable, local stdio selection, client logs, and reload. Avoid wrapper commands that print banners to stdout; stdout carries only protocol messages.
 - **Cannot create project:** parent must exist and the requested project directory must not exist. Choose a fresh name; no files are overwritten.
 - **ffprobe missing:** use the agent's available media-inspection tool or add ffprobe to PATH; do not claim inspection happened.
-- **Protocol / behavior check:** run `python3 "$SKILL_DIR/tests/test_mcp.py"`. The tests start the server as a child process and cover handshake, tool/resource/prompt discovery, project creation and no-overwrite behavior, timeline checks, subtitle formatting and tool errors. Development smoke testing also connected through the official Python MCP client SDK and exercised initialization, discovery and tool calls. These checks do not test any particular host's UI or complete video production.
+- **Protocol / behavior check:** run `python3 tests/test_mcp.py` from the repository root. The tests start the server as a child process and cover handshake, tool/resource/prompt discovery, project creation and no-overwrite behavior, timeline checks, subtitle formatting and tool errors. Development smoke testing also connected through the official Python MCP client SDK and exercised initialization, discovery and tool calls. These checks do not test any particular host's UI or complete video production.
 - The reference analysis remains partial: the supplied excerpt was 3:57.9 of 6:58; visuals were sampled, and the source audio was not auditioned. Do not imply exact style or voice matching is verified.

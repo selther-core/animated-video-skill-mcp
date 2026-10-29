@@ -58,7 +58,10 @@ class MCPTests(unittest.TestCase):
         self.assertIn("# Installation", readme)
         self.assertIn("Install the cinematic-narrative-video skill", readme)
         self.assertIn("MCP is optional", readme)
-        self.assertIn("Do not create a video", readme)
+        installation_prompt = readme.split("```text", 1)[1].split("```", 1)[0].strip()
+        self.assertLess(len(installation_prompt), 250)
+        self.assertIn("https://github.com/selther-core/animated-video-skill-mcp", installation_prompt)
+        self.assertNotIn("Do not create a video", installation_prompt)
         resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
         self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
 

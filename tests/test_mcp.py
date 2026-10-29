@@ -9,6 +9,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parent.parent
 SERVER = ROOT / "mcp" / "server.py"
+SKILL_ROOT = ROOT / ".agents" / "skills" / "cinematic-narrative-video"
 
 def req(ident, method, params=None):
     return {"jsonrpc": "2.0", "id": ident, "method": method, "params": params or {}}
@@ -46,8 +47,8 @@ class MCPTests(unittest.TestCase):
         reply = run_server([call(1, "read_skill_guide", {"guide": "visual"})])[0]
         guide = tool_data(reply)
         self.assertIn("reference-frames", guide["content"])
-        self.assertEqual(len(list((ROOT / "reference-frames").glob("*.jpg"))), 8)
-        self.assertIn("rights", (ROOT / "reference-frames" / "README.md").read_text().lower())
+        self.assertEqual(len(list((SKILL_ROOT / "reference-frames").glob("*.jpg"))), 8)
+        self.assertIn("rights", (SKILL_ROOT / "reference-frames" / "README.md").read_text().lower())
 
     def test_agent_compatibility_and_quickstart(self):
         reply = run_server([call(1, "read_skill_guide", {"guide": "compatibility"})])[0]
@@ -60,6 +61,23 @@ class MCPTests(unittest.TestCase):
         self.assertIn("Do not create a video", readme)
         resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
         self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
+
+    def test_skill_install_plan_apply_and_no_overwrite(self):
+        installer = ROOT / "scripts" / "install_skill.py"
+        with tempfile.TemporaryDirectory() as skills:
+            dest = Path(skills) / "cinematic-narrative-video"
+            plan = subprocess.run([sys.executable, str(installer), "--skills-dir", skills], capture_output=True, text=True)
+            self.assertEqual(plan.returncode, 0, plan.stderr)
+            self.assertFalse(dest.exists())
+            self.assertIn("PLAN ONLY", plan.stdout)
+            applied = subprocess.run([sys.executable, str(installer), "--skills-dir", skills, "--apply"], capture_output=True, text=True)
+            self.assertEqual(applied.returncode, 0, applied.stderr)
+            self.assertTrue((dest / "SKILL.md").is_file())
+            self.assertTrue((dest / "references" / "voice-direction.md").is_file())
+            self.assertTrue((dest / "reference-frames" / "README.md").is_file())
+            repeated = subprocess.run([sys.executable, str(installer), "--skills-dir", skills, "--apply"], capture_output=True, text=True)
+            self.assertNotEqual(repeated.returncode, 0)
+            self.assertIn("refusing to overwrite", repeated.stderr)
 
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:

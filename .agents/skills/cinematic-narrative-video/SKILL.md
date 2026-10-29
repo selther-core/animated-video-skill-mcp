@@ -1,6 +1,5 @@
 ---
 name: cinematic-narrative-video
-summary: Create original narrative-driven animated videos and thumbnails across niches using expressive minimalist characters, staged visual metaphors, and cinematic lighting.
 description: Use for animated storytelling, explainers, tutorials, commentary, and fictional narratives in any niche, inspired by the reference visual language. Includes cross-niche adaptation, original assets, production, TTS, sound, review, and publishing.
 ---
 
@@ -8,10 +7,10 @@ description: Use for animated storytelling, explainers, tutorials, commentary, a
 
 ## Package map: read the examples as needed
 
-All paths are relative to this file. `assets/` and `examples/` contain original demonstrations. `reference-frames/` contains labeled stills extracted from the user-supplied reference excerpt; they are not original assets and may require permission or another lawful basis to redistribute. No reference audio is included.
+Paths below are relative to this skill directory, except for the explicitly repository-root MCP and test paths. `assets/` and `examples/` contain original demonstrations. `reference-frames/` contains labeled stills extracted from the user-supplied reference excerpt; they are not original assets and may require permission or another lawful basis to redistribute. No reference audio is included.
 
-- `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions. MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
-- `tests/test_mcp.py` — stdio protocol and tool smoke tests.
+- Repository-root `mcp/README.md` and `mcp/server.py` — optional local MCP server, host setup and tool descriptions (they are not part of a standalone skill-only installation). MCP access is a supplement to this skill, not a replacement for the agent's actual rendering, image, speech and review capabilities.
+- Repository-root `tests/test_mcp.py` — stdio protocol and tool smoke tests.
 - `references/agent-compatibility.md` — choose a workflow based on the host's real capabilities, whether or not it has skills or MCP.
 - `references/visual-reference.md` and `reference-frames/README.md` — selected reference stills with timestamps, observational analysis, reconstruction notes and rights caveats. Only eight stills are included; the full video was not reviewed frame by frame.
 - `references/niche-adaptation.md` — how to translate any niche, genre and topic into story beats, environments, figures, props, pacing, audio and evidence rules.
@@ -87,7 +86,7 @@ Times below are approximately the sampled frame's time, not guaranteed cut bound
 
 - **Skill-aware agent:** place this file at `cinematic-narrative-video/SKILL.md` in the platform's documented skill directory, reload/discover skills if required, and invoke it by name or ask the agent to use it. Discovery paths and frontmatter requirements vary; consult the host's actual documentation rather than assuming installation succeeded.
 - **Agent without skills:** attach or paste this entire file into the session as an instruction document, then supply the brief below. Agents with project-instruction files can instead add an explicit instruction to read the location of this file; do not overwrite unrelated project instructions.
-- **Optional MCP server:** Configure the local stdio server in `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline validation, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
+- **Optional MCP server:** Configure the local stdio server using the repository-root `mcp/README.md` if your agent supports MCP. It exposes guides, a project scaffold, basic timeline validation, SRT generation and optional ffprobe metadata. It does not generate or render media, synthesize voice, watch/listen, or guarantee policy compliance. An agent can use the skill without MCP.
 - **Agent execution:** Audit the host's actual capabilities and choose the appropriate path in `references/agent-compatibility.md`. Use your own file, code, image, speech, rendering and media-inspection capabilities. Use an existing connected TTS/image tool directly when appropriate. Do not tell a user to obtain external assistance when the agent can perform the task itself. If an essential capability is genuinely unavailable, disclose it and deliver the strongest truthful partial result; never label a silent or unrendered project a finished video.
 
 ### Input brief

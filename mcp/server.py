@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SKILL_ROOT = ROOT / ".agents" / "skills" / "cinematic-narrative-video"
 VERSION = "2025-06-18"
 DOCS = {
     "skill": ("SKILL.md", "Complete skill and production workflow"),
@@ -64,7 +65,7 @@ def tool_read(args):
     if key not in DOCS:
         raise ToolError(f"guide must be one of: {', '.join(DOCS)}")
     path, title = DOCS[key]
-    return {"guide": key, "title": title, "path": str(ROOT / path), "content": (ROOT / path).read_text(encoding="utf-8")}
+    return {"guide": key, "title": title, "path": str(SKILL_ROOT / path), "content": (SKILL_ROOT / path).read_text(encoding="utf-8")}
 
 def tool_create(args):
     directory = Path(require_string(args, "directory")).expanduser().absolute()
@@ -215,7 +216,7 @@ def dispatch(method, params):
         key = uri.removeprefix("cinematic://guide/") if isinstance(uri, str) and uri.startswith("cinematic://guide/") else ""
         if key not in DOCS: raise ToolError("Unknown resource URI")
         path, _ = DOCS[key]
-        return {"contents": [{"uri": uri, "mimeType": "text/markdown", "text": (ROOT / path).read_text(encoding="utf-8")} ]}
+        return {"contents": [{"uri": uri, "mimeType": "text/markdown", "text": (SKILL_ROOT / path).read_text(encoding="utf-8")} ]}
     if method == "prompts/list": return {"prompts": PROMPTS}
     if method == "prompts/get":
         if params.get("name") != "create_niche_video": raise ToolError("Unknown prompt")

@@ -54,9 +54,10 @@ class MCPTests(unittest.TestCase):
         guide = tool_data(reply)
         self.assertIn("Text-only agent", guide["content"])
         readme = (ROOT / "README.md").read_text()
-        self.assertIn("Quick start — copy and paste into your agent", readme)
-        self.assertIn("Arena", readme)
+        self.assertIn("# Installation", readme)
+        self.assertIn("Install the cinematic-narrative-video skill", readme)
         self.assertIn("MCP is optional", readme)
+        self.assertIn("Do not create a video", readme)
         resources = run_server([req(1, "resources/list")])[0]["result"]["resources"]
         self.assertIn("cinematic://guide/compatibility", [r["uri"] for r in resources])
 

@@ -2,6 +2,19 @@
 
 **Purpose:** Working notes for improving the cinematic narrative video skill. Update this file when new user feedback or a verified production lesson changes the recommendations. Date updates; distinguish direct user feedback and observed evidence from hypotheses. Promote tested general principles into `SKILL.md`, the rig, animation, voice or niche guides when appropriate. Do not present these notes as proof of reference-equivalent quality.
 
+## 2026-10-30 — specific character-structure correction
+
+The user supplied three close-up character screenshots and clarified the intended silhouette. For this user's requested character style, treat the images as the structural reference:
+
+- A large, almost circular dark head with simple white eyes, small brows and mouth; a narrow, long rounded or capsule-like torso, not the stocky short jacket body used in the previous cut.
+- Very long, slim dark legs with small understated feet; in a resting side-oriented pose, the legs can nearly overlap. A foreground leg may begin visually in front of the lower torso.
+- Both arms and hands must be **layered in front of the torso**. Show rounded clothing-colored sleeve caps leading into thin dark arms and small dark hands. Hands belong at the ends of arms, not floating or behind the body; keep any carried prop attached to its hand. Avoid making both arms into rigid, identical parallel marks that read as printed decorations.
+- Maintain the same underlying body proportions and structure between characters; change clothes and facial expressions as needed. Preserve distinct poses and subtle details without inventing a new stocky anatomy.
+- Motion should be restrained and natural: legs move a little, arms move a little, and contact with the ground should remain plausible. Avoid exaggerated knee bends, wide swings, rubbery limbs or large involuntary head/body movements. Use bigger action only if the user later asks for it. The goal is controlled motion, not a static image.
+- These are visual observations and the user's requested structure; the new code-authored rig is an interpretation, not proof of an exact match. Inspect close-ups and motion sequences and ask the user to judge the result.
+
+This is a **current, user-specific direction** and takes precedence over older broad rig examples below where they conflict. Keep these notes updated with later corrections and verified tests.
+
 ## 2026-10-30 — reference and feedback
 
 ### Evidence and limits

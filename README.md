@@ -81,13 +81,14 @@ A text-only agent can help with scripts and plans, but cannot honestly claim to 
 5. **Production:** create original assets and animate, render, and encode them using tools the agent actually has.
 6. **Review and delivery:** check factual claims, media, captions, rights, and platform requirements; provide a thumbnail and publishing notes where requested. Report any checks that could not be completed.
 
-The visual approach is illustrated by a project-authored fictional WWII short and adapted to the user’s own topic. The concise entry point uses detailed guides on demand, so depth is available without loading every guide for every project. The included demo is silent, and no voice recordings or reference audio are bundled.
+The default is the same type of code-drawn cinematic animated film as the project-authored fictional WWII short, with original actions, characters and scenes adapted to the user’s topic. Static slides with camera pans, captions or weather are not a substitute for animation. The concise entry point uses detailed guides on demand, so depth is available without loading every guide for every project. The included demo is silent, and no voice recordings or reference audio are bundled.
 
 ## What’s included
 
 | Component | Purpose |
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
+| [Animated-film blueprint](.agents/skills/cinematic-narrative-video/references/animation-blueprint.md) | The actual WWII production method, actions and anti-slideshow quality gate. |
 | [Detailed production manual](.agents/skills/cinematic-narrative-video/references/production-manual.md) | In-depth timelines, animation, audio, rendering, QA and publishing, loaded only when needed. |
 | [Prompt-first intake](.agents/skills/cinematic-narrative-video/references/intake.md) | The five production questions, defaults and when to start. |
 | [Scene and wardrobe selection](.agents/skills/cinematic-narrative-video/references/scene-wardrobe.md) | Context-aware locations, costumes, lighting and continuity. |
@@ -113,10 +114,11 @@ The visual approach is illustrated by a project-authored fictional WWII short an
 | `make_srt` | Converts supplied timed cues to subtitles. | Does not transcribe or align audio. |
 | `inspect_video` | Returns technical metadata through an installed `ffprobe`. | Does not watch, listen to, or judge the video. |
 
-The server also exposes fourteen guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
+The server also exposes fifteen guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
 
 ## Examples
 
+- [Seekable HTML renderer](.agents/skills/cinematic-narrative-video/examples/render_seekable.py) — optional local renderer for authored `window.seek(t)` scenes; it does not create animation or TTS.
 - [Silent WWII visual source](.agents/skills/cinematic-narrative-video/examples/ww2-seekable-scene.html) — editable, seekable visual reconstruction of the project-authored example; no audio included.
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.

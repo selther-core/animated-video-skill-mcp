@@ -110,3 +110,9 @@ This is a **current, user-specific direction** and takes precedence over older b
 
 - The user asked to keep the skill beefy—complete yet lightweight—and applicable to any niche. Reduced the always-loaded entry point through progressive disclosure; moved the original detailed technical workflow into `production-manual.md` rather than dropping it. Retained examples, templates, voice scripts and the WWII visual source without bundling video/audio.
 - Explicitly adapted unknown/hybrid niches from outcome, domain, context and evidence instead of imposing an example. A character-free project needs no rig or wardrobe; a silent brief needs no voice or voiced test. Style tests should be representative and proportional to the project. Core user rules (code-drawn visuals and American-accent spoken voices) remain.
+
+## 2026-10-31 — user reported slideshow output
+
+- User reported that the skill generated slideshows instead of the animated films produced here. Treat this as a substantive failure of the prior guidance, not a naming issue. The target is now explicitly the actual WWII cut’s code-drawn cinematic **animation type** by default across niches, not its war theme.
+- Made the actual seekable WWII visual source a required working technical benchmark; added a practical animated-film blueprint, rig and subject-action planning, anti-slideshow examples and encoded-output QA. Camera-only motion, captions, fades, blink/weather loops and animated overlays do not qualify as meaningful acting. Holds remain valid within an otherwise animated sequence.
+- Added a generic local `render_seekable.py` for any trusted authored HTML exposing `window.seek(t)` and `window.DURATION`. It can optionally mux a pre-existing audio mix, but does not create animation or speech; it is not an automatic quality validator. Preserve the instruction to use native TTS where available, ask the five questions only after the prompt, and adapt scenes/costumes/story to each niche.

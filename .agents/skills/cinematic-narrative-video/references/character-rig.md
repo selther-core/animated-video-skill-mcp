@@ -1,6 +1,6 @@
 # Character structure and working rig
 
-For the long, slim character requested in the current brief, use the original, editable implementation in `../examples/staging-rig-demo.html`. It is a code-authored interpretation of the user's structural direction, not a claim of an exact match or a copy of third-party artwork. Clothing and facial expressions can change while the silhouette and layering remain consistent. The older `../examples/puppet-demo.html` and `../assets/character-rig.svg` illustrate a different, stockier generic rig; **do not use their proportions for this particular character**.
+For human figures by default in this skill’s WWII-cut animation style, use the original, editable implementation in `../examples/staging-rig-demo.html`. It is a code-authored interpretation of the user's structural direction, not a claim of an exact match or a copy of third-party artwork. Clothing and facial expressions can change while the silhouette and layering remain consistent. The older `../examples/puppet-demo.html` and `../assets/character-rig.svg` illustrate a different, stockier generic rig; **do not use their proportions for this long-body style**.
 
 ## Geometry and hierarchy
 
@@ -20,7 +20,7 @@ root at feet
     head: dark circle → eyes / brows / mouth / optional headwear
 ```
 
-This is an SVG path-based procedural approximation, not a physical skeleton solver. `actor()` creates the groups; `put()` updates the pose; `limb()` computes a planted/swinging foot path. In the example coordinates, limb positions are recomputed from the current time. This makes direct seeking possible, but segment lengths are not mathematically constrained and foot contact is only approximated: inspect the actual motion and improve the solver for demanding shots. Keep the original user brief's structural design separate from other projects that need their own proportions.
+This is an SVG path-based procedural approximation, not a physical skeleton solver. `actor()` creates the groups; `put()` updates the pose; `limb()` computes a planted/swinging foot path. In the example coordinates, limb positions are recomputed from the current time. This makes direct seeking possible, but segment lengths are not mathematically constrained and foot contact is only approximated: inspect the actual motion and improve the solver for demanding shots. Keep these proportions as the human default while adapting clothing and role to the niche; if the user explicitly requests a different character design or a nonhuman subject, adapt the rig accordingly.
 
 ## Acting and movement
 

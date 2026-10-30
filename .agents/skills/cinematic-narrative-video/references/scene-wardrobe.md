@@ -1,6 +1,6 @@
 # Scene and clothing selection
 
-Choose scenes and clothing from the user's prompt and the answers in `intake.md`; the included WWII film is an example, not a reusable default setting. Make these choices **before** drawing assets.
+Choose scenes and clothing from the user’s prompt and the answers in `intake.md`; the included WWII film is the animation-style and production benchmark, not a reusable default setting. Apply its layered, actively animated cinematic treatment to these new scenes by following `animation-blueprint.md`. Make these choices **before** drawing assets.
 
 ## Scene selection: from meaning to shots
 

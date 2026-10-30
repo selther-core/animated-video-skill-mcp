@@ -6,14 +6,14 @@ A real, minimal stdio [Model Context Protocol](https://modelcontextprotocol.io/)
 
 | MCP tool | Actual behavior |
 |---|---|
-| `read_skill_guide` | Read one of the bundled skill, intake, scene/wardrobe selection, niche, detailed production manual, compatibility, visual, animation, rig, staging, structure, example breakdown, voice or example documents. |
+| `read_skill_guide` | Read one of the bundled skill, intake, scene/wardrobe selection, niche, detailed production manual, compatibility, visual, animation, animated-film blueprint, rig, staging, structure, example breakdown, voice or example documents. |
 | `create_video_project` | After the agent has completed intake, create a **new** project directory with the resolved backgrounds, video type, niche, length, voice and other brief fields and draft script, storyboard, timeline, QA and publishing templates. Refuses existing directories. Parent directory must already exist. |
 | `validate_timeline` | Check numeric durations, shot coverage, gaps, overlaps, and some cue bounds. Does not assess whether media exists, creative quality, accuracy, rights, actual sync, accessibility or policy. |
 | `check_story_plan` | Check manually supplied beat fields and event time bounds; does not inspect the video, verify sources or judge quality. |
 | `make_srt` | Turn manually supplied timed text cues into SRT. Does not transcribe or align audio; the agent must review cue timing. |
 | `inspect_video` | Use `ffprobe` if already installed and on `PATH` to report a local file's stream/duration metadata. It does not play, hear or judge the video. |
 
-The server also exposes fourteen text resources (`cinematic://guide/skill`, `niche`, `production`, `intake`, `selection`, `compatibility`, `visual`, `animation`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, authors original assets, uses connected TTS when requested, animates and renders, listens and reviews when possible, and creates the requested deliverables. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
+The server also exposes fifteen text resources (`cinematic://guide/skill`, `niche`, `production`, `intake`, `selection`, `compatibility`, `visual`, `animation`, `blueprint`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, authors original assets, uses connected TTS when requested, animates and renders, listens and reviews when possible, and creates the requested deliverables. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
 
 ## Setup
 

@@ -197,6 +197,32 @@ class MCPTests(unittest.TestCase):
         self.assertIn("Silent software tutorial", example)
         self.assertIn("Fictional product promotion", example)
 
+    def test_animation_blueprint_prevents_slideshow(self):
+        responses = run_server([
+            call(1, "read_skill_guide", {"guide": "blueprint"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/blueprint"}),
+            req(3, "prompts/get", {"name": "create_niche_video", "arguments": {"topic": "space travel", "niche": "science"}}),
+        ])
+        guide = tool_data(responses[0])["content"]
+        self.assertEqual(guide, responses[1]["result"]["contents"][0]["text"])
+        for term in ("ww2-seekable-scene.html", "slideshow", "subject or prop", "not a quality validator"):
+            # The last limitation lives in the renderer docstring rather than the guide.
+            if term == "not a quality validator":
+                self.assertIn("not a quality check", (SKILL_ROOT / "examples" / "render_seekable.py").read_text())
+            else:
+                self.assertIn(term, guide)
+        prompt = responses[2]["result"]["messages"][0]["content"]["text"]
+        self.assertIn("Reject slideshow", prompt)
+        self.assertIn("within-shot subject and prop action", prompt)
+        renderer = SKILL_ROOT / "examples" / "render_seekable.py"
+        result = subprocess.run([sys.executable, str(renderer), "--help"], text=True, capture_output=True, check=True)
+        self.assertIn("--html", result.stdout)
+        self.assertIn("--audio", result.stdout)
+        self.assertIn("window.seek(t)", result.stdout)
+        source = (SKILL_ROOT / "examples" / "ww2-seekable-scene.html").read_text()
+        self.assertIn("window.seek=seek9", source)
+        self.assertNotIn("<audio", source.lower())
+
     def test_scaffold_requires_intake_fields_before_creating(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")
@@ -229,6 +255,10 @@ class MCPTests(unittest.TestCase):
             self.assertTrue((Path(folder)/"timeline.json").is_file())
             self.assertTrue((Path(folder)/"story-beats.json").is_file())
             self.assertTrue((Path(folder)/"scene-wardrobe.md").is_file())
+            self.assertTrue((Path(folder)/"animation-plan.md").is_file())
+            self.assertTrue((Path(folder)/"reference"/"ww2-seekable-scene.html").is_file())
+            self.assertTrue((Path(folder)/"reference"/"render_seekable.py").is_file())
+            self.assertIn("camera-only motion", (Path(folder)/"storyboard.md").read_text())
             brief = json.loads((Path(folder)/"brief.json").read_text())
             self.assertEqual(brief["backgrounds"], "forest and clearing")
             self.assertEqual(brief["video_type"], "fiction story")

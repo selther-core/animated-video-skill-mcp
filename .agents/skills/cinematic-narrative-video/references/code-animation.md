@@ -1,6 +1,6 @@
 # Code-drawn cinematic animation: reference breakdown and build guide
 
-This is the primary visual-production method for this skill. Build original scenes, characters, props, lighting, diagrams, and motion from **HTML/CSS, SVG, Canvas, or equivalent authored code**. Do not call an image-generation model for artwork, backgrounds, characters, or thumbnails. Screenshotting code-rendered frames for video encoding is rendering, not AI image generation.
+This is the primary visual-production method for this skill. Follow `animation-blueprint.md` for the required WWII-cut-style animated film and explicit anti-slideshow gate; use `../examples/ww2-seekable-scene.html` as the working visual source, not just a static reference. Build original scenes, characters, props, lighting, diagrams, and motion from **HTML/CSS, SVG, Canvas, or equivalent authored code**. Do not call an image-generation model for artwork, backgrounds, characters, or thumbnails. Screenshotting code-rendered frames for video encoding is rendering, not AI image generation.
 
 ## What was inspected—and what cannot be known
 
@@ -33,7 +33,7 @@ Use an environment you are authorized to modify if installation is necessary. Th
 
 ## Mandatory quality gate before a full render
 
-1. Build and render a **proportionate representative style test** covering the project’s actual visual subjects and meaningful motion. If characters are needed, test their action and expression; if the video is character-free, test the relevant objects, interface, diagram or environment. Include voice/sound if requested; for a silent or very short video, use a suitable short or silent test. Adapt the location and content to the niche. The included demos are engineering examples, not substitutes for checking the actual project.
+1. Build and render a **proportionate representative style test** covering the project’s actual visual subjects and meaningful motion. If characters are needed, test their action and expression; if humans appear, start with the long-body design and actual working reference rig unless the user explicitly requests another design; if the video is character-free, test the relevant objects, interface, diagram or environment. Include voice/sound if requested; for a silent or very short video, use a suitable short or silent test. Adapt the location and content to the niche. The included demos are engineering examples, not substitutes for checking the actual project.
 2. Inspect rendered frames at multiple moments **within each scene**, including before/during/after every action, and play the test if the host can. Check that the body/limbs and scene elements really change, not only the subtitles or camera. Check lighting, contrast and compositional consistency, plus character scale, face readability and foot/hand contact when characters appear. Compare with the project example only where relevant, and check the user’s actual direction.
 3. For a project with speech, listen to the test where possible: speech must be American-accented, energetic, well-projected, clear and aligned; music must not mask it. Mark listening and accent verification as incomplete if they cannot actually be performed. Check labels and captions separately at phone size.
 4. If the style is clearly wrong, fix the rig, lighting, staging and motion and rerender. Do not expand a still-image slideshow, awkward rig or low-quality style test into a full-length video. If review or rendering is unavailable, report that limitation and deliver a clearly labeled partial rather than claiming a completed match.
@@ -41,7 +41,7 @@ Use an environment you are authorized to modify if installation is necessary. Th
 
 ## Updated working staging and character implementation
 
-The earlier backyard demo is a limited, rejected style test, not a benchmark for cinematic quality or the current character proportions. For an actionable starting point use `../examples/staging-rig-demo.html` and read `character-rig.md` and `cinematic-staging.md`: they implement the long capsule body, dark round head, slim legs, correct back-arm → torso → front-arm depth, layered environment, motivated lighting, animation and a prop cutaway. The example is silent and deliberately short; adapt it to the story, add narration and sound if requested, and review the resulting motion and final video.
+The earlier backyard demo is a limited, rejected style test, not a benchmark for cinematic quality or the current character proportions. For an actionable starting point use the actual full WWII cut visual source `../examples/ww2-seekable-scene.html`, along with the isolated `../examples/staging-rig-demo.html` and read `character-rig.md` and `cinematic-staging.md`: they implement the long capsule body, dark round head, slim legs, correct back-arm → torso → front-arm depth, layered environment, motivated lighting, animation and a prop cutaway. The example is silent and deliberately short; adapt it to the story, add narration and sound if requested, and review the resulting motion and final video.
 
 ## Reference-informed progression
 

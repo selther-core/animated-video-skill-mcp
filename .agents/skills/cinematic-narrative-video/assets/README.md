@@ -23,4 +23,4 @@ Each illustration is supplied as a 1600 × 900 SVG and PNG preview.
 
 ## License
 
-These original project-authored examples are covered by the repository's [MIT License](../../../../LICENSE), subject to its terms. The separate [third-party reference frames](../reference-frames/README.md) are **not** covered by that grant.
+These original project-authored examples are covered by the repository's [MIT License](../../../../LICENSE), subject to its terms. The [project-authored example frames](../reference-frames/README.md) have their own provenance and rights notes.

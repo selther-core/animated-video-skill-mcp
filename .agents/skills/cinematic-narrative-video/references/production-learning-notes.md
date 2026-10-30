@@ -1,5 +1,8 @@
 # Living production notes
 
+**Current example policy:** The user replaced the uploaded-video examples with the project-authored WWII cut. Older entries below are historical feedback/evidence, not active source material or a quality benchmark; the earlier third-party stills are no longer included.
+
+
 **Purpose:** Working notes for improving the cinematic narrative video skill. Update this file when new user feedback or a verified production lesson changes the recommendations. Date updates; distinguish direct user feedback and observed evidence from hypotheses. Promote tested general principles into `SKILL.md`, the rig, animation, voice or niche guides when appropriate. Do not present these notes as proof of reference-equivalent quality.
 
 ## 2026-10-30 — locations, typography, atmosphere and expression
@@ -95,3 +98,15 @@ This is a **current, user-specific direction** and takes precedence over older b
 - Built a new code-authored opening with an aircraft, attached then released bomb, time-driven downward camera tracking, impact glow/dust, title reveal, and return to the personal journey. It is an illustrative fictional scene, not a claim of a specific military event. The shot avoids graphic harm. Added scene-motivated warm/cool light pools across the established environments while keeping their original characters, composition and narration. Shifted later narration, effects and captions to preserve their original relative timing.
 - The opening was checked at sampled visual states and for JavaScript errors; actual full-speed cinematic feel and audio mix still require human viewing/listening. A successful technical decode or synchronized cue timestamps are not proof of subjective quality or precise perceived sync. User approval is not yet known.
 - A pre-render timestamp audit caught a recursive seek-wrapper bug that repeated the opening instead of reaching later shots. Fixed it by retaining the original seek function before installing the wrapper, then rechecked opening, transition and later scene timestamps. Validate out-of-order seeks and full timeline coverage whenever inserting a new intro.
+
+## 2026-10-30 — prompt-first workflow, selection and current example
+
+- User requested prompt-first production: install only during setup, then after the user provides a prompt ask about backgrounds, video length, video type, niche and voice, and start making the video after their answers. Respect already supplied choices, accept “choose for me,” keep American accents and preserve a user-selected voice.
+- User requested better scene/wardrobe selection, use the project-authored WWII video instead of their uploaded video for examples, and enhance the current video’s lighting, natural idle, zooms, spotlights and animation. Removed the older third-party stills and promoted ten frames from the new WWII cut as the current example. Keep the historical notes as a record, not as active example material.
+- Added practical scene/wardrobe selection guidance and template, an intake guide, MCP resources, prompt-first MCP guidance and scaffold fields. Added scene-specific lighting, gentle character idle/garment detail and eased camera pushes to the new cut while retaining the character hierarchy and existing narration. The fictional settings and uniforms are illustrative.
+- Browser samples and layer order were checked; full decode and encoded-frame sampling are technical/visual checks. Audio was copied from the prior cut and not directly auditioned. Neither user approval nor full-speed subjective motion review is established.
+
+## 2026-10-30 — depth without bulk, any niche
+
+- The user asked to keep the skill beefy—complete yet lightweight—and applicable to any niche. Reduced the always-loaded entry point through progressive disclosure; moved the original detailed technical workflow into `production-manual.md` rather than dropping it. Retained examples, templates, voice scripts and the WWII visual source without bundling video/audio.
+- Explicitly adapted unknown/hybrid niches from outcome, domain, context and evidence instead of imposing an example. A character-free project needs no rig or wardrobe; a silent brief needs no voice or voiced test. Style tests should be representative and proportional to the project. Core user rules (code-drawn visuals and American-accent spoken voices) remain.

@@ -72,8 +72,45 @@ These are original *small production examples* illustrating how the same referen
 
 **Voice and sound:** American-accented adult narrator, medium or medium-low pitch, clear, engaged and expressively awed at about 125–140 wpm. Leave space around names and dates; do not imitate historical voices. Optional original abstract ambient bed. Do not invent quotations or reproduce copyrighted recordings. Verify dates, crew roles, description and all illustration rights.
 
+## 5. Silent software tutorial — export a file
+
+**Brief:** Portrait 30-second tutorial, no characters and no voice. Audience: beginners; actual product and version must be supplied or verified. Build an original, simplified mock interface; it is illustrative until its labels and steps are checked against the real software.
+
+| Cue | Action and on-screen wording |
+|---|---|
+| 0:00–0:05 | Show a document, then point to the export goal: “Save a shareable copy.” |
+| 0:05–0:17 | Highlight the verified menu, then the export option; show each distinct click in sequence. |
+| 0:17–0:25 | Select the verified format, show the destination, and finish with a clear success state. |
+| 0:25–0:30 | Hold a brief recap with readable text. |
+
+**Sound/rights:** Silence is intentional. Captions are not fabricated dialogue. Verify version, steps, branding and accessibility; no character rig or wardrobe is needed.
+
+## 6. Food / cooking — a kitchen decision
+
+**Brief:** A 35-second narrated technique video for home cooks, warm practical light, one counter and hands where useful; not a health claim. Voice: clear, upbeat American-accent narrator, delivered at an easy instructional pace.
+
+| Cue | Visual and TTS-ready line |
+|---|---|
+| 0:00–0:08 | Overhead bowl with ingredient layers. “A few simple choices can make a salad more interesting.” |
+| 0:08–0:22 | Hands add crisp and soft ingredients; display each ingredient name when it appears. “Start with contrasting textures, then add your favorite vegetables.” |
+| 0:22–0:35 | Add dressing, toss, show the finished bowl. “Toss just before serving so every bite gets a little dressing.” |
+
+**Safety:** If the user specifies raw meat, allergies, storage or temperatures, consult current reliable food-safety guidance, mark jurisdiction and avoid unsupported guarantees. Actual ingredients, portions and steps must follow the requested recipe.
+
+## 7. Fictional product promotion — a reusable bottle
+
+**Brief:** A 20-second product-focused ad with no characters; clean bright background, simple studio lighting, upbeat music and concise American-accent narration. The product and claims below are invented for this example.
+
+| Cue | Visual and TTS-ready line |
+|---|---|
+| 0:00–0:05 | Bottle silhouette turns into view. “Meet a bottle designed for everyday carry.” |
+| 0:05–0:14 | Cap turns and a bag opens; show only features the real product actually has. “A simple shape, ready for your daily routine.” |
+| 0:14–0:20 | Product settles beside a generic call to action. “Find your everyday fit.” |
+
+**Review:** Use approved branding and verified product claims. Avoid invented environmental, price, performance or testimonial claims. Replace the call to action with the user's actual destination; obtain approval before publishing.
+
 ## How to turn any example into a production
 
 - Replace the example's subject, script, figures and visual metaphors with the user's actual niche. Determine whether the requested work is factual, fictional or a blend; validate claims accordingly.
-- Record a unique cue ID for every line and visual event, synthesize voices with available native TTS, and adjust timings from actual audio. Include captions, original or licensed sounds, an original thumbnail, title, description, sources if factual, and a playlist recommendation based on channel context.
+- Record a unique cue ID for every line and visual event, if voice is requested, synthesize it with native TTS and adjust timings from actual audio. Include appropriate captions, original or licensed sounds, and requested or platform-appropriate supporting materials; use sources if factual and condition any playlist suggestion on channel context.
 - Render, review and fix against `../SKILL.md`; report any missing visual/audio review honestly. The example cues and images alone are not a finished video.

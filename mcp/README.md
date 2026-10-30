@@ -6,14 +6,14 @@ A real, minimal stdio [Model Context Protocol](https://modelcontextprotocol.io/)
 
 | MCP tool | Actual behavior |
 |---|---|
-| `read_skill_guide` | Read one of the bundled skill, niche, cross-agent compatibility, visual reference, code-animation, rig, cinematic staging, story structure, comparison audit, voice or example documents. |
-| `create_video_project` | Create a **new**, empty project directory with the supplied brief and draft script, storyboard, timeline, QA and publishing templates. Refuses existing directories. Parent directory must already exist. |
+| `read_skill_guide` | Read one of the bundled skill, intake, scene/wardrobe selection, niche, detailed production manual, compatibility, visual, animation, rig, staging, structure, example breakdown, voice or example documents. |
+| `create_video_project` | After the agent has completed intake, create a **new** project directory with the resolved backgrounds, video type, niche, length, voice and other brief fields and draft script, storyboard, timeline, QA and publishing templates. Refuses existing directories. Parent directory must already exist. |
 | `validate_timeline` | Check numeric durations, shot coverage, gaps, overlaps, and some cue bounds. Does not assess whether media exists, creative quality, accuracy, rights, actual sync, accessibility or policy. |
 | `check_story_plan` | Check manually supplied beat fields and event time bounds; does not inspect the video, verify sources or judge quality. |
 | `make_srt` | Turn manually supplied timed text cues into SRT. Does not transcribe or align audio; the agent must review cue timing. |
 | `inspect_video` | Use `ffprobe` if already installed and on `PATH` to report a local file's stream/duration metadata. It does not play, hear or judge the video. |
 
-The server also exposes eleven text resources (`cinematic://guide/skill`, `niche`, `compatibility`, `visual`, `animation`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, creates or generates original assets, uses any connected TTS, animates and renders, listens and reviews, and creates the final video/thumbnail/publishing package. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
+The server also exposes fourteen text resources (`cinematic://guide/skill`, `niche`, `production`, `intake`, `selection`, `compatibility`, `visual`, `animation`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, authors original assets, uses connected TTS when requested, animates and renders, listens and reviews when possible, and creates the requested deliverables. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
 
 ## Setup
 
@@ -70,4 +70,4 @@ The server runs locally under your user account and can inspect a supplied media
 - **Cannot create project:** parent must exist and the requested project directory must not exist. Choose a fresh name; no files are overwritten.
 - **ffprobe missing:** use the agent's available media-inspection tool or add ffprobe to PATH; do not claim inspection happened.
 - **Protocol / behavior check:** run `python3 tests/test_mcp.py` from the repository root. The tests start the server as a child process and cover handshake, tool/resource/prompt discovery, project creation and no-overwrite behavior, timeline checks, subtitle formatting and tool errors. Development smoke testing also connected through the official Python MCP client SDK and exercised initialization, discovery and tool calls. These checks do not test any particular host's UI or complete video production.
-- The reference analysis remains partial: the supplied excerpt was 3:57.9 of 6:58; visuals were sampled, and the source audio was not auditioned. Do not imply exact style or voice matching is verified.
+- The current project-authored example was sampled visually and decoded, but full-speed subjective motion and direct audio audition remain unverified. No video or audio is included in the skill package.

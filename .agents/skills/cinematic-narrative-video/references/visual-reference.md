@@ -1,38 +1,18 @@
-# Visual reference and reconstruction notes
+# Visual examples from the project-authored WWII film
 
-## Scope and how to use
+The primary examples are **ten original stills** in `../reference-frames/`, extracted from the project-authored 64.59-second WWII cinematic lighting/motion cut. They replace the previous third-party uploaded-video stills. The film is a fictional composite and the locations, aircraft, uniform and battlefield are illustrative; do not treat them as verified depictions of a specific battle or unit. The example was built in editable HTML/SVG/JavaScript and exported as H.264/AAC. The package contains stills and `../examples/ww2-seekable-scene.html`, the silent editable visual source; it does not include the encoded video or any soundtrack/voice recordings. Open the HTML directly and use `?t=44` or `window.seek(44)` to inspect a specific moment.
 
-The 8 JPEGs in `../reference-frames/` are stills extracted from the user's supplied 3:57.9 excerpt. They cover the opening portion of a 6:58 original. These stills help inspect characters, sets, colors, composition and visual layering; they do not themselves prove timing, sound, or how the animation was made. Separate analysis sampled the excerpt at 1 frame/second and inspected four selected one-second sequences at 30 fps. The original audio was not auditioned and the ending is unavailable. Do not claim complete frame-by-frame or soundtrack analysis.
+| Approximate film time | Example frame | What it demonstrates |
+|---|---|---|
+| 0.8 s | `01-aircraft.jpg` | Aircraft and attached prop, cool sky, warm backlight, dramatic negative space. |
+| 2.7 s | `02-falling-object.jpg` | Camera tracks a falling object through layered sky; the object is readable against a quieter field. |
+| 7.5 s | `03-home.jpg` | Warm window/door light, two consistent figures and a grounded departure scene. |
+| 20 s | `04-training.jpg` | Outdoor camp, small cast, location-specific outfits, depth layers and a restrained light shaft. |
+| 28 s | `05-teamwork.jpg` | Board, characters at the sides and selective on-screen information. |
+| 32 s | `06-crossing.jpg` | Character-free vehicle insert, ocean, smoke and directional lighting. |
+| 38 s | `07-letter.jpg` | Object insert with a large readable envelope and held composition. |
+| 44 s | `08-field.jpg` | Rain, distant ridges, aircraft/tank silhouettes, mud and small figures; visual setting is illustrative. |
+| 47 s | `09-aircraft.jpg` | Aircraft cutaway with layered clouds and mild sky glow. |
+| 60 s | `10-remembrance.jpg` | Quiet closer with warm light, photograph, document and a reflective message. |
 
-Use these as **observation references** and the original diagrams in `../assets/` as editable *starting examples*. Before public redistribution of source screenshots, verify appropriate rights or another lawful basis. For a new user's video, make original characters, settings, narration, diagrams and sound rather than repurposing the source images as production assets.
-
-## Character construction and staging
-
-- **Street, 00:02** (`../reference-frames/00-02-street-character.jpg`): the person has a dark spherical-looking face with two white eyes, sparse eyebrows and a small mouth; long, slender dark limbs and feet; a light top; and a relatively small head/body in a full-body side-on composition. One bent arm brings a small prop to the face while the legs are in a walking pose. The dark shape contrasts with a lighter, warm shop interior. This is an observed pose; hidden joints or whether the art is physically 3D are not verifiable from a frame.
-- **Classroom, 00:40** (`../reference-frames/00-40-classroom.jpg`): two identifiable recurring figures stand apart in front of a very large board; their clothes and accessories distinguish them, and the eyes remain readable even at small scale. Long legs reach a common floor baseline. The set occupies most of the image, while figures act as scale and attention anchors. Keep character identity and body proportions consistent between settings; use a separate face/eye/brow/mouth layer in an original model.
-- **Gallery, 02:55** (`../reference-frames/02-55-history-gallery.jpg`): a foreground figure walks past static framed portraits; heads share the same simplified face language while clothing, crowns and frames communicate identity and context. Use a walk rig in the foreground and independent, nonanimated portrait artwork behind it. Dates, factual labels and costumes in a new project must be researched and adapted.
-- For a proposed articulated hierarchy, proportions, local coordinates, layer order, sample facial states and key poses, use `character-rig.md` and `../assets/character-rig.svg`. This is a practical invented implementation, not the source's actual skeleton. Apply the same design principles to animals using species-appropriate anatomy and pivots; the supplied excerpt provides no verified animal designs.
-
-## Backgrounds, composition and lighting
-
-- **Street**: blue-violet brick and pavement, front-facing door and storefront, café details, plants, furniture and an out-of-focus dark foreground element. Warm amber illumination from windows and a rim or glow around the character separate foreground and background. Recreate with editable vector shapes, a soft warm window gradient, muted brick pattern, selected props and a few blurred foreground layers. Keep actual positions and assets original.
-- **Classroom**: large dark-green board is centrally framed, warm brown walls and panelling line the edges, and shaded overhead lights produce localized warmth. Low-contrast fine texture and a mild vignette provide depth. Use layered room artwork and board art; render diagram text independently so it can change over time. Reserve negative space for the information.
-- **Graphics stage** (`02:18`): dark navy field with a subtle grid, small standing presenter on the left, thin outlined teal/lavender icon figures across the middle, an outlined top pill and a small source note near the bottom. In another niche, replace the science diagram with a relevant map, relationship chart, sequence or symbolic object—or use no diagram at all. Choose labels large enough to be read on a phone.
-- **History stage**: red curtain shapes, warm brown wall, gold frames, a clearly defined floor and lit accents produce a theatrical contrast to the dark infographic stage. Build each portrait, frame and background separately so characters can pass in front and the camera can crop to one item.
-- **Village**: repeated horizontally arranged people, fence and houses establish a single wide shared space; changes in figures and overlays can show progression without replacing the whole set. Background should be calm enough that people, labels and overlays remain legible.
-- **Prop metaphor** (`03:36`): isolated red object under a bright, soft off-white light pool with a shadow against a pale green field. This demonstrates a purposeful visual contrast: one large central symbol and very little competing detail. For an unrelated niche choose a different prop that carries the intended concept.
-- **Implementation plan:** draw background, midground, character, highlights/shadows and typography as separate layers; use broad gradients, low-opacity vignette/texture and glows on top. A blurred ellipse can serve as a contact shadow; a separate rim light follows the character silhouette. Label these as an approximation, not verified source lights, engines or render settings. Check readability in dark and bright scenes, and don't depend on color alone.
-
-## Motion and editing from sampled sequences
-
-- **1.000–1.967 s:** slow rightward movement through the side-view street, with changes in the legs while a hand remains near the face. Suggested reconstruction: keep the head and torso restrained, alternate legs, and synchronize root movement to the foot contacts. The exact keyframes, gait cycle and original pivot placement remain unknown.
-- **40.500–41.467 s:** the board's handwritten number builds while a yellow-clothed figure moves along it with an arm raised; another person remains near the left. Recreate with a timed path/stroke reveal, arm/hand attachment and a deliberate stationary counterpose. The source technique is not known.
-- **123.000–123.967 s:** the infographic stage largely holds; there is a small face-pose change. A valid reconstruction uses an intentional hold, subtle expression change and sequential graphic updates—not constant idle movement everywhere.
-- **206.400–207.367 s:** a counter increases rapidly while bright dots accumulate and the main cradle composition remains fixed. Map value and particle timing to explicit curve functions, then hold the final state. Validate values and timing against the new project's content.
-- The 1-fps samples also show broad changes among street, teaching room, domestic scene, graphic field, portrait gallery, village, cradle and prop metaphor. Cut shape, exact transition duration and synchronization with audible cues cannot be established from the coarse samples alone.
-
-## Sound and script boundary
-
-The public transcript identifies a narrated structure, short dialogue and `[music]` markers. It does not establish the original voice's pitch, timbre, identity, accent, precise rate, exact music or sound effect timing. The supplied excerpt contains a stereo audio stream, but the analyst could not audition it. Follow `voice-direction.md` for *proposed* written voice profiles, TTS audition scripts and audio workflow. Agents with their own audio tools should listen to authorized source audio themselves and update the evidence log before claiming sound fidelity. Never clone a named speaker or copy source music.
-
-For niche-specific examples and complete workflows use `niche-adaptation.md`, `../examples/cross-niche-scripts.md` and `../SKILL.md`. The visuals are examples of a reusable style grammar—not a requirement to use science, classrooms or the same plot in every video.
+The stills illustrate composition, not movement or audio. Recorded samples and full decode do not prove quality at playback speed, lip-sync, accent or mix. The film's speech and sound were not directly auditioned in this environment. Adapt color, wardrobe, environments, props and pacing to the actual user's niche; do not reuse the battlefield or claim that this sample is a polished target already approved by the user. See `ww2-example-breakdown.md`, `scene-wardrobe.md`, `character-rig.md` and `cinematic-staging.md`.

@@ -1,6 +1,6 @@
 # Reference-informed structure and production criteria
 
-This is a production grammar derived from **sampled visuals of a 3:57.9 excerpt**, not a formula proven by watching the entire 6:58 source or hearing its audio. The original's sound, ending and production software are unknown. The detailed evidence and the WWII cut comparison are in `case-study-reference-vs-ww2.md`. Adapt the grammar to the user's topic and medium; never copy characters, layouts, specific facts, music, wording or exact plot.
+This is a flexible production grammar using the project-authored fictional WWII cut as an example; see `ww2-example-breakdown.md`. The film was sampled visually and fully decoded, but its audio was not directly auditioned and subjective motion quality remains unverified. Adapt structure and visuals to the user’s topic and medium; the war setting is not a default.
 
 ## A. Build the story before choosing shots
 
@@ -21,7 +21,7 @@ For each shot record: `id`, start/end after conforming to actual audio, story fu
 - **Shared stage:** establish spatial context and consistent recurring characters; create room for the idea. Reuse a location and alter visual payloads rather than fabricating a new backdrop for every sentence.
 - **Progressive explanation or action:** reveal the next causal piece or character action in the line's context; maintain object identity and previous states long enough to understand the new one. For examples, comparisons or data, validate accuracy and qualifiers.
 - **Cutaways and returns:** use close prop inserts, an environment/vehicle, a visual metaphor or reaction for a reason. Preserve screen direction, prop continuity and return geography. Do not force a classroom or infographic into a narrative where it does not help.
-- **Resolution:** provide the best-supported answer, consequence or emotional closure appropriate to the actual genre. Do not imply that the available reference excerpt proves its own unseen ending.
+- **Resolution:** provide the best-supported answer, consequence or emotional closure appropriate to the actual genre. Choose a conclusion appropriate to the user’s story and evidence.
 
 ## C. Character, environment and design requirements
 
@@ -43,4 +43,4 @@ For each criterion mark **pass**, **partial**, **fail**, or **unknown**, with ti
 | Sound and timing | Listening to actual final encode and speech-to-picture sync | If no hearing capability, status is unknown; do not certify levels by peaks alone. |
 | Technical delivery | Full decode, streams, duration and captions | Repair missing streams or invalid timing; decoding does not prove creative quality. |
 
-A single still, a timed storyboard or the optional MCP tool cannot prove an animated result follows the criteria. Produce a short voiced style test if the production workflow calls for one; use the actual final encode for the final review. Note user feedback, changes, remaining defects and which parts were directly viewed or heard in `production-learning-notes.md` or the project's quality report.
+A single still, a timed storyboard or the optional MCP tool cannot prove an animated result follows the criteria. Produce a proportionate style test of the actual project, with voice only if requested; use the actual final encode for the final review. Note user feedback, changes, remaining defects and which parts were directly viewed or heard in `production-learning-notes.md` or the project's quality report.

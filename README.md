@@ -23,9 +23,9 @@ The skill is an instruction package. Your agent supplies the creative, code-draw
 
 <div align="center">
 
-![Original sample illustration: two simple characters on a warm classroom stage with a large board.](.agents/skills/cinematic-narrative-video/assets/classroom-example.png)
+![A project-authored example scene from the fictional WWII short.](.agents/skills/cinematic-narrative-video/reference-frames/08-field.jpg)
 
-<sub>An original example illustration, not a frame from the reference video or a finished production.</sub>
+<sub>A frame from the project-authored fictional WWII example; adapt scenes and clothing to each new brief.</sub>
 
 </div>
 
@@ -41,6 +41,12 @@ Install the cinematic-narrative-video skill from https://github.com/selther-core
 
 The agent should follow the host's documented skill location, preserve existing files and settings, and request approval where needed. MCP is optional; agents without native skill support can read the skill as project instructions.
 
+If you have a newer downloaded ZIP, give that file to the agent and use this instead. The GitHub copy may be older than the ZIP if local changes have not been pushed.
+
+```text
+Install the cinematic-narrative-video skill from the provided ZIP. Set up its MCP server if supported and permitted, then verify the installation.
+```
+
 ### Download and verify manually
 
 ```sh
@@ -55,7 +61,7 @@ To connect the optional server, keep the repository in a stable location and fol
 
 ### When you are ready to create
 
-Ask your agent to use `cinematic-narrative-video` and give it a topic, niche, audience, desired length, format, and any requirements. For example:
+After installation, enter your own video prompt. The agent first understands it, then asks one grouped round about backgrounds, length, video type, niche/audience and voice, acknowledging choices already supplied. You may say “choose for me.” After your answers, it begins production. For example:
 
 ```text
 Use cinematic-narrative-video to plan an original 60-second animated story
@@ -68,28 +74,32 @@ A text-only agent can help with scripts and plans, but cannot honestly claim to 
 
 ## How it works
 
-1. **Brief:** define the subject, audience, tone, length, format, and constraints.
-2. **Story:** develop an original hook, narration, dialogue, and story beats suited to the niche.
-3. **Visuals and sound:** plan characters, environments, poses, storyboards, motion, TTS-ready text, and sound cues. Draw visuals with HTML/CSS, SVG or Canvas; use agent-native TTS when available. Do not use image-generation models.
-4. **Production:** create original assets and animate, render, and encode them using tools the agent actually has.
-5. **Review and delivery:** check factual claims, media, captions, rights, and platform requirements; provide a thumbnail and publishing notes where requested. Report any checks that could not be completed.
+1. **Prompt and questions:** read the user’s prompt; ask about backgrounds, length, type, niche/audience and American-accent voice, then begin after the answers. Installation alone does not start a project.
+2. **Brief and selection:** pick scene candidates and clothing by beat, context, continuity and user preferences.
+3. **Story:** develop an original hook and story beats, plus narration or dialogue when appropriate to the niche.
+4. **Visuals and sound:** plan environments, subjects, storyboards, motion and any requested voice/sound cues. Draw visuals with HTML/CSS, SVG or Canvas; use agent-native TTS when available. Do not use image-generation models.
+5. **Production:** create original assets and animate, render, and encode them using tools the agent actually has.
+6. **Review and delivery:** check factual claims, media, captions, rights, and platform requirements; provide a thumbnail and publishing notes where requested. Report any checks that could not be completed.
 
-The visual approach is inspired by a **partially inspected** reference excerpt, not an exact recreation. The included demo is silent, and no voice recordings or reference audio are bundled.
+The visual approach is illustrated by a project-authored fictional WWII short and adapted to the user’s own topic. The concise entry point uses detailed guides on demand, so depth is available without loading every guide for every project. The included demo is silent, and no voice recordings or reference audio are bundled.
 
 ## What’s included
 
 | Component | Purpose |
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
+| [Detailed production manual](.agents/skills/cinematic-narrative-video/references/production-manual.md) | In-depth timelines, animation, audio, rendering, QA and publishing, loaded only when needed. |
+| [Prompt-first intake](.agents/skills/cinematic-narrative-video/references/intake.md) | The five production questions, defaults and when to start. |
+| [Scene and wardrobe selection](.agents/skills/cinematic-narrative-video/references/scene-wardrobe.md) | Context-aware locations, costumes, lighting and continuity. |
 | [Code animation and reference breakdown](.agents/skills/cinematic-narrative-video/references/code-animation.md) | How to build reference-inspired visuals from code, plus a comparison of a prior output. |
 | [Story structure and review](.agents/skills/cinematic-narrative-video/references/story-structure.md) | Genre-aware beat planning, within-shot progression, and evidence-tagged criteria. |
-| [Reference vs. WWII audit](.agents/skills/cinematic-narrative-video/references/case-study-reference-vs-ww2.md) | Timestamped visual comparison and explicit limitations. |
+| [WWII example breakdown](.agents/skills/cinematic-narrative-video/references/ww2-example-breakdown.md) | Timestamped structure and limitations of the project-authored sample. |
 | [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) | Layered backgrounds, lighting, cutaways, movement and shot review. |
 | [Niche adaptation](.agents/skills/cinematic-narrative-video/references/niche-adaptation.md) | Adapt story, characters, visuals, and evidence to different subjects. |
 | [Character rig](.agents/skills/cinematic-narrative-video/references/character-rig.md) and [voice direction](.agents/skills/cinematic-narrative-video/references/voice-direction.md) | Editable-character planning; energetic, clear American-accent voice types by niche, delivery notes, and TTS-ready scripts. |
 | [Examples](.agents/skills/cinematic-narrative-video/examples/) | Cross-niche scripts, a storyboard, a timeline, and silent HTML animation demos. |
 | [Original visual assets](.agents/skills/cinematic-narrative-video/assets/README.md) | Editable SVG illustrations with PNG previews. |
-| [Reference frames](.agents/skills/cinematic-narrative-video/reference-frames/README.md) | Eight third-party stills for visual study, with source and rights information. |
+| [Reference frames](.agents/skills/cinematic-narrative-video/reference-frames/README.md) | Ten project-authored WWII example stills with provenance and limitations. |
 | [Optional MCP server](mcp/README.md) | Local stdio tools, guide resources, and a prompt for compatible agents. |
 
 ### MCP tool catalog
@@ -103,10 +113,11 @@ The visual approach is inspired by a **partially inspected** reference excerpt, 
 | `make_srt` | Converts supplied timed cues to subtitles. | Does not transcribe or align audio. |
 | `inspect_video` | Returns technical metadata through an installed `ffprobe`. | Does not watch, listen to, or judge the video. |
 
-The server also exposes eleven guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
+The server also exposes fourteen guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
 
 ## Examples
 
+- [Silent WWII visual source](.agents/skills/cinematic-narrative-video/examples/ww2-seekable-scene.html) — editable, seekable visual reconstruction of the project-authored example; no audio included.
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.
 - [Character rig illustration](.agents/skills/cinematic-narrative-video/assets/character-rig.png) and [editable SVG](.agents/skills/cinematic-narrative-video/assets/character-rig.svg) — an older generic joint map, not the long-body rig.
@@ -142,7 +153,7 @@ The workflow is designed to adapt to many niches and genres, including fiction, 
 <details>
 <summary><strong>Can I reuse the reference stills?</strong></summary>
 
-The eight stills are from a third-party video and are not licensed under this repository's MIT license. Inclusion here does not grant reuse or redistribution rights. Read the [source and rights notice](.agents/skills/cinematic-narrative-video/reference-frames/README.md) and obtain permission or another lawful basis where needed.
+The ten stills come from project-authored visuals in the fictional WWII cut. They are provided under the repository MIT license; see the [source and rights notice](.agents/skills/cinematic-narrative-video/reference-frames/README.md). No voice or soundtrack is included.
 
 </details>
 
@@ -159,6 +170,8 @@ The MCP server runs locally and does not itself explicitly upload files or inclu
 - [MCP setup and tools](mcp/README.md) — client configuration, tool behavior, privacy, and troubleshooting.
 - [Agent compatibility](.agents/skills/cinematic-narrative-video/references/agent-compatibility.md) — skill-aware, MCP-capable, and text-only workflows.
 - [Code animation guide](.agents/skills/cinematic-narrative-video/references/code-animation.md) — observed differences, code-based construction, rendering and style-test requirements.
+- [Prompt-first intake](.agents/skills/cinematic-narrative-video/references/intake.md) — user questions before production.
+- [Scene and wardrobe selection](.agents/skills/cinematic-narrative-video/references/scene-wardrobe.md) — meaningful, niche-specific choices.
 - [Story structure](.agents/skills/cinematic-narrative-video/references/story-structure.md) — genre-appropriate narrative beats and evidence-tagged review.
 - [Cinematic staging](.agents/skills/cinematic-narrative-video/references/cinematic-staging.md) — backgrounds, lighting, cutaways, animation and QA.
 - [Visual reference analysis](.agents/skills/cinematic-narrative-video/references/visual-reference.md) — observations and their limitations.
@@ -175,4 +188,4 @@ Issues and pull requests are welcome for improvements to the skill, documentatio
 
 Copyright © 2026 **Haziq Mahmood**. Project-authored code, documentation, and original example assets are available under the [MIT License](LICENSE): you may use, modify, and distribute them, including commercially, provided you retain the copyright and permission notice as required by the license. MIT applies only to material the project is entitled to license and comes without warranty.
 
-The third-party reference stills are **not** covered by that grant. They are attributed to the original source and subject to their rights holder's terms; see the [reference-frame notice](.agents/skills/cinematic-narrative-video/reference-frames/README.md). No rights to third-party music, voices, video, fonts, or tools are granted by this repository.
+The current project-authored example stills are covered by that grant; see the [frame notice](.agents/skills/cinematic-narrative-video/reference-frames/README.md). No rights to third-party music, voices, video, fonts, or tools are granted by this repository.

@@ -47,7 +47,9 @@ class MCPTests(unittest.TestCase):
         reply = run_server([call(1, "read_skill_guide", {"guide": "visual"})])[0]
         guide = tool_data(reply)
         self.assertIn("reference-frames", guide["content"])
-        self.assertEqual(len(list((SKILL_ROOT / "reference-frames").glob("*.jpg"))), 8)
+        self.assertEqual(len(list((SKILL_ROOT / "reference-frames").glob("*.jpg"))), 10)
+        self.assertTrue((SKILL_ROOT / "reference-frames" / "08-field.jpg").is_file())
+        self.assertFalse((SKILL_ROOT / "reference-frames" / "00-02-street-character.jpg").exists())
         self.assertIn("rights", (SKILL_ROOT / "reference-frames" / "README.md").read_text().lower())
 
     def test_agent_compatibility_and_quickstart(self):
@@ -148,6 +150,61 @@ class MCPTests(unittest.TestCase):
         self.assertNotIn("<audio", demo.lower())
         self.assertNotIn("<img", demo.lower())
 
+    def test_prompt_first_and_scene_selection(self):
+        replies = run_server([
+            call(1, "read_skill_guide", {"guide": "intake"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/selection"}),
+            req(3, "prompts/get", {"name": "create_niche_video", "arguments": {"topic": "a fox finds a kite"}}),
+        ])
+        guide = tool_data(replies[0])["content"].lower()
+        for phrase in ("installation is not production", "backgrounds", "length", "video type", "niche", "voice"):
+            self.assertIn(phrase, guide)
+        selection = replies[1]["result"]["contents"][0]["text"].lower()
+        self.assertIn("wardrobe", selection)
+        self.assertIn("continuity", selection)
+        prompt = replies[2]["result"]["messages"][0]["content"]["text"].lower()
+        self.assertIn("then ask", prompt)
+        self.assertIn("backgrounds", prompt)
+        self.assertIn("after answers, start production", prompt)
+        source = (SKILL_ROOT / "examples" / "ww2-seekable-scene.html").read_text()
+        self.assertIn("window.seek=seek9", source)
+        self.assertNotIn("<audio", source.lower())
+        self.assertNotIn("<img", source.lower())
+
+    def test_progressive_disclosure_and_cross_niche(self):
+        core = (SKILL_ROOT / "SKILL.md").read_text()
+        self.assertLess(len(core.encode()), 12000)
+        for text in ("references/production-manual.md", "character-free", "voice-free", "American accent", "Do not use image-generation"):
+            self.assertIn(text, core)
+        response = run_server([
+            call(1, "read_skill_guide", {"guide": "production"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/production"}),
+            call(3, "read_skill_guide", {"guide": "niche"}),
+            req(4, "prompts/get", {"name": "create_niche_video", "arguments": {"topic": "silent software tutorial"}}),
+        ])
+        manual = tool_data(response[0])["content"]
+        self.assertIn("Timeline contract", manual)
+        self.assertIn("ffmpeg", manual)
+        self.assertIn("Quality gate", manual)
+        self.assertEqual(manual, response[1]["result"]["contents"][0]["text"])
+        niche = tool_data(response[2])["content"]
+        self.assertIn("Adapt an unfamiliar or mixed niche", niche)
+        self.assertIn("If it has no speech, omit TTS", niche)
+        prompt = response[3]["result"]["messages"][0]["content"]["text"]
+        self.assertIn("voice only if requested", prompt)
+        self.assertIn("no character rig for character-free videos", prompt)
+        example = (SKILL_ROOT / "examples" / "cross-niche-scripts.md").read_text()
+        self.assertIn("Silent software tutorial", example)
+        self.assertIn("Fictional product promotion", example)
+
+    def test_scaffold_requires_intake_fields_before_creating(self):
+        with tempfile.TemporaryDirectory() as parent:
+            folder = str(Path(parent) / "video")
+            args = {"directory": folder, "topic": "Fox", "niche": "Fiction", "audience": "Family", "length": "one minute", "format": "16:9"}
+            response = run_server([call(1, "create_video_project", args)])[0]
+            self.assertTrue(response["result"]["isError"])
+            self.assertFalse(Path(folder).exists())
+
     def test_story_plan_invalid_and_intentional_hold(self):
         beat = {"id":"one", "start":0, "end":3, "purpose":"quiet moment", "before":"arrival", "action":"hold", "after":"attention", "hold":"two seconds", "source_or_fiction":"fiction", "events":[], "intentional_hold":True}
         p = {"duration_seconds": 3, "beats": [beat]}
@@ -164,15 +221,20 @@ class MCPTests(unittest.TestCase):
     def test_create_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")
-            args = {"directory": folder, "topic": "Forest", "niche": "Fiction", "audience": "Families", "length": "1 minute", "format": "16:9"}
+            args = {"directory": folder, "topic": "Forest", "niche": "Fiction", "audience": "Families", "length": "1 minute", "format": "16:9", "backgrounds": "forest and clearing", "video_type": "fiction story", "voice": "warm American narrator"}
             first, second = run_server([call(1, "create_video_project", args), call(2, "create_video_project", args)])
             self.assertEqual(tool_data(first)["status"], "draft_scaffold_created")
             self.assertTrue(second["result"]["isError"])
             self.assertEqual(json.loads((Path(folder)/"brief.json").read_text())["niche"], "Fiction")
             self.assertTrue((Path(folder)/"timeline.json").is_file())
             self.assertTrue((Path(folder)/"story-beats.json").is_file())
+            self.assertTrue((Path(folder)/"scene-wardrobe.md").is_file())
+            brief = json.loads((Path(folder)/"brief.json").read_text())
+            self.assertEqual(brief["backgrounds"], "forest and clearing")
+            self.assertEqual(brief["video_type"], "fiction story")
+            self.assertEqual(brief["voice"], "warm American narrator")
             self.assertIn("Do not use AI image generation", (Path(folder)/"storyboard.md").read_text())
-            self.assertIn("voiced, code-drawn style test", (Path(folder)/"quality_report.md").read_text())
+            self.assertIn("code-drawn style test reviewed and corrected, with voice if requested", (Path(folder)/"quality_report.md").read_text())
 
     def test_timeline_and_srt(self):
         good = {"duration_seconds": 10, "shots": [{"start": 0, "end": 4}, {"start": 4, "end": 10}]}

@@ -1,6 +1,6 @@
 # Character structure and working rig
 
-For human figures by default in this skill’s WWII-cut animation style, use the original, editable implementation in `../examples/staging-rig-demo.html`. It is a code-authored interpretation of the user's structural direction, not a claim of an exact match or a copy of third-party artwork. Clothing and facial expressions can change while the silhouette and layering remain consistent. The older `../examples/puppet-demo.html` and `../assets/character-rig.svg` illustrate a different, stockier generic rig; **do not use their proportions for this long-body style**.
+For human figures in this skill’s default style, see the original, editable implementations in `../examples/progressive-quality-demo.html` and `../examples/staging-rig-demo.html`. It is a code-authored interpretation of the user's structural direction, not a claim of an exact match or a copy of third-party artwork. Clothing and facial expressions can change while the silhouette and layering remain consistent. The older `../examples/puppet-demo.html` and `../assets/character-rig.svg` illustrate a different, stockier generic rig; **do not use their proportions for this long-body style**.
 
 ## Geometry and hierarchy
 

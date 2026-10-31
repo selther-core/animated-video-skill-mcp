@@ -1,6 +1,6 @@
 # Reference-informed structure and production criteria
 
-This is a flexible production grammar using the project-authored fictional WWII cut as an example; see `ww2-example-breakdown.md`. The film was sampled visually and fully decoded, but its audio was not directly auditioned and subjective motion quality remains unverified. Adapt structure and visuals to the user’s topic and medium; the war setting is not a default.
+This is a flexible production grammar targeting the visual quality of New project, based on the sampled evidence and limits in `reference-quality.md`. The project-authored WWII cut is a secondary example, not the benchmark; neither reference audio nor full-speed subjective motion was directly reviewed in the comparison. Adapt structure and visuals to the user’s topic and medium; the war setting is not a default.
 
 ## A. Build the story before choosing shots
 

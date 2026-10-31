@@ -24,7 +24,8 @@ DOCS = {
     "compatibility": ("references/agent-compatibility.md", "Using the skill with different kinds of agents"),
     "visual": ("references/visual-reference.md", "Analysis of extracted reference frames"),
     "animation": ("references/code-animation.md", "Code-drawn animation workflow"),
-    "blueprint": ("references/animation-blueprint.md", "WWII-style animated film blueprint and anti-slideshow gate"),
+    "blueprint": ("references/animation-blueprint.md", "Animated-film blueprint and anti-slideshow gate"),
+    "quality": ("references/reference-quality.md", "New project visual quality observations and sync requirements"),
     "rig": ("references/character-rig.md", "Long-body character construction, layering and rig QA"),
     "staging": ("references/cinematic-staging.md", "Backgrounds, lighting, animation and cinematic cutaways"),
     "structure": ("references/story-structure.md", "Reference-informed story beats, visual progression and evidence-tagged review"),
@@ -41,13 +42,15 @@ def field(description):
 
 TOOLS = [
     {"name": "read_skill_guide", "description": "Read an included skill guide. These are general instructions, not evidence of the reference's unreviewed audio or ending.",
-     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, production, intake, selection, compatibility, visual, animation, blueprint, rig, staging, structure, audit, voice, or examples."}}, ["guide"])},
+     "inputSchema": schema({"guide": {"type": "string", "enum": list(DOCS), "description": "Select skill, niche, production, intake, selection, compatibility, visual, animation, blueprint, quality, rig, staging, structure, audit, voice, or examples."}}, ["guide"])},
     {"name": "create_video_project", "description": "After the agent asks the intake questions and resolves the brief, create a NEW local project folder with clearly marked draft production templates. Does not create a video, voice, art, or thumbnail. Refuses to overwrite an existing folder.",
      "inputSchema": schema({"directory": field("Path to a new directory to create; use an absolute path for predictable results."), "topic": field("Video subject."), "niche": field("Content niche."), "audience": field("Intended audience."), "length": field("Requested length or range, for example 4-6 minutes."), "format": field("Format, for example 16:9 YouTube or 9:16 Short."), "backgrounds": field("Resolved background and setting preferences; may be agent-selected at user request."), "video_type": field("Resolved video type and tone."), "voice": field("Resolved American-accent voice preference or no narration."), "requirements": {"type": "string", "description": "Other requirements; can be empty."}}, ["directory", "topic", "niche", "audience", "length", "format", "backgrounds", "video_type", "voice"])},
     {"name": "validate_timeline", "description": "Validate basic timing consistency of a proposed timeline JSON object; does not assess factual accuracy, creative quality, audio sync, or a finished video.",
      "inputSchema": schema({"timeline": {"type": "object", "description": "Object with numeric duration_seconds or duration and array shots containing numeric start/end. May include voice_cues and audio_events arrays."}}, ["timeline"])},
     {"name": "check_story_plan", "description": "Check fields and event timing in a manually supplied story-beat plan. Does not view media, judge creative quality or prove a video matches the plan.",
      "inputSchema": schema({"plan": {"type": "object", "description": "Object with duration_seconds and beats: id, start, end, purpose, before, action, after, hold, source_or_fiction, and events with time, change, meaning. An intentional_hold=true may replace events."}}, ["plan"])},
+    {"name": "check_alignment", "description": "Check manually supplied visual and narration/caption event IDs and time overlaps. Does not watch or listen to media, verify that labels are correct, or prove semantic sync.",
+     "inputSchema": schema({"plan": {"type": "object", "description": "duration_seconds, visuals and cues. Every visual/cue needs start, end and event_id. Cues may flag intentional_bridge with a nonempty reason."}}, ["plan"])},
     {"name": "make_srt", "description": "Generate SRT subtitle text from explicitly supplied timed captions. The agent must align and review timing against real audio; this tool does not transcribe or hear audio.",
      "inputSchema": schema({"cues": {"type": "array", "minItems": 1, "items": {"type": "object", "properties": {"start": {"type": "number", "minimum": 0}, "end": {"type": "number", "minimum": 0}, "text": field("Caption text")}, "required": ["start", "end", "text"], "additionalProperties": False}}}, ["cues"])},
     {"name": "inspect_video", "description": "Use a locally available ffprobe to report technical metadata for an existing local video. Does not listen to, watch, judge copyright, or verify compliance.",
@@ -93,21 +96,22 @@ def tool_create(args):
              "status": "draft", "note": "No media, TTS, fact-check, playback review or platform compliance check has been completed."}
     (directory / "brief.json").write_text(json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (directory / "narration_script.md").write_text("# Narration and dialogue — DRAFT\n\nWrite original, topic-appropriate speech here. This is not generated audio.\n", encoding="utf-8")
-    (directory / "storyboard.md").write_text("# Storyboard — DRAFT\n\nBuild the same kind of code-drawn animated film as the WWII example, adapted to this niche. Use the editable WWII source and animation-blueprint guide. Each action scene needs an animated subject or prop with meaningful before/action/result; camera-only motion, slides, captions and ambient loops do not suffice. Do not use AI image generation. Inspect a proportionate animated style test, with voice only if requested.\n\n| Cue | Story purpose | Subject / before → action → result | Animated layers and contact | Camera / audio | Source if factual |\n|---|---|---|---|---|---|\n| 1 | TODO | TODO | TODO | TODO | TODO |\n", encoding="utf-8")
+    (directory / "storyboard.md").write_text("# Storyboard — DRAFT\n\nAim for the New project reference quality described in reference-quality.md, adapted to this niche. Use the original editable progressive-quality study as a starting point, not a finished video. Each action scene needs an animated subject or prop with meaningful before/action/result; camera-only motion, slides, captions and ambient loops do not suffice. Do not use AI image generation. Inspect a proportionate animated style test, with voice only if requested.\n\n| Cue | Story purpose | Subject / before → action → result | Animated layers and contact | Camera / audio | Source if factual |\n|---|---|---|---|---|---|\n| 1 | TODO | TODO | TODO | TODO | TODO |\n", encoding="utf-8")
     (directory / "scene-wardrobe.md").write_text((SKILL_ROOT / "examples" / "scene-wardrobe-template.md").read_text(encoding="utf-8"), encoding="utf-8")
+    (directory / "alignment-plan.json").write_text(json.dumps({"status": "draft", "duration_seconds": None, "visuals": [], "cues": []}, indent=2) + "\n", encoding="utf-8")
     (directory / "story-beats.json").write_text(json.dumps({"status": "draft", "duration_seconds": None, "beats": []}, indent=2) + "\n", encoding="utf-8")
     (directory / "timeline.json").write_text(json.dumps({"status": "draft", "duration_seconds": None, "shots": [], "voice_cues": [], "audio_events": []}, indent=2) + "\n", encoding="utf-8")
-    (directory / "quality_report.md").write_text("# Quality report — NOT REVIEWED\n\n- [ ] Script and factual claims reviewed\n- [ ] Representative, code-drawn style test reviewed and corrected, with voice if requested\n- [ ] Meaningful subject/prop action visually inspected within shots; static slides plus zooms, fades or weather fail\n- [ ] No AI-generated images used\n- [ ] Video rendered and decoded\n- [ ] Full visual review completed\n- [ ] Requested audio listened to and synchronized, or marked not applicable\n- [ ] Caption timing checked\n- [ ] Rights and current platform requirements checked\n- [ ] Requested or platform-appropriate thumbnail and publishing materials checked\n\nDo not mark these as complete without evidence.\n", encoding="utf-8")
+    (directory / "quality_report.md").write_text("# Quality report — NOT REVIEWED\n\n- [ ] Script and factual claims reviewed\n- [ ] Representative, code-drawn style test reviewed and corrected, with voice if requested\n- [ ] Meaningful subject/prop action visually inspected within shots; static slides plus zooms, fades or weather fail\n- [ ] No AI-generated images used\n- [ ] Video rendered and decoded\n- [ ] Full visual review completed\n- [ ] Requested audio listened to and synchronized, or marked not applicable\n- [ ] Captions, actual narration, location/date label and visible scene aligned at every boundary; mismatches fixed\n- [ ] Rights and current platform requirements checked\n- [ ] Requested or platform-appropriate thumbnail and publishing materials checked\n\nDo not mark these as complete without evidence.\n", encoding="utf-8")
     (directory / "caption_and_publish.md").write_text("# Publishing package — DRAFT\n\nTitle: TODO\n\nDescription: TODO\n\nSources: TODO if factual\n\nPlaylist: recommend only when relevant; if channel is unknown, make conditional.\n\nPublishing instructions: TODO after current platform checks.\n", encoding="utf-8")
-    (directory / "animation-plan.md").write_text("# Animation plan — DRAFT\n\nStudy reference/ww2-seekable-scene.html and reference/animation-blueprint.md as technical examples, not assets to reuse unchanged. Design an original animation appropriate to the brief.\n\n| Shot / time | Scene / light | Subject or prop | Before | Movement and contact | Result / hold | Camera | Voice / sound cue |\n|---|---|---|---|---|---|---|---|\n| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |\n\nReject a sequence of stills with only zooms, captions, weather, idle or crossfades. Inspect meaningful motion in the actual encoded output; mark playback and audio unknown when unavailable.\n", encoding="utf-8")
+    (directory / "animation-plan.md").write_text("# Animation plan — DRAFT\n\nStudy reference/reference-quality.md and reference/progressive-quality-demo.html. The WWII source is a secondary technique example; neither demo is a finished video. Use original art adapted to the topic. Design an original animation appropriate to the brief.\n\n| Shot / time | Scene / light | Subject or prop | Before | Movement and contact | Result / hold | Camera | Voice / sound cue |\n|---|---|---|---|---|---|---|---|\n| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |\n\nReject a sequence of stills with only zooms, captions, weather, idle or crossfades. Inspect meaningful motion in the actual encoded output; mark playback and audio unknown when unavailable.\n", encoding="utf-8")
     for name in ("assets", "audio", "renders", "reference"):
         (directory / name).mkdir()
-    for src, dest in ((SKILL_ROOT / "examples" / "ww2-seekable-scene.html", "ww2-seekable-scene.html"), (SKILL_ROOT / "examples" / "render_seekable.py", "render_seekable.py")):
+    for src, dest in ((SKILL_ROOT / "examples" / "progressive-quality-demo.html", "progressive-quality-demo.html"), (SKILL_ROOT / "examples" / "ww2-seekable-scene.html", "ww2-seekable-scene.html"), (SKILL_ROOT / "examples" / "render_seekable.py", "render_seekable.py"), (SKILL_ROOT / "references" / "reference-quality.md", "reference-quality.md")):
         shutil.copyfile(src, directory / "reference" / dest)
     blueprint = (SKILL_ROOT / "references" / "animation-blueprint.md").read_text(encoding="utf-8")
-    blueprint = blueprint.replace("../examples/ww2-seekable-scene.html", "ww2-seekable-scene.html").replace("../examples/render_seekable.py", "render_seekable.py")
-    (directory / "reference" / "animation-blueprint.md").write_text("Supporting guides and other examples are in the installed skill; this folder contains only the benchmark source, renderer and blueprint.\n\n" + blueprint, encoding="utf-8")
-    return {"directory": str(directory), "status": "draft_scaffold_created", "files": ["brief.json", "narration_script.md", "storyboard.md", "scene-wardrobe.md", "animation-plan.md", "story-beats.json", "timeline.json", "quality_report.md", "caption_and_publish.md", "reference/ww2-seekable-scene.html", "reference/render_seekable.py", "reference/animation-blueprint.md"], "directories": ["assets", "audio", "renders", "reference"], "next": "Research and write; draw and animate original SVG/CSS/Canvas assets without image generation; create and inspect a proportionate action-animation test, reject slideshows, with voice if requested; then render and review the full video. No finished media exists yet."}
+    blueprint = blueprint.replace("../examples/ww2-seekable-scene.html", "ww2-seekable-scene.html").replace("../examples/progressive-quality-demo.html", "progressive-quality-demo.html").replace("../examples/render_seekable.py", "render_seekable.py")
+    (directory / "reference" / "animation-blueprint.md").write_text("Other supporting guides are in the installed skill; this folder contains original technique studies, the text-only quality comparison and renderer. The user reference video is not included.\n\n" + blueprint, encoding="utf-8")
+    return {"directory": str(directory), "status": "draft_scaffold_created", "files": ["brief.json", "narration_script.md", "storyboard.md", "scene-wardrobe.md", "animation-plan.md", "alignment-plan.json", "story-beats.json", "timeline.json", "quality_report.md", "caption_and_publish.md", "reference/progressive-quality-demo.html", "reference/ww2-seekable-scene.html", "reference/render_seekable.py", "reference/animation-blueprint.md", "reference/reference-quality.md"], "directories": ["assets", "audio", "renders", "reference"], "next": "Research and write; draw and animate original SVG/CSS/Canvas assets without image generation; create and inspect a proportionate action-animation test, reject slideshows, with voice if requested; then render and review the full video. No finished media exists yet."}
 
 def num(x):
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
@@ -207,6 +211,60 @@ def check_story_plan(args):
     warnings.append("Checks supplied planning fields only; does not inspect media, verify facts, speech sync, quality, sources or whether the plan was followed.")
     return {"fields_valid": not issues, "issues": issues, "warnings": warnings, "beat_count": len(beats)}
 
+def check_alignment(args):
+    plan = args.get("plan")
+    if not isinstance(plan, dict):
+        raise ToolError("plan must be an object")
+    duration = plan.get("duration_seconds")
+    visuals, cues = plan.get("visuals"), plan.get("cues")
+    issues, warnings, spans = [], [], []
+    if not num(duration) or duration <= 0:
+        issues.append("duration_seconds must be a positive finite number")
+        duration = None
+    if not isinstance(visuals, list) or not visuals:
+        issues.append("visuals must be a nonempty array")
+        visuals = []
+    if not isinstance(cues, list) or not cues:
+        issues.append("cues must be a nonempty array; use a documented silent-project check separately")
+        cues = []
+    def get_entry(entry, tag):
+        if not isinstance(entry, dict):
+            issues.append(f"{tag} must be an object"); return None
+        start, end, event = entry.get("start"), entry.get("end"), entry.get("event_id")
+        if not num(start) or not num(end) or start < 0 or end <= start or (duration is not None and end > duration + .001):
+            issues.append(f"{tag} needs a valid start/end within duration"); return None
+        if not isinstance(event, str) or not event.strip():
+            issues.append(f"{tag}.event_id must be a nonempty string"); return None
+        return (start, end, event.strip())
+    for i, visual in enumerate(visuals):
+        parsed = get_entry(visual, f"visuals[{i}]")
+        if parsed is not None: spans.append(parsed)
+    for i, cue in enumerate(cues):
+        parsed = get_entry(cue, f"cues[{i}]")
+        if parsed is None: continue
+        start, end, event = parsed
+        bridge = cue.get("intentional_bridge", False)
+        if not isinstance(bridge, bool):
+            issues.append(f"cues[{i}].intentional_bridge must be a boolean"); continue
+        if bridge:
+            reason = cue.get("bridge_reason")
+            if not isinstance(reason, str) or not reason.strip():
+                issues.append(f"cues[{i}] requires a nonempty bridge_reason")
+            else:
+                warnings.append(f"cues[{i}] declares an intentional bridge; inspect it manually: {reason.strip()}")
+            continue
+        intersections = sorted((max(start,a), min(end,b)) for a,b,key in spans if key == event and min(end,b) > max(start,a))
+        coverage, last = 0.0, start
+        for a,b in intersections:
+            if b > last:
+                coverage += b - max(a,last)
+                last = b
+        fraction = coverage / (end-start)
+        if fraction < .90 - 1e-9:
+            issues.append(f"cues[{i}] event {event!r} has {fraction:.0%} coverage by matching visual timing; at least 90% is required or an annotated intentional bridge")
+    warnings.append("Checks caller-supplied event IDs and time spans only. It does not watch or listen, read on-screen labels, verify claims, establish semantics, or prove actual audio/caption sync.")
+    return {"alignment_plan_valid": not issues, "issues": issues, "warnings": warnings, "visual_count": len(visuals), "cue_count": len(cues)}
+
 def make_srt(args):
     cues = args.get("cues")
     if not isinstance(cues, list) or not cues:
@@ -251,7 +309,7 @@ def inspect_video(args):
         raise ToolError("ffprobe did not return valid JSON")
     return {"path": str(p), "metadata": metadata, "limitations": "Technical metadata only. No playback, audio, factual, rights or policy assessment was performed."}
 
-FUNCTIONS = {"read_skill_guide": tool_read, "create_video_project": tool_create, "validate_timeline": validate_timeline, "check_story_plan": check_story_plan, "make_srt": make_srt, "inspect_video": inspect_video}
+FUNCTIONS = {"read_skill_guide": tool_read, "create_video_project": tool_create, "validate_timeline": validate_timeline, "check_story_plan": check_story_plan, "check_alignment": check_alignment, "make_srt": make_srt, "inspect_video": inspect_video}
 
 def result_for_tool(name, args):
     if name not in FUNCTIONS:
@@ -287,7 +345,7 @@ def dispatch(method, params):
         topic = require_string(args, "topic")
         niche = str(args.get("niche", "not specified")).strip() or "not specified"
         audience, extra = str(args.get("audience", "not specified")), str(args.get("requirements", "Use sensible defaults."))
-        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill and consult the intake, selection, niche and other guides relevant to this brief; load deeper production references only as needed. First understand the supplied prompt, then ask a concise grouped round about backgrounds, video length, video type, niche/audience and American-accent voice; acknowledge choices already given and allow choose-for-me. After answers, start production without another general approval. Installation alone must stop without asking for a topic or creating a video. Make the same type of code-drawn, actively animated cinematic film as the actual WWII source, adapted to the topic rather than its war setting. Read the blueprint and editable WWII source. Plan real within-shot subject and prop action with before/contact/result; static slides with camera pans, captions, weather, idle or transitions are not enough. Reject slideshow results, and evaluate actual encoded output with evidence-tagged checks. Draw original visuals with SVG/CSS/Canvas or similar code; do not use image generation. Create and inspect a proportionate representative style test before a full video; use voice only if requested, and no character rig for character-free videos. All spoken voices must use an American accent; use U.S. English for English speech and disclose if the accent is unavailable or unverified. Make voices energetic, confidently projected, clear and expressive, not boring; keep them appropriate to the topic without shouting or clipping. Plan the production, use your available TTS, coding and rendering capabilities, and deliver the actual video and requested or platform-appropriate supporting materials, with an honest quality report. Do not present drafts as finished media."
+        text = f"Create an original animated video using the cinematic-narrative-video skill. Topic: {topic}. Niche: {niche}. Audience: {audience}. Requirements: {extra}. Read the skill and consult the intake, selection, niche and other guides relevant to this brief; load deeper production references only as needed. First understand the supplied prompt, then ask a concise grouped round about backgrounds, video length, video type, niche/audience and American-accent voice; acknowledge choices already given and allow choose-for-me. After answers, start production without another general approval. Installation alone must stop without asking for a topic or creating a video. Target the quality of the sampled New project reference, not the weaker WWII example: use the reference-quality guide and the original progressive technique study. Adapt the topic, scenes and costumes instead of copying the reference. Measure actual narration and align scene labels, visual events and captions on one timeline; check every transition in the actual encoded output. Plan real within-shot subject and prop action with before/contact/result; static slides with camera pans, captions, weather, idle or transitions are not enough. Reject slideshow results, and evaluate actual encoded output with evidence-tagged checks. Draw original visuals with SVG/CSS/Canvas or similar code; do not use image generation. Create and inspect a proportionate representative style test before a full video; use voice only if requested, and no character rig for character-free videos. All spoken voices must use an American accent; use U.S. English for English speech and disclose if the accent is unavailable or unverified. Make voices energetic, confidently projected, clear and expressive, not boring; keep them appropriate to the topic without shouting or clipping. Plan the production, use your available TTS, coding and rendering capabilities, and deliver the actual video and requested or platform-appropriate supporting materials, with an honest quality report. Do not present drafts as finished media."
         return {"description": "Cross-niche video production prompt", "messages": [{"role": "user", "content": {"type": "text", "text": text}}]}
     raise LookupError(f"Method not found: {method}")
 

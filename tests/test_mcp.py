@@ -37,7 +37,7 @@ class MCPTests(unittest.TestCase):
         out = run_server(msgs)
         self.assertEqual(len(out), 6)
         self.assertEqual(out[0]["result"]["protocolVersion"], "2025-06-18")
-        self.assertEqual(len(out[1]["result"]["tools"]), 6)
+        self.assertEqual(len(out[1]["result"]["tools"]), 7)
         self.assertTrue(out[2]["result"]["resources"])
         self.assertIn("any niche", out[3]["result"]["contents"][0]["text"].lower())
         self.assertEqual(out[4]["result"]["prompts"][0]["name"], "create_niche_video")
@@ -223,6 +223,37 @@ class MCPTests(unittest.TestCase):
         self.assertIn("window.seek=seek9", source)
         self.assertNotIn("<audio", source.lower())
 
+    def test_quality_reference_and_alignment_checks(self):
+        example = json.loads((SKILL_ROOT / "examples" / "alignment-plan.json").read_text())
+        mismatch = {"duration_seconds": 10, "visuals": [{"start": 0, "end": 10, "event_id": "berlin_1945"}], "cues": [{"start": 2, "end": 5, "event_id": "birth_1889"}]}
+        partial = {"duration_seconds": 10, "visuals": [{"start": 0, "end": 2, "event_id": "a"}, {"start": 2, "end": 4, "event_id": "a"}], "cues": [{"start": 0, "end": 5, "event_id": "a"}]}
+        bridge = {"duration_seconds": 10, "visuals": [{"start": 0, "end": 10, "event_id": "present"}], "cues": [{"start": 2, "end": 4, "event_id": "past", "intentional_bridge": True, "bridge_reason": "explicit narrated flashback"}]}
+        missing_reason = {**bridge, "cues": [{"start": 2, "end": 4, "event_id": "past", "intentional_bridge": True}]}
+        out = run_server([
+            call(1, "read_skill_guide", {"guide": "quality"}),
+            req(2, "resources/read", {"uri": "cinematic://guide/quality"}),
+            call(3, "check_alignment", {"plan": example}),
+            call(4, "check_alignment", {"plan": mismatch}),
+            call(5, "check_alignment", {"plan": partial}),
+            call(6, "check_alignment", {"plan": bridge}),
+            call(7, "check_alignment", {"plan": missing_reason}),
+        ])
+        guide = tool_data(out[0])["content"]
+        self.assertEqual(guide, out[1]["result"]["contents"][0]["text"])
+        self.assertIn("New project", guide)
+        self.assertIn("caption/scene mismatches", guide)
+        self.assertTrue(tool_data(out[2])["alignment_plan_valid"])
+        self.assertFalse(tool_data(out[3])["alignment_plan_valid"])
+        self.assertFalse(tool_data(out[4])["alignment_plan_valid"])
+        self.assertTrue(tool_data(out[5])["alignment_plan_valid"])
+        self.assertIn("inspect it manually", " ".join(tool_data(out[5])["warnings"]))
+        self.assertFalse(tool_data(out[6])["alignment_plan_valid"])
+        self.assertIn("does not watch or listen", " ".join(tool_data(out[2])["warnings"]))
+        demo = (SKILL_ROOT / "examples" / "progressive-quality-demo.html").read_text()
+        for tag in ("window.seek=seek", "id=\"parcelB\"", "id=\"stageTwo\"", "id=\"camera\""):
+            self.assertIn(tag, demo)
+        self.assertNotIn("<audio", demo.lower())
+
     def test_scaffold_requires_intake_fields_before_creating(self):
         with tempfile.TemporaryDirectory() as parent:
             folder = str(Path(parent) / "video")
@@ -256,6 +287,9 @@ class MCPTests(unittest.TestCase):
             self.assertTrue((Path(folder)/"story-beats.json").is_file())
             self.assertTrue((Path(folder)/"scene-wardrobe.md").is_file())
             self.assertTrue((Path(folder)/"animation-plan.md").is_file())
+            self.assertTrue((Path(folder)/"alignment-plan.json").is_file())
+            self.assertTrue((Path(folder)/"reference"/"progressive-quality-demo.html").is_file())
+            self.assertTrue((Path(folder)/"reference"/"reference-quality.md").is_file())
             self.assertTrue((Path(folder)/"reference"/"ww2-seekable-scene.html").is_file())
             self.assertTrue((Path(folder)/"reference"/"render_seekable.py").is_file())
             self.assertIn("camera-only motion", (Path(folder)/"storyboard.md").read_text())

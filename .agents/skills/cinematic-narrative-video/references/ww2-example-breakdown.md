@@ -1,6 +1,6 @@
 # WWII cut: example structure and limitations
 
-The current example is the project-authored **WWII cut**, 64.59 seconds, 1280×720, 30 fps. It is a fictional, stylized composite; the scenes do not identify a particular battle, soldier, ship, aircraft model or military unit. Ten example stills are included in `../reference-frames/`. The silent HTML visual source is included as `../examples/ww2-seekable-scene.html`; no encoded film or audio recording is bundled. Use `?t=44` or `window.seek(44)` for a precise state. Encoded frames were sampled and the full file decoded, but audio was not auditioned and subjective full-speed review remains unverified.
+This secondary implementation example is the project-authored **WWII cut**; the current quality target is New project (`reference-quality.md`). The cut is 64.59 seconds, 1280×720, 30 fps. It is a fictional, stylized composite; the scenes do not identify a particular battle, soldier, ship, aircraft model or military unit. Ten example stills are included in `../reference-frames/`. The silent HTML visual source is included as `../examples/ww2-seekable-scene.html`; no encoded film or audio recording is bundled. Use `?t=44` or `window.seek(44)` for a precise state. Encoded frames were sampled and the full file decoded, but audio was not auditioned and subjective full-speed review remains unverified.
 
 | Approx. time | Story/visual role | Useful reusable mechanism |
 |---|---|---|

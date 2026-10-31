@@ -1,0 +1,13 @@
+{
+  "status": "illustrative draft, not evidence of any completed video",
+  "duration_seconds": 12,
+  "visuals": [
+    {"event_id": "fictional_queue", "start": 0, "end": 5, "label": "One pickup point"},
+    {"event_id": "fictional_change", "start": 5, "end": 12, "label": "A separate waiting area"}
+  ],
+  "cues": [
+    {"event_id": "fictional_queue", "start": 0.5, "end": 4.5, "kind": "narration", "text": "Imagine one pickup point."},
+    {"event_id": "fictional_change", "start": 5.5, "end": 10.5, "kind": "caption", "text": "A separate waiting area."}
+  ],
+  "note": "Use measured audio timings and actual storyboard events. The MCP only checks supplied IDs and time spans; it cannot know what the rendered video shows or sounds like."
+}

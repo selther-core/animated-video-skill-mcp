@@ -1,10 +1,10 @@
 # Code-drawn cinematic animation: reference breakdown and build guide
 
-This is the primary visual-production method for this skill. Follow `animation-blueprint.md` for the required WWII-cut-style animated film and explicit anti-slideshow gate; use `../examples/ww2-seekable-scene.html` as the working visual source, not just a static reference. Build original scenes, characters, props, lighting, diagrams, and motion from **HTML/CSS, SVG, Canvas, or equivalent authored code**. Do not call an image-generation model for artwork, backgrounds, characters, or thumbnails. Screenshotting code-rendered frames for video encoding is rendering, not AI image generation.
+This is the primary visual-production method for this skill. Follow `animation-blueprint.md` and `reference-quality.md` for the New project quality target and anti-slideshow gate; use `../examples/progressive-quality-demo.html` as an editable original technique study, not a reference-quality guarantee. Build original scenes, characters, props, lighting, diagrams, and motion from **HTML/CSS, SVG, Canvas, or equivalent authored code**. Do not call an image-generation model for artwork, backgrounds, characters, or thumbnails. Screenshotting code-rendered frames for video encoding is rendering, not AI image generation.
 
 ## What was inspected—and what cannot be known
 
-The project-authored WWII cut is the example for this skill; see `visual-reference.md` and `ww2-example-breakdown.md`. It was assembled from authored SVG/HTML/JavaScript, sampled visually and fully decoded. Selected stills cannot establish full-speed motion quality, and audio was not directly auditioned. This is a fictional illustrative film, not verified historical footage or an automatic quality benchmark. The previously uploaded-video comparison is no longer the primary example.
+The user's New project video is the visual quality target; sampled observations and the documentary's visible timing failures are in `reference-quality.md`. Full-speed subjective motion and source audio were not directly reviewed. The project-authored WWII source is a secondary implementation example; neither source nor our study is proof of a finished video's quality.
 
 ## Reconstruct the visual grammar in code
 
@@ -41,7 +41,7 @@ Use an environment you are authorized to modify if installation is necessary. Th
 
 ## Updated working staging and character implementation
 
-The earlier backyard demo is a limited, rejected style test, not a benchmark for cinematic quality or the current character proportions. For an actionable starting point use the actual full WWII cut visual source `../examples/ww2-seekable-scene.html`, along with the isolated `../examples/staging-rig-demo.html` and read `character-rig.md` and `cinematic-staging.md`: they implement the long capsule body, dark round head, slim legs, correct back-arm → torso → front-arm depth, layered environment, motivated lighting, animation and a prop cutaway. The example is silent and deliberately short; adapt it to the story, add narration and sound if requested, and review the resulting motion and final video.
+The earlier backyard demo is a limited, rejected style test, not a benchmark for cinematic quality or the current character proportions. For an actionable starting point use the original progressive technique study `../examples/progressive-quality-demo.html`, with secondary rig study `../examples/staging-rig-demo.html` and read `character-rig.md` and `cinematic-staging.md`: they implement the long capsule body, dark round head, slim legs, correct back-arm → torso → front-arm depth, layered environment, motivated lighting, animation and a prop cutaway. The example is silent and deliberately short; adapt it to the story, add narration and sound if requested, and review the resulting motion and final video.
 
 ## Reference-informed progression
 

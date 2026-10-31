@@ -4,6 +4,10 @@ Editable illustrations for learning the skill's visual workflow. These images we
 
 [Skill instructions](../SKILL.md) · [Character guide](../references/character-rig.md) · [Reference-frame notice](../reference-frames/README.md) · [Project README](../../../../README.md)
 
+## Progressive quality study image
+
+`progressive-quality-example.png` is a frame of the project-authored `../examples/progressive-quality-demo.html`, showing layered scenery, practical light and an evolving storyboard. It is not a frame from the user's New project reference or a guarantee of equivalent quality. The full study is silent and editable.
+
 ## Assets
 
 Each illustration is supplied as a 1600 × 900 SVG and PNG preview.

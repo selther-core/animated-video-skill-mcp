@@ -23,9 +23,9 @@ The skill is an instruction package. Your agent supplies the creative, code-draw
 
 <div align="center">
 
-![A project-authored example scene from the fictional WWII short.](.agents/skills/cinematic-narrative-video/reference-frames/08-field.jpg)
+![An original silent animated technique study with layered lighting and a developing scene.](.agents/skills/cinematic-narrative-video/assets/progressive-quality-example.png)
 
-<sub>A frame from the project-authored fictional WWII example; adapt scenes and clothing to each new brief.</sub>
+<sub>An original silent technique study, not the reference video or a finished production.</sub>
 
 </div>
 
@@ -81,14 +81,15 @@ A text-only agent can help with scripts and plans, but cannot honestly claim to 
 5. **Production:** create original assets and animate, render, and encode them using tools the agent actually has.
 6. **Review and delivery:** check factual claims, media, captions, rights, and platform requirements; provide a thumbnail and publishing notes where requested. Report any checks that could not be completed.
 
-The default is the same type of code-drawn cinematic animated film as the project-authored fictional WWII short, with original actions, characters and scenes adapted to the user’s topic. Static slides with camera pans, captions or weather are not a substitute for animation. The concise entry point uses detailed guides on demand, so depth is available without loading every guide for every project. The included demo is silent, and no voice recordings or reference audio are bundled.
+The target is the visual quality and production grammar observed in the user-provided New project reference, with original actions, characters and scenes adapted to the topic. The supplied reference media is not bundled, and the included silent study is not a guarantee of equivalent quality. Static slides with camera pans, captions or weather are not a substitute for animation. The concise entry point uses detailed guides on demand, so depth is available without loading every guide for every project. The included demo is silent, and no voice recordings or reference audio are bundled.
 
 ## What’s included
 
 | Component | Purpose |
 |---|---|
 | [Skill](.agents/skills/cinematic-narrative-video/SKILL.md) | The main instructions, evidence limits, production workflow, and review checklist. |
-| [Animated-film blueprint](.agents/skills/cinematic-narrative-video/references/animation-blueprint.md) | The actual WWII production method, actions and anti-slideshow quality gate. |
+| [Reference quality comparison](.agents/skills/cinematic-narrative-video/references/reference-quality.md) | Sampled New project observations, documentary failure analysis, motion, light and sync checks. |
+| [Animated-film blueprint](.agents/skills/cinematic-narrative-video/references/animation-blueprint.md) | Scene progression, animated action and an anti-slideshow gate. |
 | [Detailed production manual](.agents/skills/cinematic-narrative-video/references/production-manual.md) | In-depth timelines, animation, audio, rendering, QA and publishing, loaded only when needed. |
 | [Prompt-first intake](.agents/skills/cinematic-narrative-video/references/intake.md) | The five production questions, defaults and when to start. |
 | [Scene and wardrobe selection](.agents/skills/cinematic-narrative-video/references/scene-wardrobe.md) | Context-aware locations, costumes, lighting and continuity. |
@@ -111,14 +112,16 @@ The default is the same type of code-drawn cinematic animated film as the projec
 | `create_video_project` | Creates a new project with draft files and folders. | Refuses existing destinations; it does not generate media. |
 | `check_story_plan` | Checks manually supplied beat fields and event bounds. | Does not inspect media or judge quality, facts or sync. |
 | `validate_timeline` | Checks basic shot coverage and cue timing. | Does not verify actual media, sync, quality, rights, or accuracy. |
+| `check_alignment` | Checks caller-supplied event IDs and time overlap. | Does not see or hear actual media, verify labels or prove synchronization. |
 | `make_srt` | Converts supplied timed cues to subtitles. | Does not transcribe or align audio. |
 | `inspect_video` | Returns technical metadata through an installed `ffprobe`. | Does not watch, listen to, or judge the video. |
 
-The server also exposes fifteen guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
+The server also exposes sixteen guide resources and a `create_niche_video` prompt. Client support for resources and prompts varies. See the [MCP guide](mcp/README.md) for setup, privacy, and troubleshooting.
 
 ## Examples
 
 - [Seekable HTML renderer](.agents/skills/cinematic-narrative-video/examples/render_seekable.py) — optional local renderer for authored `window.seek(t)` scenes; it does not create animation or TTS.
+- [Original progressive quality study](.agents/skills/cinematic-narrative-video/examples/progressive-quality-demo.html) — a silent, seekable example with layered light, a moving prop, an evolving scene and a camera change.
 - [Silent WWII visual source](.agents/skills/cinematic-narrative-video/examples/ww2-seekable-scene.html) — editable, seekable visual reconstruction of the project-authored example; no audio included.
 - [Cross-niche scripts and storyboards](.agents/skills/cinematic-narrative-video/examples/cross-niche-scripts.md) — business, productivity, fiction, and other sample directions.
 - [Sample script and board](.agents/skills/cinematic-narrative-video/examples/example-script-and-board.md) — narration, visual planning, and edit notes.

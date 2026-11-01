@@ -130,7 +130,11 @@ The server also exposes sixteen guide resources and a `create_niche_video` promp
 - [Long-body rig and staging demo](.agents/skills/cinematic-narrative-video/examples/staging-rig-demo.html) — runnable silent example of layered scenery, lighting, character anatomy and a cutaway.
 - [Older silent vector animation demo](.agents/skills/cinematic-narrative-video/examples/backyard-vector-demo.html) — original coded scene, rig and diagram; not a finished video.
 
-These are starting points. Adapt them to the brief and create original final artwork, scripts, and audio.
+These are limited technique studies, not visual quality templates or finished media. Create original project-specific artwork, animation, scripts and audio.
+
+## Reference quality and motion QA
+
+The latest sampled quality target is *New project (1)*, alongside the earlier *New project*. Neither reference's media is included. The [reference analysis](.agents/skills/cinematic-narrative-video/references/reference-quality.md) records evidence and limits; the [motion QA guide](.agents/skills/cinematic-narrative-video/references/motion-qa.md) explains contact validation. A new [silent single-action study](.agents/skills/cinematic-narrative-video/examples/contact-light-study.html) demonstrates constrained reach and light, not a finished film or quality match. The optional MCP checks supplied motion data; it cannot watch video or certify quality. Review the actual output, performance, artwork and sound separately.
 
 ## FAQ
 
@@ -183,7 +187,7 @@ The MCP server runs locally and does not itself explicitly upload files or inclu
 - [Security policy](SECURITY.md) — private reporting and the local server's security boundary.
 - [License](LICENSE) — permission to use and modify project-authored material, subject to its terms.
 
-Run the included tests from the repository root with `python3 tests/test_mcp.py`. They exercise the local protocol and helpers; they do not test every agent host or prove a finished video can be produced.
+Run `python3 tests/test_mcp.py` for MCP tests and `node tests/test_motion_math.js` for the optional JavaScript motion helpers. They exercise the local protocol and helpers; they do not test every agent host or prove a finished video can be produced.
 
 ## Contributing
 

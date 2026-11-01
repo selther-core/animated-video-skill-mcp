@@ -37,7 +37,7 @@ class MCPTests(unittest.TestCase):
         out = run_server(msgs)
         self.assertEqual(len(out), 6)
         self.assertEqual(out[0]["result"]["protocolVersion"], "2025-06-18")
-        self.assertEqual(len(out[1]["result"]["tools"]), 7)
+        self.assertEqual(len(out[1]["result"]["tools"]), 8)
         self.assertTrue(out[2]["result"]["resources"])
         self.assertIn("any niche", out[3]["result"]["contents"][0]["text"].lower())
         self.assertEqual(out[4]["result"]["prompts"][0]["name"], "create_niche_video")
@@ -292,6 +292,10 @@ class MCPTests(unittest.TestCase):
             self.assertTrue((Path(folder)/"reference"/"reference-quality.md").is_file())
             self.assertTrue((Path(folder)/"reference"/"ww2-seekable-scene.html").is_file())
             self.assertTrue((Path(folder)/"reference"/"render_seekable.py").is_file())
+            self.assertTrue((Path(folder)/"reference"/"contact-light-study.html").is_file())
+            self.assertTrue((Path(folder)/"reference"/"contact-physics.js").is_file())
+            self.assertTrue((Path(folder)/"reference"/"motion-qa.md").is_file())
+            self.assertNotIn("../examples/contact-physics.js", (Path(folder)/"reference"/"motion-qa.md").read_text())
             self.assertIn("camera-only motion", (Path(folder)/"storyboard.md").read_text())
             brief = json.loads((Path(folder)/"brief.json").read_text())
             self.assertEqual(brief["backgrounds"], "forest and clearing")
@@ -310,6 +314,32 @@ class MCPTests(unittest.TestCase):
         self.assertFalse(tool_data(o[1])["timing_valid"])
         self.assertIn("00:00:01,250 --> 00:00:02,500", tool_data(o[2])["srt"])
         self.assertTrue(o[3]["result"]["isError"])
+
+    def test_motion_samples_contact_and_limb_failures(self):
+        limb = {"id": "arm", "joints": [[0,0],[3,4],[6,8]], "rest_lengths": [5,5], "relative_tolerance": .01}
+        grip = {"id": "grip-1", "point": [6,8], "target": [6,8], "tolerance": .5, "fixed_target": True}
+        good = {"space":"world", "samples":[{"time": 0, "limbs":[limb], "contacts":[grip]}, {"time":.033, "limbs":[limb], "contacts":[grip]}]}
+        bad_limb = {**limb, "joints": [[0,0],[6,8],[6,8]]}
+        bad_grip = {**grip, "point": [9,8], "target": [7,8]}
+        bad = {"space":"world", "samples":[good["samples"][0], {"time":.033, "limbs":[bad_limb], "contacts":[bad_grip]}]}
+        wrong_space = {**good,"space":"screen"}
+        sparse = {"space":"world", "samples":[good["samples"][0], {**good["samples"][1], "time":1}]}
+        replies = run_server([call(1,"check_motion_samples",{"motion":good}),call(2,"check_motion_samples",{"motion":bad}),call(3,"check_motion_samples",{"motion":wrong_space}),call(4,"check_motion_samples",{"motion":sparse})])
+        self.assertTrue(tool_data(replies[0])["motion_samples_valid"])
+        broken=tool_data(replies[1]);self.assertFalse(broken["motion_samples_valid"])
+        self.assertTrue(any("length deviates" in x for x in broken["issues"]))
+        self.assertTrue(any("gap" in x for x in broken["issues"]))
+        self.assertTrue(any("drifted" in x for x in broken["issues"]))
+        self.assertTrue(replies[2]["result"]["isError"])
+        self.assertTrue(any("sample gap" in w for w in tool_data(replies[3])["warnings"]))
+
+    def test_rejected_video_contact_regression(self):
+        # Measured SVG transforms from the rejected Letter revision; chosen left-edge grip anchor and 4-unit tolerance.
+        motion = json.loads((ROOT / "tests/fixtures/rejected-letter-contact.json").read_text())
+        result = tool_data(run_server([call(1, "check_motion_samples", {"motion": motion})])[0])
+        self.assertFalse(result["motion_samples_valid"])
+        self.assertEqual(result["issue_count"], 35)
+        self.assertTrue(any("letter-grip" in issue for issue in result["issues"]))
 
     def test_invalid_tool_and_absent_video(self):
         out = run_server([call(1, "bad_tool", {}), call(2, "inspect_video", {"path": "/path-that-does-not-exist"})])

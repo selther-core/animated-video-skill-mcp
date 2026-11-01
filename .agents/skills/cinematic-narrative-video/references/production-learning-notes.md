@@ -5,6 +5,13 @@
 
 **Purpose:** Working notes for improving the cinematic narrative video skill. Update this file when new user feedback or a verified production lesson changes the recommendations. Date updates; distinguish direct user feedback and observed evidence from hypotheses. Promote tested general principles into `SKILL.md`, the rig, animation, voice or niche guides when appropriate. Do not present these notes as proof of reference-equivalent quality.
 
+## 2026-11-01 — newer reference and rejected Letter cut
+
+- The user identified glitchy elements, too few animations and poor overall quality, and requested `New project (1).webm` from Drive as the new reference. It is 5:04.2 long; visual review sampled the whole file every 10 seconds and six selected 12-second spans every second. Full-speed playback and audio were not reviewed. `reference-quality.md` records precise evidence and limits; reference video, audio and sampled stills are not bundled.
+- Newer reference samples show quick editorial variety around 0:05–0:12, continuous world exploration through apartment windows around 0:36–0:47, connected mirror/towel action around 2:46–2:52, a staged walk and expressions around 3:25–3:36, and localized lighting plus character reactions around 4:05–4:16. Scene complexity, staging and shot progression—not only overlays or camera zoom—are part of the target.
+- The agent's initial Letter cut used a fade in place of boarding; the revision added a staircase but the user still found the elements glitchy and motion lacking. Sampling the authored SVG transforms with the left letter edge chosen as grip anchor yielded a hand-to-anchor gap of approximately 14–18 world units during selected times 10.820–11.820 seconds against a proposed four-unit tolerance. This is a measured example of an actual contact discrepancy under the chosen anchor, not an exhaustive visual review. The agent's previous checks passed despite it.
+- Fix: build the performance, asset and world before a full render; use a shared transform hierarchy, explicit reachable targets and contact/stance phases; inspect actual per-frame world-space transforms and encoded frames; never present a numeric pass, test clip, camera movement or decode as proof of reference-quality animation. `motion-qa.md`, `contact-physics.js` and the original silent `contact-light-study.html` provide limited implementation examples. They don't constitute a finished film or proof of matching the reference.
+
 ## 2026-10-30 — locations, typography, atmosphere and expression
 
 - User feedback identified text boxes, location selection, background animation, lighting, rain, mud, landscapes and expressions as needing work. These are production priorities, not evidence that a particular fix has been approved.

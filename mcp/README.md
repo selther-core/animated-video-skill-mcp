@@ -11,10 +11,11 @@ A real, minimal stdio [Model Context Protocol](https://modelcontextprotocol.io/)
 | `validate_timeline` | Check numeric durations, shot coverage, gaps, overlaps, and some cue bounds. Does not assess whether media exists, creative quality, accuracy, rights, actual sync, accessibility or policy. |
 | `check_story_plan` | Check manually supplied beat fields and event time bounds; does not inspect the video, verify sources or judge quality. |
 | `check_alignment` | Check manually supplied scene/cue event IDs and overlap; does not inspect the real video, interpret labels or listen to audio. |
+| `check_motion_samples` | Compare supplied world-space joint lengths and contact gaps/fixed target drift against caller-defined tolerances. It does not view pixels or judge animation quality. |
 | `make_srt` | Turn manually supplied timed text cues into SRT. Does not transcribe or align audio; the agent must review cue timing. |
 | `inspect_video` | Use `ffprobe` if already installed and on `PATH` to report a local file's stream/duration metadata. It does not play, hear or judge the video. |
 
-The server also exposes sixteen text resources (`cinematic://guide/skill`, `niche`, `production`, `intake`, `selection`, `compatibility`, `visual`, `animation`, `blueprint`, `quality`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, authors original assets, uses connected TTS when requested, animates and renders, listens and reviews when possible, and creates the requested deliverables. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
+The server also exposes seventeen text resources (`cinematic://guide/skill`, `niche`, `production`, `intake`, `selection`, `compatibility`, `visual`, `animation`, `blueprint`, `quality`, `motion`, `rig`, `staging`, `structure`, `audit`, `voice`, `examples`) and a `create_niche_video` prompt. Resources and prompts may not appear in all MCP clients. The **agent** still researches and writes, authors original assets, uses connected TTS when requested, animates and renders, listens and reviews when possible, and creates the requested deliverables. This server does **not** generate media, TTS, image assets or a finished video. It has no automatic access to the agent's connected image/TTS providers and does not publish anything.
 
 ## Setup
 
